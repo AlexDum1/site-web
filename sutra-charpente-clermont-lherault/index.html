@@ -1,148 +1,627 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sutra Charpente — Charpente à Clermont-l'Hérault</title>
-<meta name="description" content="Charpente, couverture et ossature bois à Clermont-l'Hérault">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<script src="https://cdn.tailwindcss.com"></script>
+<title>Sutra Charpente — Charpente · Couverture · Ossature bois à Clermont-l'Hérault (maquette de démonstration)</title>
+<meta name="description" content="Maquette de démonstration — proposition de refonte du site de Sutra Charpente, charpente, couverture, zinguerie et ossature bois à Clermont-l'Hérault. Non affiliée.">
+<link rel="icon" type="image/jpeg" href="assets/photo1.jpg">
 <style>
-  :root {
-    --color-primary: #5C3A21;
-    --color-secondary: #3F2712;
-    --color-accent: #C2703D;
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+/* ===================================================================
+   SUTRA CHARPENTE — maquette one-page sur mesure
+   Charte bois : crème naturel, bois chaud, vert forêt (extrait du logo).
+   =================================================================== */
+@font-face{
+  font-family:'Fraunces';
+  src:url('assets/fonts/fraunces-latin.woff2') format('woff2');
+  font-weight:100 900; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:'Fraunces';
+  src:url('assets/fonts/fraunces-latinext.woff2') format('woff2');
+  font-weight:100 900; font-style:normal; font-display:swap;
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face{
+  font-family:'Inter';
+  src:url('assets/fonts/inter-latin.woff2') format('woff2');
+  font-weight:100 900; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:'Inter';
+  src:url('assets/fonts/inter-latinext.woff2') format('woff2');
+  font-weight:100 900; font-style:normal; font-display:swap;
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+:root{
+  --creme:#F4EEE2;
+  --clair-panneau:#FBF7EF;
+  --charbon:#211A12;
+  --charbon-2:#2b2219;
+  --trait-clair:#e4ddcc;
+  --trait-fonce:#3a3025;
+  --brun:#2A2118;
+  --brun-doux:#5c5142;
+  --bois:#A9702F;
+  --bois-clair:#cd9250;
+  --vert:#2F5E3C;
+  --vert-fonce:#254c30;
+  --creme-texte:#F2EADB;
+  --sable:#c9bba1;
+  --display:'Fraunces', Georgia, 'Times New Roman', serif;
+  --body:'Inter', system-ui, -apple-system, sans-serif;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+body{
+  font-family:var(--body);
+  background:var(--creme);
+  color:var(--brun-doux);
+  font-size:1.0625rem;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--vert);outline-offset:3px}
+::selection{background:var(--bois);color:var(--creme-texte)}
+
+/* ---------- bandeau démo */
+.demo-banner{
+  background:var(--vert);
+  color:var(--creme-texte);
+  font-size:.8125rem;
+  font-weight:600;
+  text-align:center;
+  padding:.55rem 1rem;
+  line-height:1.4;
+}
+
+/* ---------- navigation */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(244,238,226,.9);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--trait-clair);
+}
+.nav-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.7rem 1.5rem;
+}
+.nav-logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo img{height:42px;width:auto}
+.nav-logo .nom{
+  font-family:var(--display);font-weight:600;
+  font-size:1.3rem;color:var(--brun);letter-spacing:.01em;
+}
+.nav-links{display:flex;gap:2rem;align-items:center;list-style:none}
+.nav-links a{
+  font-family:var(--body);
+  font-size:.98rem;font-weight:600;
+  letter-spacing:.02em;
+  color:var(--brun);text-decoration:none;
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--vert)}
+.nav-tel{
+  background:var(--vert);color:var(--creme-texte)!important;
+  font-weight:700!important;
+  padding:.5rem 1.1rem;border-radius:3px;
+  transition:background .2s!important;
+}
+.nav-tel:hover{background:var(--vert-fonce);color:var(--creme-texte)!important}
+@media (max-width:860px){
+  .nav-links li.masquable{display:none}
+  .nav-logo .nom{display:none}
+}
+
+/* ---------- hero (fond sombre chaud) */
+.hero{
+  position:relative;
+  min-height:90vh;
+  display:flex;align-items:flex-end;
+  isolation:isolate;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:-2;
+  background:url('assets/photo2.jpg') center/cover no-repeat;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:
+    linear-gradient(180deg, rgba(33,26,18,.45) 0%, rgba(33,26,18,.1) 34%, rgba(33,26,18,.88) 100%),
+    linear-gradient(90deg, rgba(33,26,18,.62) 0%, rgba(33,26,18,0) 62%);
+}
+.hero-content{
+  max-width:1200px;margin:0 auto;width:100%;
+  padding:7rem 1.5rem 4.5rem;
+}
+.hero-eyebrow{
+  display:flex;align-items:center;gap:.6rem;
+  font-family:var(--body);
+  font-weight:700;font-size:.9rem;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--bois-clair);
+  margin-bottom:1.3rem;
+}
+.hero h1{
+  font-family:var(--display);
+  font-weight:600;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(3rem, 8.5vw, 6.6rem);
+  line-height:.98;
+  color:var(--creme-texte);
+  letter-spacing:-.005em;
+}
+.hero h1 .ligne{display:block}
+.hero h1 .accent{color:var(--bois-clair);font-style:italic}
+.hero-rule{
+  display:block;height:4px;width:min(300px,48vw);
+  background:var(--bois);
+  margin:1.5rem 0 1.5rem;border-radius:2px;
+}
+.hero-sub{
+  max-width:35rem;
+  font-size:1.125rem;
+  color:var(--creme-texte);
+  text-shadow:0 1px 12px rgba(33,26,18,.9), 0 0 3px rgba(33,26,18,.8);
+  margin-bottom:2.2rem;
+}
+.hero-sub strong{color:#fff;font-weight:600}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:var(--body);font-weight:700;font-size:1rem;
+  text-decoration:none;
+  padding:.95rem 1.6rem;border-radius:3px;
+  transition:transform .15s, background .2s, color .2s, border-color .2s;
+}
+.btn:active{transform:translateY(1px)}
+.btn-vert{background:var(--vert);color:var(--creme-texte)}
+.btn-vert:hover{background:#fff;color:var(--vert)}
+.btn-ligne{border:1px solid var(--sable);color:var(--creme-texte)}
+.btn-ligne:hover{border-color:var(--bois-clair);color:var(--bois-clair)}
+
+/* ---------- bande matériaux */
+.materiaux{
+  border-bottom:1px solid var(--trait-clair);
+  background:var(--clair-panneau);
+}
+.materiaux-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:.5rem 2rem;
+  padding:1.4rem 1.5rem;
+}
+.materiaux span{
+  font-family:var(--display);
+  font-weight:600;font-size:clamp(1.15rem, 2.4vw, 1.7rem);
+  letter-spacing:.02em;
+  color:var(--brun);
+}
+.materiaux .sep{color:var(--bois);font-weight:400}
+@media (max-width:700px){
+  .materiaux-inner{justify-content:center}
+  .materiaux .sep{display:none}
+}
+
+/* ---------- structure des sections */
+.section{padding:6rem 1.5rem}
+.section-inner{max-width:1200px;margin:0 auto}
+.eyebrow{
+  display:flex;align-items:center;gap:.55rem;
+  font-family:var(--body);
+  font-weight:700;font-size:.9rem;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--vert);
+  margin-bottom:1rem;
+}
+.eyebrow svg{flex:none}
+h2{
+  font-family:var(--display);
+  font-weight:600;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(2.2rem, 5vw, 3.7rem);
+  line-height:1.04;
+  color:var(--brun);
+  margin-bottom:1.6rem;
+  max-width:20ch;
+  letter-spacing:-.005em;
+}
+
+/* ---------- à propos (clair) */
+.apropos{background:var(--clair-panneau)}
+.apropos-grid{
+  display:grid;
+  grid-template-columns:minmax(0, 1.05fr) minmax(0, 1fr);
+  gap:4rem;align-items:center;
+}
+.apropos-texte p{margin-bottom:1.15rem;max-width:36rem}
+.apropos-texte strong{color:var(--brun);font-weight:600}
+.apropos-faits{
+  list-style:none;margin-top:1.8rem;display:grid;gap:.9rem;
+}
+.apropos-faits li{
+  display:flex;gap:.75rem;align-items:baseline;font-size:1rem;
+}
+.apropos-faits li::before{
+  content:"";flex:none;width:14px;height:11px;transform:translateY(1px);
+  background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 11"><path d="M1 10 7 1l6 9" fill="none" stroke="%23A9702F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') center/contain no-repeat;
+}
+.apropos-photos{
+  display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;
+}
+.apropos-photos figure:last-child{margin-top:2.5rem}
+.apropos-photos img{border-radius:4px;width:100%;height:auto}
+.apropos-photos figcaption{
+  font-size:.8125rem;color:var(--brun-doux);margin-top:.55rem;line-height:1.45;
+}
+@media (max-width:900px){
+  .apropos-grid{grid-template-columns:1fr;gap:3rem}
+}
+
+/* ---------- réalisations (fond sombre chaud) */
+.realisations{background:var(--charbon);color:var(--sable)}
+.realisations .eyebrow{color:var(--bois-clair)}
+.realisations h2{color:var(--creme-texte)}
+.grille{
+  display:grid;grid-template-columns:repeat(6, 1fr);gap:1.1rem;margin-top:3rem;
+}
+.carte{
+  position:relative;overflow:hidden;border-radius:4px;
+  border:1px solid var(--trait-fonce);
+  text-decoration:none;min-height:300px;display:block;
+  background:var(--charbon-2);
+}
+.carte img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;transition:transform .5s ease;
+}
+.carte::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(185deg, rgba(33,26,18,0) 42%, rgba(33,26,18,.9) 90%);
+}
+.carte:hover img{transform:scale(1.045)}
+.carte:hover{border-color:var(--bois)}
+.carte-label{position:absolute;left:1.2rem;right:1.2rem;bottom:1.05rem;z-index:1}
+.carte-label .cat{
+  font-family:var(--display);font-weight:600;font-size:1.5rem;
+  letter-spacing:.005em;
+  color:var(--creme-texte);line-height:1.08;
+}
+.carte-label .matiere{
+  font-size:.85rem;color:var(--sable);margin-top:.3rem;display:block;
+}
+.c-charpente{grid-column:span 4;min-height:460px}
+.c-ossature{grid-column:span 2;min-height:460px}
+.c-tuile{grid-column:span 2}
+.c-zinc{grid-column:span 2}
+.c-terrasse{grid-column:span 2}
+@media (max-width:900px){
+  .grille{grid-template-columns:1fr 1fr}
+  .grille .carte{grid-column:span 1;min-height:280px}
+  .c-charpente{grid-column:span 2;min-height:360px}
+}
+@media (max-width:540px){
+  .grille{grid-template-columns:1fr}
+  .grille .carte,.c-charpente{grid-column:span 1}
+}
+.realisations-note{margin-top:1.6rem;font-size:.9rem;color:var(--sable)}
+
+/* ---------- zone d'intervention (clair) */
+.zone{background:var(--creme);border-top:1px solid var(--trait-clair)}
+.zone-grid{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:4rem;align-items:center;
+}
+.zone p{max-width:32rem;margin-bottom:1.1rem}
+.zone strong{color:var(--brun);font-weight:600}
+.zone-radar{width:100%;max-width:460px;margin:0 auto;display:block}
+.zone-radar text{font-family:var(--body);fill:var(--brun-doux)}
+@media (max-width:900px){
+  .zone-grid{grid-template-columns:1fr;gap:3rem}
+}
+
+/* ---------- contact (clair) */
+.contact{background:var(--clair-panneau)}
+.contact-grid{
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:4rem;align-items:center;
+}
+.contact-tel{
+  display:inline-block;
+  font-family:var(--display);font-weight:600;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(2.2rem, 5.5vw, 3.9rem);
+  letter-spacing:0;color:var(--vert);
+  text-decoration:none;line-height:1.1;
+  margin:.5rem 0 .8rem;transition:color .2s;
+}
+.contact-tel:hover{color:var(--bois)}
+.contact-mail{
+  display:inline-block;font-size:1.2rem;color:var(--brun);
+  text-decoration:none;border-bottom:2px solid var(--bois);
+  padding-bottom:2px;transition:border-color .2s,color .2s;margin-bottom:1.8rem;
+}
+.contact-mail:hover{color:var(--vert);border-color:var(--vert)}
+.contact-adresse{font-size:1rem;color:var(--brun-doux);line-height:1.7}
+.contact-adresse strong{color:var(--brun);font-weight:600}
+.contact-photo{position:relative}
+.contact-photo img{
+  border-radius:4px;border:1px solid var(--trait-clair);
+  width:100%;height:auto;max-height:620px;object-fit:cover;
+}
+.contact-photo figcaption{
+  font-size:.8125rem;color:var(--brun-doux);margin-top:.6rem;text-align:center;
+}
+@media (max-width:900px){
+  .contact-grid{grid-template-columns:1fr;gap:3rem}
+}
+
+/* ---------- footer (sombre chaud) */
+footer{
+  background:var(--charbon);border-top:1px solid var(--trait-fonce);
+  padding:3rem 1.5rem 2.5rem;font-size:.875rem;color:var(--sable);
+}
+.footer-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between;align-items:flex-start;
+}
+.footer-inner .bloc{max-width:24rem;line-height:1.7}
+.footer-inner strong{color:var(--creme-texte);font-weight:600}
+.footer-brand{display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem}
+.footer-brand img{height:40px;width:auto;background:#fff;border-radius:4px;padding:3px}
+.footer-brand .nom{font-family:var(--display);font-weight:600;font-size:1.25rem;color:var(--creme-texte)}
+.footer-demo{
+  margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--trait-fonce);
+  max-width:1200px;margin-left:auto;margin-right:auto;
+  font-size:.8125rem;line-height:1.6;
+}
+
+/* ---------- apparition au scroll */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.vu{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  .reveal{opacity:1;transform:none}
+}
 </style>
 </head>
-<body class="bg-white text-slate-800 antialiased">
+<body>
 
-<!-- Bandeau démo : évite toute confusion avec un vrai site officiel -->
-<div class="bg-slate-900 text-white text-xs sm:text-sm text-center py-2 px-4">
-  Maquette de démonstration — proposition de refonte non officielle, réalisée par <strong>Le Pouget Web</strong>. Non affiliée à Sutra Charpente.
-</div>
+<div class="demo-banner">Maquette de démonstration — proposition de refonte non officielle, réalisée par Le Pouget Web. Non affiliée à Sutra Charpente.</div>
 
-<!-- Nav -->
-<header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-slate-100">
-  <nav class="max-w-5xl mx-auto flex items-center justify-between px-5 py-4">
-    
-    
-    <span class="font-bold text-lg tracking-tight" style="color:var(--color-primary)">Sutra Charpente</span>
-    
-    <a href="tel:0486803400" class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-white" style="background-color:var(--color-primary)">
-      📞 04 86 80 34 00
+<nav class="nav" aria-label="Navigation principale">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#haut" aria-label="Sutra Charpente — retour en haut">
+      <img src="assets/photo1.jpg" alt="Sutra Charpente" width="42" height="42">
+      <span class="nom">Sutra Charpente</span>
     </a>
-  </nav>
+    <ul class="nav-links">
+      <li class="masquable"><a href="#realisations">Réalisations</a></li>
+      <li class="masquable"><a href="#apropos">L'entreprise</a></li>
+      <li class="masquable"><a href="#contact">Contact</a></li>
+      <li><a class="nav-tel" href="tel:+33486803400">04 86 80 34 00</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="haut">
+  <div class="hero-bg" role="img" aria-label="Charpente traditionnelle en bois massif réalisée par Sutra Charpente, vue de dessus sur une maison en construction dans l'Hérault"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">
+      <svg width="15" height="12" viewBox="0 0 15 12" aria-hidden="true"><path d="M1.5 11 7.5 2l6 9" fill="none" stroke="#cd9250" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Clermont-l'Hérault · Cœur d'Hérault
+    </p>
+    <h1>
+      <span class="ligne">Charpente</span>
+      <span class="ligne">Couverture</span>
+      <span class="ligne accent">Ossature bois</span>
+    </h1>
+    <span class="hero-rule" aria-hidden="true"></span>
+    <p class="hero-sub">Entreprise à taille humaine au cœur de l'Hérault : <strong>charpente traditionnelle et industrielle</strong>, couverture, zinguerie et ossature bois (MOB). Un accompagnement de l'estimation à la pose.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-vert" href="tel:+33486803400">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3.7 1.1c.4-.4 1-.4 1.4 0l2 2c.4.4.4 1 0 1.4l-1 1c.6 1.3 2.1 2.8 3.4 3.4l1-1c.4-.4 1-.4 1.4 0l2 2c.4.4.4 1 0 1.4l-1.2 1.2c-.5.5-1.2.7-1.9.5C7.6 12.6 3.4 8.4 2 5.2c-.3-.7-.1-1.4.4-1.9l1.3-1.2z"/></svg>
+        04 86 80 34 00
+      </a>
+      <a class="btn btn-ligne" href="#realisations">Voir les réalisations</a>
+    </div>
+  </div>
 </header>
 
-<!-- Hero -->
-<section class="relative px-5 py-24 sm:py-32 text-center text-white overflow-hidden">
-  <div class="absolute inset-0" style="background-image:url('assets/photo2.jpg'); background-size:cover; background-position:center;"></div>
-  <div class="absolute inset-0" style="background:linear-gradient(180deg, color-mix(in srgb, var(--color-secondary) 75%, black) 0%, color-mix(in srgb, var(--color-primary) 55%, black) 100%); opacity:0.82;"></div>
-  <div class="relative">
-    <p class="uppercase tracking-widest text-sm font-semibold mb-3 opacity-90">Charpente · Clermont-l'Hérault</p>
-    <h1 class="text-3xl sm:text-5xl font-bold mb-5 max-w-3xl mx-auto leading-tight">Charpente, couverture et ossature bois à Clermont-l'Hérault</h1>
-    <p class="max-w-xl mx-auto mb-8 opacity-90">Entreprise à taille humaine implantée en cœur d'Hérault, spécialisée en charpente traditionnelle et industrielle, couverture, zinguerie et structures bois (MOB). Accompagnement de l'estimation à la mise en œuvre.</p>
-    <div class="flex flex-wrap gap-3 justify-center">
-      <a href="tel:0486803400" class="rounded-full px-6 py-3 font-semibold shadow" style="background-color:white; color:var(--color-primary)">Appeler 04 86 80 34 00</a>
-      
-      <a href="mailto:contact@sutracharpente.fr" class="rounded-full px-6 py-3 font-semibold border-2 border-white">Envoyer un message</a>
-      
+<div class="materiaux" aria-label="Matériaux travaillés">
+  <div class="materiaux-inner">
+    <span>Bois massif</span><span class="sep" aria-hidden="true">·</span>
+    <span>Ossature</span><span class="sep" aria-hidden="true">·</span>
+    <span>Tuile</span><span class="sep" aria-hidden="true">·</span>
+    <span>Zinc</span>
+  </div>
+</div>
+
+<section class="section apropos" id="apropos">
+  <div class="section-inner">
+    <div class="apropos-grid">
+      <div class="apropos-texte reveal">
+        <p class="eyebrow">
+          <svg width="15" height="12" viewBox="0 0 15 12" aria-hidden="true"><path d="M1.5 11 7.5 2l6 9" fill="none" stroke="#2F5E3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          L'entreprise
+        </p>
+        <h2>Le bois, de l'estimation à la pose</h2>
+        <p>Sutra Charpente est une entreprise <strong>à taille humaine</strong> implantée au cœur de l'Hérault, à Clermont-l'Hérault. Charpente traditionnelle et industrielle, couverture, zinguerie et ossature bois : le bois sous toutes ses formes.</p>
+        <p>Nous accompagnons chaque projet <strong>de l'estimation à la mise en œuvre</strong> — neuf comme rénovation, pour les particuliers comme pour les professionnels.</p>
+        <ul class="apropos-faits">
+          <li>Charpente traditionnelle &amp; industrielle en bois massif</li>
+          <li>Ossature bois (MOB) : extensions, surélévations, maisons</li>
+          <li>Couverture &amp; zinguerie — tuile, zinc, chéneaux</li>
+          <li>Clermont-l'Hérault et cœur d'Hérault — devis gratuit</li>
+        </ul>
+      </div>
+      <div class="apropos-photos reveal">
+        <figure>
+          <img src="assets/photo3.jpg" alt="Murs à ossature bois en cours de montage sur un chantier Sutra Charpente" loading="lazy" width="1000" height="1000">
+          <figcaption>Montage d'une ossature bois (MOB)</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/photo5.jpg" alt="Chéneau en zinc soudé, zinguerie réalisée par Sutra Charpente" loading="lazy" width="1000" height="1000">
+          <figcaption>Zinguerie — chéneau en zinc soudé</figcaption>
+        </figure>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Repères -->
-<section class="border-y border-slate-100 bg-slate-50">
-  <div class="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 gap-6 px-5 py-8 text-center">
-    <div>
-      <p class="text-2xl font-bold" style="color:var(--color-primary)">plusieurs années</p>
-      <p class="text-sm text-slate-500">d'expérience à Clermont-l'Hérault</p>
+<section class="section realisations" id="realisations">
+  <div class="section-inner">
+    <p class="eyebrow reveal">
+      <svg width="15" height="12" viewBox="0 0 15 12" aria-hidden="true"><path d="M1.5 11 7.5 2l6 9" fill="none" stroke="#cd9250" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Réalisations
+    </p>
+    <h2 class="reveal">Du bois travaillé avec soin</h2>
+
+    <div class="grille">
+      <a class="carte c-charpente reveal" href="#contact">
+        <img src="assets/photo2.jpg" alt="Charpente traditionnelle en bois massif, vue de dessus, réalisée par Sutra Charpente" loading="lazy" width="1100" height="1000">
+        <span class="carte-label"><span class="cat">Charpente traditionnelle</span><span class="matiere">Bois massif, assemblages sur mesure</span></span>
+      </a>
+      <a class="carte c-ossature reveal" href="#contact">
+        <img src="assets/photo3.jpg" alt="Murs à ossature bois montés sur un chantier Sutra Charpente" loading="lazy" width="1100" height="1100">
+        <span class="carte-label"><span class="cat">Ossature bois</span><span class="matiere">MOB : extensions, surélévations</span></span>
+      </a>
+      <a class="carte c-tuile reveal" href="#contact">
+        <img src="assets/photo4.jpg" alt="Couverture en tuiles canal restaurée par Sutra Charpente" loading="lazy" width="1100" height="1100">
+        <span class="carte-label"><span class="cat">Couverture tuile</span><span class="matiere">Tuiles canal &amp; mécaniques</span></span>
+      </a>
+      <a class="carte c-zinc reveal" href="#contact">
+        <img src="assets/photo5.jpg" alt="Zinguerie : chéneau en zinc soudé réalisé par Sutra Charpente" loading="lazy" width="1100" height="1100">
+        <span class="carte-label"><span class="cat">Zinguerie zinc</span><span class="matiere">Chéneaux, noues, gouttières</span></span>
+      </a>
+      <a class="carte c-terrasse reveal" href="#contact">
+        <img src="assets/photo6.jpg" alt="Terrasse en bois autour d'une piscine, réalisée par Sutra Charpente" loading="lazy" width="1100" height="1100">
+        <span class="carte-label"><span class="cat">Terrasse bois</span><span class="matiere">Platelage &amp; aménagement d'abords</span></span>
+      </a>
     </div>
-    <div>
-      <p class="text-2xl font-bold" style="color:var(--color-primary)">Clermont-l'Hérault et alentours</p>
-      <p class="text-sm text-slate-500">zone d'intervention</p>
+    <p class="realisations-note reveal">Charpente, ossature bois, couverture, zinguerie et terrasses : chaque photo ci-dessus est une réalisation Sutra Charpente.</p>
+  </div>
+</section>
+
+<section class="section zone" aria-label="Zone d'intervention">
+  <div class="section-inner">
+    <div class="zone-grid">
+      <div class="reveal">
+        <p class="eyebrow">
+          <svg width="15" height="12" viewBox="0 0 15 12" aria-hidden="true"><path d="M1.5 11 7.5 2l6 9" fill="none" stroke="#2F5E3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Zone d'intervention
+        </p>
+        <h2>Au cœur de l'Hérault</h2>
+        <p>Notre atelier est installé à <strong>Clermont-l'Hérault</strong>, dans la ZAC La Salamane. Nous intervenons dans toute la vallée de l'Hérault et autour du lac du Salagou.</p>
+        <p>Maisons, extensions et bâtiments — <strong>charpente et couverture dans tout le secteur</strong>, du devis à la pose.</p>
+      </div>
+      <div class="reveal">
+        <svg class="zone-radar" viewBox="0 0 460 400" role="img" aria-label="Carte stylisée : Clermont-l'Hérault au centre, Le Pouget, Aspiran, Gignac, Lodève, lac du Salagou et Pézenas autour">
+          <g fill="none" stroke="#ddd3bf" stroke-width="1.2">
+            <circle cx="230" cy="200" r="60"/>
+            <circle cx="230" cy="200" r="110"/>
+            <circle cx="230" cy="200" r="160"/>
+          </g>
+          <g fill="none" stroke="#c9bda6" stroke-width="1" stroke-dasharray="2 5">
+            <line x1="230" y1="200" x2="188" y2="120"/>
+            <line x1="230" y1="200" x2="322" y2="168"/>
+            <line x1="230" y1="200" x2="336" y2="256"/>
+            <line x1="230" y1="200" x2="150" y2="256"/>
+          </g>
+          <circle cx="230" cy="200" r="7" fill="#2F5E3C"/>
+          <circle cx="230" cy="200" r="13" fill="none" stroke="#2F5E3C" stroke-width="1.5" opacity=".5"/>
+          <text x="230" y="176" text-anchor="middle" font-size="16" font-weight="700" fill="#2A2118">Clermont-l'Hérault</text>
+          <circle cx="188" cy="120" r="4" fill="#A9702F"/>
+          <text x="180" y="108" text-anchor="end" font-size="13">Lodève</text>
+          <circle cx="322" cy="168" r="4" fill="#A9702F"/>
+          <text x="332" y="164" font-size="13">Gignac</text>
+          <circle cx="336" cy="256" r="4" fill="#A9702F"/>
+          <text x="330" y="278" font-size="13">Pézenas</text>
+          <circle cx="150" cy="256" r="4" fill="#A9702F"/>
+          <text x="142" y="274" text-anchor="end" font-size="13">Lac du Salagou</text>
+          <circle cx="284" cy="230" r="4" fill="#A9702F"/>
+          <text x="294" y="238" font-size="13">Le Pouget</text>
+          <circle cx="256" cy="150" r="4" fill="#A9702F"/>
+          <text x="266" y="146" font-size="13">Aspiran</text>
+        </svg>
+      </div>
     </div>
-    <div class="col-span-2 sm:col-span-1">
-      <p class="text-2xl font-bold" style="color:var(--color-primary)">✓</p>
-      <p class="text-sm text-slate-500">Devis gratuit</p>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="reveal">
+        <p class="eyebrow">
+          <svg width="15" height="12" viewBox="0 0 15 12" aria-hidden="true"><path d="M1.5 11 7.5 2l6 9" fill="none" stroke="#2F5E3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Contact
+        </p>
+        <h2>Parlez-nous de votre projet</h2>
+        <p>Une charpente à monter, une couverture à reprendre, une extension en ossature bois&nbsp;? Appelez ou écrivez : réponse rapide et devis gratuit.</p>
+        <a class="contact-tel" href="tel:+33486803400">04&nbsp;86&nbsp;80&nbsp;34&nbsp;00</a><br>
+        <a class="contact-mail" href="mailto:contact@sutracharpente.fr">contact@sutracharpente.fr</a>
+        <p class="contact-adresse">
+          <strong>Sutra Charpente</strong><br>
+          ZAC La Salamane — 2225 avenue de la Salamane<br>
+          34800 Clermont-l'Hérault
+        </p>
+      </div>
+      <figure class="contact-photo reveal">
+        <img src="assets/photo6.jpg" alt="Terrasse en bois autour d'une piscine réalisée par Sutra Charpente" width="900" height="900">
+        <figcaption>Terrasse bois &amp; aménagement d'abords</figcaption>
+      </figure>
     </div>
   </div>
 </section>
 
-<!-- Services -->
-<section id="services" class="max-w-5xl mx-auto px-5 py-16">
-  <h2 class="text-2xl sm:text-3xl font-bold mb-8 text-center">Nos prestations</h2>
-  <div class="grid sm:grid-cols-2 gap-4">
-    <div class="rounded-2xl border border-slate-100 p-5 flex items-start gap-4" style="background-color: color-mix(in srgb, var(--color-primary) 4%, white)">
-  <span class="text-2xl" style="color:var(--color-accent)">●</span>
-  <div>
-    <p class="font-semibold">Charpente traditionnelle</p>
-    <p class="text-sm text-slate-500">Conception et pose sur mesure, bois massif.</p>
+<footer>
+  <div class="footer-inner">
+    <div class="bloc">
+      <div class="footer-brand">
+        <img src="assets/photo1.jpg" alt="Sutra Charpente">
+        <span class="nom">Sutra Charpente</span>
+      </div>
+      <p><strong>Charpente · Couverture · Zinguerie · Ossature bois</strong><br>
+      ZAC La Salamane — 2225 av. de la Salamane, 34800 Clermont-l'Hérault<br>
+      <a href="tel:+33486803400" style="text-decoration:none">04 86 80 34 00</a> · <a href="mailto:contact@sutracharpente.fr" style="text-decoration:none">contact@sutracharpente.fr</a></p>
+    </div>
+    <div class="bloc">
+      <p><strong>Entreprise à taille humaine, au cœur de l'Hérault.</strong><br>Charpente traditionnelle et industrielle, ossature bois, couverture et zinguerie — de l'estimation à la pose.</p>
+    </div>
   </div>
-</div>
-<div class="rounded-2xl border border-slate-100 p-5 flex items-start gap-4" style="background-color: color-mix(in srgb, var(--color-primary) 4%, white)">
-  <span class="text-2xl" style="color:var(--color-accent)">●</span>
-  <div>
-    <p class="font-semibold">Charpente industrielle</p>
-    <p class="text-sm text-slate-500">Solutions rapides et fiables pour tous types de bâtiments.</p>
-  </div>
-</div>
-<div class="rounded-2xl border border-slate-100 p-5 flex items-start gap-4" style="background-color: color-mix(in srgb, var(--color-primary) 4%, white)">
-  <span class="text-2xl" style="color:var(--color-accent)">●</span>
-  <div>
-    <p class="font-semibold">Ossature bois (MOB)</p>
-    <p class="text-sm text-slate-500">Extensions, surélévations, projets maison bois.</p>
-  </div>
-</div>
-<div class="rounded-2xl border border-slate-100 p-5 flex items-start gap-4" style="background-color: color-mix(in srgb, var(--color-primary) 4%, white)">
-  <span class="text-2xl" style="color:var(--color-accent)">●</span>
-  <div>
-    <p class="font-semibold">Couverture & zinguerie</p>
-    <p class="text-sm text-slate-500">Tuiles mécaniques, tuiles canal, bac acier, gouttières et chéneaux.</p>
-  </div>
-</div>
-  </div>
-</section>
-
-<!-- Galerie -->
-
-<section class="max-w-5xl mx-auto px-5 py-16">
-  <h2 class="text-2xl sm:text-3xl font-bold mb-8 text-center">Nos réalisations</h2>
-  <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-    <img src="assets/photo3.jpg" alt="Réalisation" class="w-full h-32 sm:h-40 object-cover rounded-xl">
-<img src="assets/photo4.jpg" alt="Réalisation" class="w-full h-32 sm:h-40 object-cover rounded-xl">
-<img src="assets/photo5.jpg" alt="Réalisation" class="w-full h-32 sm:h-40 object-cover rounded-xl">
-<img src="assets/photo6.jpg" alt="Réalisation" class="w-full h-32 sm:h-40 object-cover rounded-xl">
-  </div>
-</section>
-
-
-<!-- Avis -->
-
-
-<!-- Carte -->
-
-
-<!-- CTA final -->
-<section class="px-5 py-16 text-center text-white" style="background-color:var(--color-primary)">
-  <h2 class="text-2xl sm:text-3xl font-bold mb-4">Un projet ? Parlons-en.</h2>
-  <p class="mb-8 opacity-90">Devis gratuit, réponse rapide.</p>
-  <div class="flex flex-wrap gap-3 justify-center">
-    <a href="tel:0486803400" class="rounded-full px-6 py-3 font-semibold bg-white" style="color:var(--color-primary)">📞 04 86 80 34 00</a>
-    
-    <a href="mailto:contact@sutracharpente.fr" class="rounded-full px-6 py-3 font-semibold border-2 border-white">✉️ contact@sutracharpente.fr</a>
-    
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="px-5 py-8 text-center text-sm text-slate-500">
-  <p>Sutra Charpente — ZAC La Salamane, 2225 Av. de la Salamane, Clermont-l'Hérault</p>
-  <p class="mt-2 text-xs text-slate-400">Maquette réalisée à titre de démonstration par Le Pouget Web · © 2026</p>
+  <p class="footer-demo">Maquette de démonstration réalisée par <strong>Le Pouget Web</strong> — proposition de refonte non officielle, non affiliée à Sutra Charpente. Photos : réalisations reproduites ici uniquement à des fins de démonstration auprès de l'entreprise. Cette page n'est pas référencée par les moteurs de recherche.</p>
 </footer>
+
+<script>
+(function(){
+  if (/(^|[?&])capture/.test(location.search)) {
+    document.querySelectorAll('img[loading="lazy"]').forEach(function(im){ im.loading = 'eager'; });
+  }
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || /(^|[?&])capture/.test(location.search)) {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('vu'); });
+    return;
+  }
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('vu'); obs.unobserve(e.target); }
+    });
+  }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+})();
+</script>
 
 </body>
 </html>

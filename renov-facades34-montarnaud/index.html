@@ -1,134 +1,638 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Renov' Façades 34 — Maçonnerie à Montarnaud</title>
-<meta name="description" content="Ravalement de façades depuis 2008, aux portes de Montpellier">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<script src="https://cdn.tailwindcss.com"></script>
+<title>Renov' Façades 34 — Ravalement · ITE · Peinture à Montarnaud (maquette de démonstration)</title>
+<meta name="description" content="Maquette de démonstration — proposition de refonte du site de Renov' Façades 34, ravalement de façades et isolation thermique par l'extérieur à Montarnaud (Hérault). Non affiliée.">
+<link rel="icon" type="image/jpeg" href="assets/logo.jpg">
 <style>
-  :root {
-    --color-primary: #57534E;
-    --color-secondary: #292524;
-    --color-accent: #B45309;
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+/* ===================================================================
+   RENOV' FAÇADES 34 — maquette one-page sur mesure
+   Charte extraite du logo réel : charbon, blanc, orange chantier.
+   =================================================================== */
+@font-face{
+  font-family:'Anton';
+  src:url('assets/fonts/anton-latin.woff2') format('woff2');
+  font-weight:400; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:'Anton';
+  src:url('assets/fonts/anton-latinext.woff2') format('woff2');
+  font-weight:400; font-style:normal; font-display:swap;
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face{
+  font-family:'Inter';
+  src:url('assets/fonts/inter-latin.woff2') format('woff2');
+  font-weight:100 900; font-style:normal; font-display:swap;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:'Inter';
+  src:url('assets/fonts/inter-latinext.woff2') format('woff2');
+  font-weight:100 900; font-style:normal; font-display:swap;
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+:root{
+  --noir:#141313;
+  --panneau:#1c1b1a;
+  --anthracite:#232120;
+  --trait:#2f2c29;
+  --acier:#8d867d;
+  --acier-clair:#b9b1a6;
+  --orange:#EE7A1B;
+  --orange-fonce:#C25E12;
+  --blanc:#F4F0EA;
+  --clair-bg:#EAE4DA;
+  --clair-panneau:#F5F0E8;
+  --clair-texte:#1a1817;
+  --clair-acier:#57524b;
+  --display:'Anton','Arial Narrow',sans-serif;
+  --body:'Inter','Helvetica Neue',system-ui,sans-serif;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+body{
+  font-family:var(--body);
+  background:var(--noir);
+  color:var(--acier-clair);
+  font-size:1.0625rem;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+::selection{background:var(--orange);color:var(--noir)}
+
+/* ---------- bandeau démo */
+.demo-banner{
+  background:var(--orange);
+  color:var(--noir);
+  font-size:.8125rem;
+  font-weight:600;
+  text-align:center;
+  padding:.55rem 1rem;
+  line-height:1.4;
+}
+
+/* ---------- navigation */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(20,19,19,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--trait);
+}
+.nav-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.7rem 1.5rem;
+}
+.nav-logo img{height:46px;width:auto;border-radius:3px}
+.nav-links{display:flex;gap:2rem;align-items:center;list-style:none}
+.nav-links a{
+  font-family:var(--display);
+  font-size:1.05rem;font-weight:400;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--acier-clair);text-decoration:none;
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--orange)}
+.nav-tel{
+  font-family:var(--body)!important;
+  letter-spacing:.02em!important;
+  background:var(--orange);color:var(--noir)!important;
+  font-weight:700!important;
+  padding:.5rem 1.1rem;border-radius:2px;
+  transition:background .2s!important;
+}
+.nav-tel:hover{background:var(--blanc);color:var(--noir)!important}
+@media (max-width:860px){
+  .nav-links li.masquable{display:none}
+}
+
+/* ---------- hero */
+.hero{
+  position:relative;
+  min-height:90vh;
+  display:flex;align-items:flex-end;
+  isolation:isolate;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:-2;
+  background:url('assets/photo5.jpeg') center/cover no-repeat;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:
+    linear-gradient(180deg, rgba(20,19,19,.55) 0%, rgba(20,19,19,.15) 38%, rgba(20,19,19,.86) 100%),
+    linear-gradient(90deg, rgba(20,19,19,.6) 0%, rgba(20,19,19,0) 62%);
+}
+.hero-content{
+  max-width:1200px;margin:0 auto;width:100%;
+  padding:7rem 1.5rem 4.5rem;
+}
+.hero-eyebrow{
+  display:flex;align-items:center;gap:.65rem;
+  font-family:var(--display);
+  font-weight:400;font-size:.95rem;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--orange);
+  margin-bottom:1.2rem;
+}
+.hero h1{
+  font-family:var(--display);
+  font-weight:400;
+  font-size:clamp(3.2rem, 10vw, 7.6rem);
+  line-height:.94;
+  text-transform:uppercase;
+  color:var(--blanc);
+  letter-spacing:.005em;
+}
+.hero h1 .ligne{display:block}
+.hero h1 .accent{color:var(--orange)}
+.hero-rule{
+  display:block;height:4px;width:min(320px,50vw);
+  background:var(--orange);
+  margin:1.3rem 0 1.5rem;border-radius:2px;
+}
+.hero-sub{
+  max-width:35rem;
+  font-size:1.125rem;
+  color:var(--blanc);
+  text-shadow:0 1px 12px rgba(20,19,19,.9), 0 0 3px rgba(20,19,19,.8);
+  margin-bottom:2.2rem;
+}
+.hero-sub strong{color:var(--blanc);font-weight:600}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:var(--body);font-weight:700;font-size:1rem;
+  text-decoration:none;
+  padding:.95rem 1.6rem;border-radius:2px;
+  transition:transform .15s, background .2s, color .2s, border-color .2s;
+}
+.btn:active{transform:translateY(1px)}
+.btn-orange{background:var(--orange);color:var(--noir)}
+.btn-orange:hover{background:var(--blanc)}
+.btn-ligne{border:1px solid var(--acier);color:var(--blanc)}
+.btn-ligne:hover{border-color:var(--orange);color:var(--orange)}
+
+/* ---------- bande prestations */
+.materiaux{
+  border-top:1px solid var(--trait);
+  border-bottom:1px solid var(--trait);
+  background:var(--panneau);
+}
+.materiaux-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:.5rem 2rem;
+  padding:1.4rem 1.5rem;
+}
+.materiaux span{
+  font-family:var(--display);
+  font-weight:400;font-size:clamp(1.15rem, 2.4vw, 1.7rem);
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--acier);
+}
+.materiaux .sep{color:var(--orange-fonce);letter-spacing:0}
+@media (max-width:700px){
+  .materiaux-inner{justify-content:center}
+  .materiaux .sep{display:none}
+}
+
+/* ---------- partenaires */
+.partenaires{background:var(--noir);border-bottom:1px solid var(--trait)}
+.partenaires-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem 2.5rem;
+  padding:2rem 1.5rem;
+}
+.partenaires .label{
+  font-family:var(--display);font-weight:400;
+  font-size:.9rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--acier);
+}
+.partenaires .logos{display:flex;flex-wrap:wrap;gap:1rem;align-items:center}
+.partenaires .chip{
+  background:#fff;border-radius:6px;padding:.6rem .9rem;
+  display:flex;align-items:center;
+}
+.partenaires .chip img{height:34px;width:auto}
+
+/* ---------- structure des sections */
+.section{padding:6rem 1.5rem}
+.section-inner{max-width:1200px;margin:0 auto}
+.eyebrow{
+  display:flex;align-items:center;gap:.6rem;
+  font-family:var(--display);
+  font-weight:400;font-size:.95rem;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--orange-fonce);
+  margin-bottom:1rem;
+}
+.eyebrow svg{flex:none}
+h2{
+  font-family:var(--display);
+  font-weight:400;
+  font-size:clamp(2.3rem, 5.2vw, 3.9rem);
+  line-height:1.02;
+  text-transform:uppercase;
+  color:var(--blanc);
+  margin-bottom:1.6rem;
+  max-width:20ch;
+  letter-spacing:.005em;
+}
+
+/* ---------- à propos (section claire) */
+.apropos{background:var(--clair-bg);color:var(--clair-acier)}
+.apropos h2{color:var(--clair-texte)}
+.apropos-grid{
+  display:grid;
+  grid-template-columns:minmax(0, 1.05fr) minmax(0, 1fr);
+  gap:4rem;align-items:center;
+}
+.apropos-texte p{margin-bottom:1.15rem;max-width:36rem}
+.apropos-texte strong{color:var(--clair-texte);font-weight:600}
+.apropos-faits{
+  list-style:none;margin-top:1.8rem;display:grid;gap:.9rem;
+}
+.apropos-faits li{
+  display:flex;gap:.75rem;align-items:baseline;font-size:1rem;
+}
+.apropos-faits li::before{
+  content:"";flex:none;width:13px;height:13px;
+  background:var(--orange-fonce);
+  transform:translateY(1px) rotate(45deg);
+}
+.apropos-photos{
+  display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;
+}
+.apropos-photos figure:last-child{margin-top:2.5rem}
+.apropos-photos img{border-radius:3px;width:100%;height:auto}
+.apropos-photos figcaption{
+  font-size:.8125rem;color:var(--clair-acier);
+  margin-top:.55rem;line-height:1.45;
+}
+@media (max-width:900px){
+  .apropos-grid{grid-template-columns:1fr;gap:3rem}
+}
+
+/* ---------- réalisations */
+.realisations{background:var(--noir)}
+.grille{
+  display:grid;grid-template-columns:repeat(6, 1fr);gap:1.1rem;margin-top:3rem;
+}
+.carte{
+  position:relative;overflow:hidden;border-radius:3px;
+  border:1px solid var(--trait);
+  text-decoration:none;min-height:300px;display:block;
+  background:var(--panneau);
+}
+.carte img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;transition:transform .5s ease;
+}
+.carte::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(185deg, rgba(20,19,19,0) 42%, rgba(20,19,19,.88) 88%);
+}
+.carte:hover img{transform:scale(1.045)}
+.carte:hover{border-color:var(--orange-fonce)}
+.carte-label{position:absolute;left:1.2rem;right:1.2rem;bottom:1.05rem;z-index:1}
+.carte-label .cat{
+  font-family:var(--display);font-weight:400;font-size:1.5rem;
+  letter-spacing:.03em;text-transform:uppercase;
+  color:var(--blanc);line-height:1.05;
+}
+.carte-label .matiere{
+  font-size:.85rem;color:var(--acier-clair);margin-top:.25rem;display:block;
+}
+.c-villa{grid-column:span 4;min-height:460px}
+.c-terrasse{grid-column:span 2;min-height:460px}
+.c-piscine{grid-column:span 3}
+.c-pierre{grid-column:span 3}
+@media (max-width:900px){
+  .grille{grid-template-columns:1fr 1fr}
+  .grille .carte{grid-column:span 1;min-height:280px}
+  .c-villa{grid-column:span 2;min-height:360px}
+}
+@media (max-width:540px){
+  .grille{grid-template-columns:1fr}
+  .grille .carte,.c-villa{grid-column:span 1}
+}
+.realisations-note{margin-top:1.6rem;font-size:.9rem;color:var(--acier)}
+
+/* ---------- zone d'intervention */
+.zone{background:var(--panneau);border-top:1px solid var(--trait)}
+.zone-grid{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:4rem;align-items:center;
+}
+.zone p{max-width:32rem;margin-bottom:1.1rem}
+.zone strong{color:var(--blanc);font-weight:600}
+.zone-radar{width:100%;max-width:460px;margin:0 auto;display:block}
+.zone-radar text{font-family:var(--body);fill:var(--acier-clair)}
+@media (max-width:900px){
+  .zone-grid{grid-template-columns:1fr;gap:3rem}
+}
+
+/* ---------- contact */
+.contact{background:var(--noir)}
+.contact-grid{
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:4rem;align-items:center;
+}
+.contact-tel{
+  display:inline-block;
+  font-family:var(--display);font-weight:400;
+  font-size:clamp(2.4rem, 6vw, 4.2rem);
+  letter-spacing:.02em;color:var(--orange);
+  text-decoration:none;line-height:1.1;
+  margin:.5rem 0 .8rem;transition:color .2s;
+}
+.contact-tel:hover{color:var(--blanc)}
+.contact-mail{
+  display:inline-block;font-size:1.2rem;color:var(--blanc);
+  text-decoration:none;border-bottom:2px solid var(--orange-fonce);
+  padding-bottom:2px;transition:border-color .2s,color .2s;margin-bottom:1.8rem;
+}
+.contact-mail:hover{color:var(--orange)}
+.contact-adresse{font-size:1rem;color:var(--acier-clair);line-height:1.7}
+.contact-adresse strong{color:var(--blanc);font-weight:600}
+.contact-photo{position:relative}
+.contact-photo img{
+  border-radius:3px;border:1px solid var(--trait);
+  width:100%;height:auto;max-height:620px;object-fit:cover;
+}
+.contact-photo figcaption{
+  font-size:.8125rem;color:var(--acier);margin-top:.6rem;text-align:center;
+}
+@media (max-width:900px){
+  .contact-grid{grid-template-columns:1fr;gap:3rem}
+}
+
+/* ---------- footer */
+footer{
+  background:#0e0d0d;border-top:1px solid var(--trait);
+  padding:3rem 1.5rem 2.5rem;font-size:.875rem;color:var(--acier);
+}
+.footer-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between;align-items:flex-start;
+}
+.footer-inner .bloc{max-width:24rem;line-height:1.7}
+.footer-inner strong{color:var(--acier-clair);font-weight:600}
+.footer-logo{height:46px;width:auto;margin-bottom:.8rem;border-radius:3px}
+.footer-demo{
+  margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--trait);
+  max-width:1200px;margin-left:auto;margin-right:auto;
+  font-size:.8125rem;line-height:1.6;
+}
+
+/* ---------- apparition au scroll */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.vu{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  .reveal{opacity:1;transform:none}
+}
 </style>
 </head>
-<body class="bg-white text-slate-800 antialiased">
+<body>
 
-<!-- Bandeau démo : évite toute confusion avec un vrai site officiel -->
-<div class="bg-slate-900 text-white text-xs sm:text-sm text-center py-2 px-4">
-  Maquette de démonstration — proposition de refonte non officielle, réalisée par <strong>Le Pouget Web</strong>. Non affiliée à Renov' Façades 34.
-</div>
+<div class="demo-banner">Maquette de démonstration — proposition de refonte non officielle, réalisée par Le Pouget Web. Non affiliée à Renov' Façades 34.</div>
 
-<!-- Nav -->
-<header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-slate-100">
-  <nav class="max-w-5xl mx-auto flex items-center justify-between px-5 py-4">
-    
-    
-    <span class="font-bold text-lg tracking-tight" style="color:var(--color-primary)">Renov' Façades 34</span>
-    
-    <a href="tel:0499620070" class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-white" style="background-color:var(--color-primary)">
-      📞 04 99 62 00 70
+<nav class="nav" aria-label="Navigation principale">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#haut" aria-label="Renov' Façades 34 — retour en haut">
+      <img src="assets/logo.jpg" alt="Renov' Façades 34" width="130" height="46">
     </a>
-  </nav>
+    <ul class="nav-links">
+      <li class="masquable"><a href="#realisations">Réalisations</a></li>
+      <li class="masquable"><a href="#apropos">L'entreprise</a></li>
+      <li class="masquable"><a href="#contact">Contact</a></li>
+      <li><a class="nav-tel" href="tel:+33499620070">04 99 62 00 70</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="haut">
+  <div class="hero-bg" role="img" aria-label="Villa contemporaine à la façade ravalée par Renov' Façades 34, avec jardin, aux environs de Montpellier"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">
+      <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 12 12 2M12 2H5M12 2v7" stroke="#EE7A1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      Montarnaud · Hérault — depuis 2008
+    </p>
+    <h1>
+      <span class="ligne">Ravalement</span>
+      <span class="ligne accent">de façades</span>
+      <span class="ligne">&amp; ITE</span>
+    </h1>
+    <span class="hero-rule" aria-hidden="true"></span>
+    <p class="hero-sub">Depuis plus de <strong>15 ans</strong>, nous redonnons vie à vos façades à Montarnaud et aux portes de Montpellier — ravalement, isolation thermique par l'extérieur, enduit aspect pierre, coffres PVC, gouttières et peinture.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-orange" href="tel:+33499620070">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3.7 1.1c.4-.4 1-.4 1.4 0l2 2c.4.4.4 1 0 1.4l-1 1c.6 1.3 2.1 2.8 3.4 3.4l1-1c.4-.4 1-.4 1.4 0l2 2c.4.4.4 1 0 1.4l-1.2 1.2c-.5.5-1.2.7-1.9.5C7.6 12.6 3.4 8.4 2 5.2c-.3-.7-.1-1.4.4-1.9l1.3-1.2z"/></svg>
+        04 99 62 00 70
+      </a>
+      <a class="btn btn-ligne" href="#realisations">Voir les réalisations</a>
+    </div>
+  </div>
 </header>
 
-<!-- Hero -->
-<section class="px-5 py-16 sm:py-24 text-center" style="background: linear-gradient(180deg, color-mix(in srgb, var(--color-primary) 8%, white), white);">
-  <p class="uppercase tracking-widest text-sm font-semibold mb-3" style="color:var(--color-secondary)">Maçonnerie · Montarnaud</p>
-  <h1 class="text-3xl sm:text-5xl font-bold mb-5 max-w-3xl mx-auto leading-tight">Ravalement de façades depuis 2008, aux portes de Montpellier</h1>
-  <p class="text-slate-600 max-w-xl mx-auto mb-8">Depuis plus de 15 ans, Renov' Façades 34 réalise vos travaux de ravalement, finitions intérieures et petite maçonnerie à Montarnaud et dans la périphérie de Montpellier : peinture, isolation thermique par l'extérieur (ITE), enduit aspect pierre, coffres PVC et gouttières.</p>
-  <div class="flex flex-wrap gap-3 justify-center">
-    <a href="tel:0499620070" class="rounded-full px-6 py-3 font-semibold text-white shadow" style="background-color:var(--color-primary)">Appeler 04 99 62 00 70</a>
-    
-    <a href="mailto:renov.facades34@gmail.com" class="rounded-full px-6 py-3 font-semibold border-2" style="border-color:var(--color-primary); color:var(--color-primary)">Envoyer un message</a>
-    
+<div class="materiaux" aria-label="Prestations">
+  <div class="materiaux-inner">
+    <span>Ravalement</span><span class="sep" aria-hidden="true">·</span>
+    <span>ITE</span><span class="sep" aria-hidden="true">·</span>
+    <span>Enduits</span><span class="sep" aria-hidden="true">·</span>
+    <span>Peinture</span>
   </div>
-</section>
+</div>
 
-<!-- Repères -->
-<section class="border-y border-slate-100 bg-slate-50">
-  <div class="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 gap-6 px-5 py-8 text-center">
-    <div>
-      <p class="text-2xl font-bold" style="color:var(--color-primary)">15 ans</p>
-      <p class="text-sm text-slate-500">d'expérience à Montarnaud</p>
-    </div>
-    <div>
-      <p class="text-2xl font-bold" style="color:var(--color-primary)">Montarnaud et périphérie de Montpellier</p>
-      <p class="text-sm text-slate-500">zone d'intervention</p>
-    </div>
-    <div class="col-span-2 sm:col-span-1">
-      <p class="text-2xl font-bold" style="color:var(--color-primary)">✓</p>
-      <p class="text-sm text-slate-500">Devis gratuit</p>
+<div class="partenaires" aria-label="Produits et partenaires">
+  <div class="partenaires-inner">
+    <span class="label">Produits &amp; partenaires</span>
+    <div class="logos">
+      <span class="chip"><img src="assets/photo3.png" alt="Parex Lanko — enduits de façade" loading="lazy" height="34"></span>
+      <span class="chip"><img src="assets/photo4.png" alt="Chabaud — techno-peintures" loading="lazy" height="34"></span>
     </div>
   </div>
-</section>
+</div>
 
-<!-- Services -->
-<section id="services" class="max-w-5xl mx-auto px-5 py-16">
-  <h2 class="text-2xl sm:text-3xl font-bold mb-8 text-center">Nos prestations</h2>
-  <div class="grid sm:grid-cols-2 gap-4">
-    <div class="rounded-2xl border border-slate-100 p-5 flex items-start gap-4" style="background-color: color-mix(in srgb, var(--color-primary) 4%, white)">
-  <span class="text-2xl" style="color:var(--color-accent)">●</span>
-  <div>
-    <p class="font-semibold">Ravalement de façades</p>
-    <p class="text-sm text-slate-500">Nettoyage, réparation et finitions.</p>
-  </div>
-</div>
-<div class="rounded-2xl border border-slate-100 p-5 flex items-start gap-4" style="background-color: color-mix(in srgb, var(--color-primary) 4%, white)">
-  <span class="text-2xl" style="color:var(--color-accent)">●</span>
-  <div>
-    <p class="font-semibold">Isolation thermique extérieure (ITE)</p>
-    <p class="text-sm text-slate-500">Amélioration de la performance énergétique.</p>
-  </div>
-</div>
-<div class="rounded-2xl border border-slate-100 p-5 flex items-start gap-4" style="background-color: color-mix(in srgb, var(--color-primary) 4%, white)">
-  <span class="text-2xl" style="color:var(--color-accent)">●</span>
-  <div>
-    <p class="font-semibold">Enduit aspect pierre</p>
-    <p class="text-sm text-slate-500">Finitions décoratives sur mesure.</p>
-  </div>
-</div>
-<div class="rounded-2xl border border-slate-100 p-5 flex items-start gap-4" style="background-color: color-mix(in srgb, var(--color-primary) 4%, white)">
-  <span class="text-2xl" style="color:var(--color-accent)">●</span>
-  <div>
-    <p class="font-semibold">Coffres PVC & gouttières</p>
-    <p class="text-sm text-slate-500">Pose et remplacement.</p>
-  </div>
-</div>
+<section class="section apropos" id="apropos">
+  <div class="section-inner">
+    <div class="apropos-grid">
+      <div class="apropos-texte reveal">
+        <p class="eyebrow">
+          <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 12 12 2M12 2H5M12 2v7" stroke="#C25E12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          L'entreprise
+        </p>
+        <h2>15 ans de façades aux portes de Montpellier</h2>
+        <p>Installée à <strong>Montarnaud</strong>, Renov' Façades 34 réalise depuis <strong>2008</strong> le ravalement, l'isolation thermique par l'extérieur et les finitions de vos façades, dans toute la périphérie ouest de Montpellier.</p>
+        <p>Du <strong>nettoyage</strong> à la <strong>finition décorative</strong> — enduit aspect pierre, peinture, coffres PVC et gouttières —, chaque chantier est mené par la même équipe, avec des produits reconnus (Parex Lanko, Chabaud).</p>
+        <ul class="apropos-faits">
+          <li>Ravalement, ITE et finitions par la même équipe</li>
+          <li>Enduits décoratifs, aspect pierre et peinture</li>
+          <li>Montarnaud et toute la périphérie de Montpellier — devis gratuit</li>
+        </ul>
+      </div>
+      <div class="apropos-photos reveal">
+        <figure>
+          <img src="assets/photo1.jpeg" alt="Villa rénovée par Renov' Façades 34, façade claire, terrasse et palmier" loading="lazy" width="1000" height="750">
+          <figcaption>Ravalement de villa &amp; abords</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/photo6.jpg" alt="Façade en pierre rénovée en cœur de village par Renov' Façades 34" loading="lazy" width="1000" height="750">
+          <figcaption>Rénovation d'une façade en pierre</figcaption>
+        </figure>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- Galerie -->
+<section class="section realisations" id="realisations">
+  <div class="section-inner">
+    <p class="eyebrow reveal">
+      <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 12 12 2M12 2H5M12 2v7" stroke="#C25E12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      Réalisations
+    </p>
+    <h2 class="reveal">Des façades qui changent de visage</h2>
 
-
-<!-- Avis -->
-
-
-<!-- Carte -->
-
-
-<!-- CTA final -->
-<section class="px-5 py-16 text-center text-white" style="background-color:var(--color-primary)">
-  <h2 class="text-2xl sm:text-3xl font-bold mb-4">Un projet ? Parlons-en.</h2>
-  <p class="mb-8 opacity-90">Devis gratuit, réponse rapide.</p>
-  <div class="flex flex-wrap gap-3 justify-center">
-    <a href="tel:0499620070" class="rounded-full px-6 py-3 font-semibold bg-white" style="color:var(--color-primary)">📞 04 99 62 00 70</a>
-    
-    <a href="mailto:renov.facades34@gmail.com" class="rounded-full px-6 py-3 font-semibold border-2 border-white">✉️ renov.facades34@gmail.com</a>
-    
+    <div class="grille">
+      <a class="carte c-villa reveal" href="#contact">
+        <img src="assets/photo5.jpeg" alt="Villa contemporaine à la façade entièrement rénovée par Renov' Façades 34, jardin paysager" loading="lazy" width="1100" height="733">
+        <span class="carte-label"><span class="cat">Rénovation de villa</span><span class="matiere">Ravalement complet &amp; abords</span></span>
+      </a>
+      <a class="carte c-terrasse reveal" href="#contact">
+        <img src="assets/photo1.jpeg" alt="Façade claire de villa avec terrasse, réalisée par Renov' Façades 34" loading="lazy" width="1100" height="1100">
+        <span class="carte-label"><span class="cat">Façade &amp; terrasse</span><span class="matiere">Ravalement, enduit de finition</span></span>
+      </a>
+      <a class="carte c-piscine reveal" href="#contact">
+        <img src="assets/photo2.jpeg" alt="Maison avec piscine, façade rénovée par Renov' Façades 34" loading="lazy" width="1100" height="825">
+        <span class="carte-label"><span class="cat">Villa &amp; piscine</span><span class="matiere">Façade &amp; extérieurs</span></span>
+      </a>
+      <a class="carte c-pierre reveal" href="#contact">
+        <img src="assets/photo6.jpg" alt="Façade en pierre de village rénovée par Renov' Façades 34" loading="lazy" width="1100" height="825">
+        <span class="carte-label"><span class="cat">Façade en pierre</span><span class="matiere">Rénovation en cœur de village</span></span>
+      </a>
+    </div>
+    <p class="realisations-note reveal">Ravalement, isolation thermique par l'extérieur, enduits décoratifs et peinture : chaque photo ci-dessus est un chantier Renov' Façades 34.</p>
   </div>
 </section>
 
-<!-- Footer -->
-<footer class="px-5 py-8 text-center text-sm text-slate-500">
-  <p>Renov' Façades 34 — 53 rue André Ampère, Montarnaud</p>
-  <p class="mt-2 text-xs text-slate-400">Maquette réalisée à titre de démonstration par Le Pouget Web · © 2026</p>
+<section class="section zone" aria-label="Zone d'intervention">
+  <div class="section-inner">
+    <div class="zone-grid">
+      <div class="reveal">
+        <p class="eyebrow">
+          <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 12 12 2M12 2H5M12 2v7" stroke="#C25E12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          Zone d'intervention
+        </p>
+        <h2>De Montarnaud à l'ouest montpelliérain</h2>
+        <p>Notre équipe est basée à <strong>Montarnaud</strong>, à quinze minutes de Montpellier. Nous intervenons dans toutes les communes de la vallée et de la première couronne ouest.</p>
+        <p>Maisons, villas et petits collectifs — <strong>ravalement et ITE dans tout le secteur</strong>, avec devis gratuit et sans engagement.</p>
+      </div>
+      <div class="reveal">
+        <svg class="zone-radar" viewBox="0 0 460 400" role="img" aria-label="Carte stylisée : Montarnaud au centre, Grabels, Vailhauquès, Combaillaux, Murviel-lès-Montpellier et Montpellier autour">
+          <g fill="none" stroke="#2f2c29" stroke-width="1">
+            <circle cx="230" cy="200" r="60"/>
+            <circle cx="230" cy="200" r="110"/>
+            <circle cx="230" cy="200" r="160"/>
+          </g>
+          <g fill="none" stroke="#3a3733" stroke-width="1" stroke-dasharray="2 5">
+            <line x1="230" y1="200" x2="196" y2="128"/>
+            <line x1="230" y1="200" x2="150" y2="238"/>
+            <line x1="230" y1="200" x2="300" y2="150"/>
+            <line x1="230" y1="200" x2="360" y2="278"/>
+          </g>
+          <circle cx="230" cy="200" r="7" fill="#EE7A1B"/>
+          <circle cx="230" cy="200" r="13" fill="none" stroke="#EE7A1B" stroke-width="1.5" opacity=".5"/>
+          <text x="230" y="176" text-anchor="middle" font-size="17" font-weight="700" fill="#F4F0EA">Montarnaud</text>
+          <circle cx="196" cy="128" r="4" fill="#8d867d"/>
+          <text x="188" y="116" text-anchor="end" font-size="13">Vailhauquès</text>
+          <circle cx="150" cy="238" r="4" fill="#8d867d"/>
+          <text x="142" y="256" text-anchor="end" font-size="13">Murviel-lès-Mtp</text>
+          <circle cx="300" cy="150" r="4" fill="#8d867d"/>
+          <text x="310" y="146" font-size="13">Combaillaux</text>
+          <circle cx="360" cy="278" r="4" fill="#8d867d"/>
+          <text x="352" y="300" text-anchor="end" font-size="13">Montpellier</text>
+          <circle cx="272" cy="252" r="4" fill="#8d867d"/>
+          <text x="282" y="266" font-size="13">Grabels</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="reveal">
+        <p class="eyebrow">
+          <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 12 12 2M12 2H5M12 2v7" stroke="#C25E12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          Contact
+        </p>
+        <h2>Parlez-nous de votre façade</h2>
+        <p>Une façade à ravaler, une isolation extérieure à poser, un enduit à reprendre&nbsp;? Appelez ou écrivez : réponse rapide et devis gratuit.</p>
+        <a class="contact-tel" href="tel:+33499620070">04&nbsp;99&nbsp;62&nbsp;00&nbsp;70</a><br>
+        <a class="contact-mail" href="mailto:renov.facades34@gmail.com">renov.facades34@gmail.com</a>
+        <p class="contact-adresse">
+          <strong>Renov' Façades 34</strong><br>
+          53 rue André Ampère<br>
+          34570 Montarnaud
+        </p>
+      </div>
+      <figure class="contact-photo reveal">
+        <img src="assets/photo6.jpg" alt="Façade en pierre rénovée par Renov' Façades 34 dans un village de l'Hérault" width="900" height="675">
+        <figcaption>Rénovation d'une façade en pierre — cœur de village</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="bloc">
+      <img class="footer-logo" src="assets/logo.jpg" alt="Renov' Façades 34">
+      <p><strong>Ravalement · ITE · Enduits · Peinture</strong><br>
+      53 rue André Ampère, 34570 Montarnaud<br>
+      <a href="tel:+33499620070" style="text-decoration:none">04 99 62 00 70</a> · <a href="mailto:renov.facades34@gmail.com" style="text-decoration:none">renov.facades34@gmail.com</a></p>
+    </div>
+    <div class="bloc">
+      <p><strong>Entreprise implantée à Montarnaud depuis 2008.</strong><br>Ravalement de façades, isolation thermique par l'extérieur, enduits décoratifs et peinture, aux portes de Montpellier.</p>
+    </div>
+  </div>
+  <p class="footer-demo">Maquette de démonstration réalisée par <strong>Le Pouget Web</strong> — proposition de refonte non officielle, non affiliée à Renov' Façades 34. Photos : chantiers et logos partenaires reproduits ici uniquement à des fins de démonstration auprès de l'entreprise. Cette page n'est pas référencée par les moteurs de recherche.</p>
 </footer>
+
+<script>
+(function(){
+  if (/(^|[?&])capture/.test(location.search)) {
+    document.querySelectorAll('img[loading="lazy"]').forEach(function(im){ im.loading = 'eager'; });
+  }
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || /(^|[?&])capture/.test(location.search)) {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('vu'); });
+    return;
+  }
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('vu'); obs.unobserve(e.target); }
+    });
+  }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+})();
+</script>
 
 </body>
 </html>
