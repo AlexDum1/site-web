@@ -74,363 +74,858 @@
 </section>
 
 <section class="section">
-  <div class="conteneur" style="max-width: 820px;">
+  <div class="conteneur" style="max-width: 980px;">
     <div class="planning-tete">
       <div class="mois-script">septembre</div>
       <p class="formulaire-note">Planning de démonstration — les vraies dates seront saisies par l'équipe.</p>
       <p class="planning-note">Les inscriptions se font directement auprès de chaque praticienne, par téléphone ou message.</p>
     </div>
 
+    <div class="vues-planning" role="tablist" aria-label="Mode d'affichage du planning">
+      <button type="button" role="tab" data-vue="semaines" aria-selected="true">Par semaine</button>
+      <button type="button" role="tab" data-vue="calendrier" aria-selected="false">Calendrier</button>
+      <button type="button" role="tab" data-vue="praticiennes" aria-selected="false">Par praticienne</button>
+    </div>
+
     
-    <div class="semaine">
-      <div class="semaine-titre">Semaine du 31 août</div>
+    <div class="vue-planning" id="vue-semaines">
       
-      <article class="evenement">
-        <div class="date-disque" aria-hidden="true">
-          <div>
-            <div class="jour-num">1</div>
-            <div class="jour-nom">mar.</div>
+      <div class="semaine">
+        <div class="semaine-titre">Semaine du 31 août</div>
+        
+        <article class="evenement">
+          <div class="date-disque" aria-hidden="true">
+            <div>
+              <div class="jour-num">1</div>
+              <div class="jour-nom">mar.</div>
+            </div>
           </div>
-        </div>
-        <div>
-          <div class="quoi">Yoga prénatal</div>
-          <div class="qui"><a class="lien-praticienne" href="equipe/limor-sneh.html"><span class="mini-medaillon"><img src="assets/img/equipe/limor-sneh.png" alt=""></span>Limor
+          <div>
+            <div class="quoi">Yoga prénatal</div>
+            <div class="qui"><a class="lien-praticienne" href="equipe/limor-sneh.html"><span class="mini-medaillon"><img src="assets/img/equipe/limor-sneh.png" alt=""></span>Limor
 </a></div>
-        </div>
-        <div class="quand">
-          09h30 · 1 h
-          <br><span class="pastille-tarif">18 €</span>
-        </div>
-      </article>
+          </div>
+          <div class="quand">
+            09h30 · 1 h
+            <br><span class="pastille-tarif">18 €</span>
+          </div>
+        </article>
+        
+        <article class="evenement">
+          <div class="date-disque" aria-hidden="true">
+            <div>
+              <div class="jour-num">1</div>
+              <div class="jour-nom">mar.</div>
+            </div>
+          </div>
+          <div>
+            <div class="quoi">Yoga Iyengar</div>
+            <div class="qui"><a class="lien-praticienne" href="equipe/anna-lena-well.html"><span class="mini-medaillon"><img src="assets/img/equipe/anna-lena-well.png" alt=""></span>Anna Lena
+</a></div>
+          </div>
+          <div class="quand">
+            18h30 · 1 h 30
+            <br><span class="pastille-tarif">15 €</span>
+          </div>
+        </article>
+        
+        <article class="evenement">
+          <div class="date-disque" aria-hidden="true">
+            <div>
+              <div class="jour-num">2</div>
+              <div class="jour-nom">mer.</div>
+            </div>
+          </div>
+          <div>
+            <div class="quoi">Yoga Ashtanga / Vinyasa</div>
+            <div class="qui"><a class="lien-praticienne" href="equipe/monika-mszyca.html"><span class="mini-medaillon initiales" aria-hidden="true">MM</span>Monika
+</a></div>
+          </div>
+          <div class="quand">
+            18h30 · 1 h
+            <br><span class="pastille-tarif">13 €</span>
+          </div>
+        </article>
+        
+        <article class="evenement">
+          <div class="date-disque" aria-hidden="true">
+            <div>
+              <div class="jour-num">5</div>
+              <div class="jour-nom">sam.</div>
+            </div>
+          </div>
+          <div>
+            <div class="quoi">Yoga tout public (1er samedi du mois)</div>
+            <div class="qui"><a class="lien-praticienne" href="equipe/limor-sneh.html"><span class="mini-medaillon"><img src="assets/img/equipe/limor-sneh.png" alt=""></span>Limor
+</a></div>
+          </div>
+          <div class="quand">
+            10h00 · 1 h
+            <br><span class="pastille-tarif">13 €</span>
+          </div>
+        </article>
+        
+      </div>
       
-      <article class="evenement">
-        <div class="date-disque" aria-hidden="true">
-          <div>
-            <div class="jour-num">1</div>
-            <div class="jour-nom">mar.</div>
+      <div class="semaine">
+        <div class="semaine-titre">Semaine du 7 septembre</div>
+        
+        <article class="evenement">
+          <div class="date-disque" aria-hidden="true">
+            <div>
+              <div class="jour-num">7</div>
+              <div class="jour-nom">lun.</div>
+            </div>
           </div>
-        </div>
-        <div>
-          <div class="quoi">Yoga Iyengar</div>
-          <div class="qui"><a class="lien-praticienne" href="equipe/anna-lena-well.html"><span class="mini-medaillon"><img src="assets/img/equipe/anna-lena-well.png" alt=""></span>Anna Lena
+          <div>
+            <div class="quoi">Yoga Iyengar</div>
+            <div class="qui"><a class="lien-praticienne" href="equipe/anna-lena-well.html"><span class="mini-medaillon"><img src="assets/img/equipe/anna-lena-well.png" alt=""></span>Anna Lena
 </a></div>
-        </div>
-        <div class="quand">
-          18h30 · 1 h 30
-          <br><span class="pastille-tarif">15 €</span>
-        </div>
-      </article>
+          </div>
+          <div class="quand">
+            18h00 · 1 h 30
+            <br><span class="pastille-tarif">15 €</span>
+          </div>
+        </article>
+        
+        <article class="evenement">
+          <div class="date-disque" aria-hidden="true">
+            <div>
+              <div class="jour-num">8</div>
+              <div class="jour-nom">mar.</div>
+            </div>
+          </div>
+          <div>
+            <div class="quoi">Yoga postnatal (bébés bienvenus)</div>
+            <div class="qui"><a class="lien-praticienne" href="equipe/limor-sneh.html"><span class="mini-medaillon"><img src="assets/img/equipe/limor-sneh.png" alt=""></span>Limor
+</a></div>
+          </div>
+          <div class="quand">
+            10h45 · 1 h
+            <br><span class="pastille-tarif">18 €</span>
+          </div>
+        </article>
+        
+        <article class="evenement">
+          <div class="date-disque" aria-hidden="true">
+            <div>
+              <div class="jour-num">10</div>
+              <div class="jour-nom">jeu.</div>
+            </div>
+          </div>
+          <div>
+            <div class="quoi">Café parlotte</div>
+            <div class="qui"><a class="lien-praticienne" href="equipe/nathalie-constant.html"><span class="mini-medaillon"><img src="assets/img/equipe/nathalie-constant.png" alt=""></span>Nathalie
+</a></div>
+          </div>
+          <div class="quand">
+            09h30 · 2 h
+            <br><span class="pastille-tarif">5 €</span>
+          </div>
+        </article>
+        
+        <article class="evenement">
+          <div class="date-disque" aria-hidden="true">
+            <div>
+              <div class="jour-num">11</div>
+              <div class="jour-nom">ven.</div>
+            </div>
+          </div>
+          <div>
+            <div class="quoi">Cercle mamans-bébés (0-7 mois)</div>
+            <div class="qui"><a class="lien-praticienne" href="equipe/floriane-vargas.html"><span class="mini-medaillon"><img src="assets/img/equipe/floriane-vargas.png" alt=""></span>Floriane
+</a></div>
+          </div>
+          <div class="quand">
+            10h00 · 1 h 30
+            <br><span class="pastille-tarif">30 €</span>
+          </div>
+        </article>
+        
+      </div>
       
-      <article class="evenement">
-        <div class="date-disque" aria-hidden="true">
-          <div>
-            <div class="jour-num">2</div>
-            <div class="jour-nom">mer.</div>
+      <div class="semaine">
+        <div class="semaine-titre">Semaine du 14 septembre</div>
+        
+        <article class="evenement">
+          <div class="date-disque" aria-hidden="true">
+            <div>
+              <div class="jour-num">15</div>
+              <div class="jour-nom">mar.</div>
+            </div>
           </div>
-        </div>
-        <div>
-          <div class="quoi">Yoga Ashtanga / Vinyasa</div>
-          <div class="qui"><a class="lien-praticienne" href="equipe/monika-mszyca.html"><span class="mini-medaillon initiales" aria-hidden="true">MM</span>Monika
+          <div>
+            <div class="quoi">Yoga prénatal</div>
+            <div class="qui"><a class="lien-praticienne" href="equipe/limor-sneh.html"><span class="mini-medaillon"><img src="assets/img/equipe/limor-sneh.png" alt=""></span>Limor
 </a></div>
-        </div>
-        <div class="quand">
-          18h30 · 1 h
-          <br><span class="pastille-tarif">13 €</span>
-        </div>
-      </article>
+          </div>
+          <div class="quand">
+            09h30 · 1 h
+            <br><span class="pastille-tarif">18 €</span>
+          </div>
+        </article>
+        
+        <article class="evenement">
+          <div class="date-disque" aria-hidden="true">
+            <div>
+              <div class="jour-num">16</div>
+              <div class="jour-nom">mer.</div>
+            </div>
+          </div>
+          <div>
+            <div class="quoi">Yoga Ashtanga / Vinyasa</div>
+            <div class="qui"><a class="lien-praticienne" href="equipe/monika-mszyca.html"><span class="mini-medaillon initiales" aria-hidden="true">MM</span>Monika
+</a></div>
+          </div>
+          <div class="quand">
+            18h30 · 1 h
+            <br><span class="pastille-tarif">13 €</span>
+          </div>
+        </article>
+        
+        <article class="evenement">
+          <div class="date-disque" aria-hidden="true">
+            <div>
+              <div class="jour-num">17</div>
+              <div class="jour-nom">jeu.</div>
+            </div>
+          </div>
+          <div>
+            <div class="quoi">Sophrologie collective</div>
+            <div class="qui"><a class="lien-praticienne" href="equipe/maeva-caballero.html"><span class="mini-medaillon"><img src="assets/img/equipe/maeva-caballero.png" alt=""></span>Maéva
+</a></div>
+          </div>
+          <div class="quand">
+            18h30 · 1 h
+            <br><span class="pastille-tarif">15 €</span>
+          </div>
+        </article>
+        
+        <article class="evenement">
+          <div class="date-disque" aria-hidden="true">
+            <div>
+              <div class="jour-num">19</div>
+              <div class="jour-nom">sam.</div>
+            </div>
+          </div>
+          <div>
+            <div class="quoi">Yoga tout public (3e samedi du mois)</div>
+            <div class="qui"><a class="lien-praticienne" href="equipe/limor-sneh.html"><span class="mini-medaillon"><img src="assets/img/equipe/limor-sneh.png" alt=""></span>Limor
+</a></div>
+          </div>
+          <div class="quand">
+            10h00 · 1 h
+            <br><span class="pastille-tarif">13 €</span>
+          </div>
+        </article>
+        
+        <article class="evenement">
+          <div class="date-disque" aria-hidden="true">
+            <div>
+              <div class="jour-num">19</div>
+              <div class="jour-nom">sam.</div>
+            </div>
+          </div>
+          <div>
+            <div class="quoi">Atelier portage physiologique</div>
+            <div class="qui"><a class="lien-praticienne" href="equipe/floriane-vargas.html"><span class="mini-medaillon"><img src="assets/img/equipe/floriane-vargas.png" alt=""></span>Floriane
+</a></div>
+          </div>
+          <div class="quand">
+            14h30 · 2 h
+            <br><span class="pastille-tarif">35 € / 50 €</span>
+          </div>
+        </article>
+        
+      </div>
       
-      <article class="evenement">
-        <div class="date-disque" aria-hidden="true">
-          <div>
-            <div class="jour-num">5</div>
-            <div class="jour-nom">sam.</div>
+      <div class="semaine">
+        <div class="semaine-titre">Semaine du 21 septembre</div>
+        
+        <article class="evenement">
+          <div class="date-disque" aria-hidden="true">
+            <div>
+              <div class="jour-num">22</div>
+              <div class="jour-nom">mar.</div>
+            </div>
           </div>
-        </div>
-        <div>
-          <div class="quoi">Yoga tout public (1er samedi du mois)</div>
-          <div class="qui"><a class="lien-praticienne" href="equipe/limor-sneh.html"><span class="mini-medaillon"><img src="assets/img/equipe/limor-sneh.png" alt=""></span>Limor
+          <div>
+            <div class="quoi">Yoga Ashtanga / Vinyasa</div>
+            <div class="qui"><a class="lien-praticienne" href="equipe/monika-mszyca.html"><span class="mini-medaillon initiales" aria-hidden="true">MM</span>Monika
 </a></div>
-        </div>
-        <div class="quand">
-          10h00 · 1 h
-          <br><span class="pastille-tarif">13 €</span>
-        </div>
-      </article>
+          </div>
+          <div class="quand">
+            18h30 · 1 h
+            <br><span class="pastille-tarif">13 €</span>
+          </div>
+        </article>
+        
+        <article class="evenement">
+          <div class="date-disque" aria-hidden="true">
+            <div>
+              <div class="jour-num">23</div>
+              <div class="jour-nom">mer.</div>
+            </div>
+          </div>
+          <div>
+            <div class="quoi">Atelier bébé signe</div>
+            <div class="qui"><a class="lien-praticienne" href="equipe/floriane-vargas.html"><span class="mini-medaillon"><img src="assets/img/equipe/floriane-vargas.png" alt=""></span>Floriane
+</a></div>
+          </div>
+          <div class="quand">
+            10h00 · 1 h
+            <br><span class="pastille-tarif">10 € / 20 €</span>
+          </div>
+        </article>
+        
+        <article class="evenement">
+          <div class="date-disque" aria-hidden="true">
+            <div>
+              <div class="jour-num">24</div>
+              <div class="jour-nom">jeu.</div>
+            </div>
+          </div>
+          <div>
+            <div class="quoi">Atelier allaitement</div>
+            <div class="qui"><a class="lien-praticienne" href="equipe/justine-vergnaud.html"><span class="mini-medaillon"><img src="assets/img/equipe/justine-vergnaud.png" alt=""></span>Justine
+</a></div>
+          </div>
+          <div class="quand">
+            14h00 · 2 h
+            <br><span class="pastille-tarif">20 €</span>
+          </div>
+        </article>
+        
+        <article class="evenement">
+          <div class="date-disque" aria-hidden="true">
+            <div>
+              <div class="jour-num">26</div>
+              <div class="jour-nom">sam.</div>
+            </div>
+          </div>
+          <div>
+            <div class="quoi">Atelier sommeil de bébé</div>
+            <div class="qui"><a class="lien-praticienne" href="equipe/nathalie-constant.html"><span class="mini-medaillon"><img src="assets/img/equipe/nathalie-constant.png" alt=""></span>Nathalie
+</a></div>
+          </div>
+          <div class="quand">
+            10h30 · 1 h 30
+            <br><span class="pastille-tarif">25 € / 35 €</span>
+          </div>
+        </article>
+        
+      </div>
+      
+      <div class="semaine">
+        <div class="semaine-titre">Semaine du 28 septembre</div>
+        
+        <article class="evenement">
+          <div class="date-disque" aria-hidden="true">
+            <div>
+              <div class="jour-num">29</div>
+              <div class="jour-nom">mar.</div>
+            </div>
+          </div>
+          <div>
+            <div class="quoi">Voyage sonore</div>
+            <div class="qui"><a class="lien-praticienne" href="equipe/maeva-caballero.html"><span class="mini-medaillon"><img src="assets/img/equipe/maeva-caballero.png" alt=""></span>Maéva
+</a></div>
+          </div>
+          <div class="quand">
+            19h00 · 1 h
+            <br><span class="pastille-tarif">20 €</span>
+          </div>
+        </article>
+        
+      </div>
       
     </div>
+
     
-    <div class="semaine">
-      <div class="semaine-titre">Semaine du 7 septembre</div>
+    <div class="vue-planning" id="vue-calendrier" hidden>
+      <div class="calendrier" role="grid" aria-label="Calendrier de Septembre 2026">
+        <div class="cal-entete" role="row">
+          
+          <div role="columnheader"><span class="jour-long">Lundi</span><span class="jour-court" aria-hidden="true">L</span></div>
+          
+          <div role="columnheader"><span class="jour-long">Mardi</span><span class="jour-court" aria-hidden="true">M</span></div>
+          
+          <div role="columnheader"><span class="jour-long">Mercredi</span><span class="jour-court" aria-hidden="true">M</span></div>
+          
+          <div role="columnheader"><span class="jour-long">Jeudi</span><span class="jour-court" aria-hidden="true">J</span></div>
+          
+          <div role="columnheader"><span class="jour-long">Vendredi</span><span class="jour-court" aria-hidden="true">V</span></div>
+          
+          <div role="columnheader"><span class="jour-long">Samedi</span><span class="jour-court" aria-hidden="true">S</span></div>
+          
+          <div role="columnheader"><span class="jour-long">Dimanche</span><span class="jour-court" aria-hidden="true">D</span></div>
+          
+        </div>
+        
+        <div class="cal-ligne" role="row">
+          
+          <div class="cal-jour hors-mois" role="gridcell">
+            <span class="cal-num">31</span>
+            
+          </div>
+          
+          <div class="cal-jour a-events" role="gridcell">
+            <span class="cal-num">1</span>
+            
+            <span class="cal-evt" title="09h30 — Yoga prénatal (Limor)"><strong>09h30</strong> Yoga prénatal</span>
+            
+            <span class="cal-evt" title="18h30 — Yoga Iyengar (Anna Lena)"><strong>18h30</strong> Yoga Iyengar</span>
+            
+          </div>
+          
+          <div class="cal-jour a-events" role="gridcell">
+            <span class="cal-num">2</span>
+            
+            <span class="cal-evt" title="18h30 — Yoga Ashtanga / Vinyasa (Monika)"><strong>18h30</strong> Yoga Ashtanga / Vinyasa</span>
+            
+          </div>
+          
+          <div class="cal-jour" role="gridcell">
+            <span class="cal-num">3</span>
+            
+          </div>
+          
+          <div class="cal-jour" role="gridcell">
+            <span class="cal-num">4</span>
+            
+          </div>
+          
+          <div class="cal-jour a-events" role="gridcell">
+            <span class="cal-num">5</span>
+            
+            <span class="cal-evt" title="10h00 — Yoga tout public (1er samedi du mois) (Limor)"><strong>10h00</strong> Yoga tout public (1er samedi du mois)</span>
+            
+          </div>
+          
+          <div class="cal-jour" role="gridcell">
+            <span class="cal-num">6</span>
+            
+          </div>
+          
+        </div>
+        
+        <div class="cal-ligne" role="row">
+          
+          <div class="cal-jour a-events" role="gridcell">
+            <span class="cal-num">7</span>
+            
+            <span class="cal-evt" title="18h00 — Yoga Iyengar (Anna Lena)"><strong>18h00</strong> Yoga Iyengar</span>
+            
+          </div>
+          
+          <div class="cal-jour a-events" role="gridcell">
+            <span class="cal-num">8</span>
+            
+            <span class="cal-evt" title="10h45 — Yoga postnatal (bébés bienvenus) (Limor)"><strong>10h45</strong> Yoga postnatal (bébés bienvenus)</span>
+            
+          </div>
+          
+          <div class="cal-jour" role="gridcell">
+            <span class="cal-num">9</span>
+            
+          </div>
+          
+          <div class="cal-jour a-events" role="gridcell">
+            <span class="cal-num">10</span>
+            
+            <span class="cal-evt" title="09h30 — Café parlotte (Nathalie)"><strong>09h30</strong> Café parlotte</span>
+            
+          </div>
+          
+          <div class="cal-jour a-events" role="gridcell">
+            <span class="cal-num">11</span>
+            
+            <span class="cal-evt" title="10h00 — Cercle mamans-bébés (0-7 mois) (Floriane)"><strong>10h00</strong> Cercle mamans-bébés (0-7 mois)</span>
+            
+          </div>
+          
+          <div class="cal-jour" role="gridcell">
+            <span class="cal-num">12</span>
+            
+          </div>
+          
+          <div class="cal-jour" role="gridcell">
+            <span class="cal-num">13</span>
+            
+          </div>
+          
+        </div>
+        
+        <div class="cal-ligne" role="row">
+          
+          <div class="cal-jour" role="gridcell">
+            <span class="cal-num">14</span>
+            
+          </div>
+          
+          <div class="cal-jour a-events" role="gridcell">
+            <span class="cal-num">15</span>
+            
+            <span class="cal-evt" title="09h30 — Yoga prénatal (Limor)"><strong>09h30</strong> Yoga prénatal</span>
+            
+          </div>
+          
+          <div class="cal-jour a-events" role="gridcell">
+            <span class="cal-num">16</span>
+            
+            <span class="cal-evt" title="18h30 — Yoga Ashtanga / Vinyasa (Monika)"><strong>18h30</strong> Yoga Ashtanga / Vinyasa</span>
+            
+          </div>
+          
+          <div class="cal-jour a-events" role="gridcell">
+            <span class="cal-num">17</span>
+            
+            <span class="cal-evt" title="18h30 — Sophrologie collective (Maéva)"><strong>18h30</strong> Sophrologie collective</span>
+            
+          </div>
+          
+          <div class="cal-jour" role="gridcell">
+            <span class="cal-num">18</span>
+            
+          </div>
+          
+          <div class="cal-jour a-events" role="gridcell">
+            <span class="cal-num">19</span>
+            
+            <span class="cal-evt" title="10h00 — Yoga tout public (3e samedi du mois) (Limor)"><strong>10h00</strong> Yoga tout public (3e samedi du mois)</span>
+            
+            <span class="cal-evt" title="14h30 — Atelier portage physiologique (Floriane)"><strong>14h30</strong> Atelier portage physiologique</span>
+            
+          </div>
+          
+          <div class="cal-jour" role="gridcell">
+            <span class="cal-num">20</span>
+            
+          </div>
+          
+        </div>
+        
+        <div class="cal-ligne" role="row">
+          
+          <div class="cal-jour" role="gridcell">
+            <span class="cal-num">21</span>
+            
+          </div>
+          
+          <div class="cal-jour a-events" role="gridcell">
+            <span class="cal-num">22</span>
+            
+            <span class="cal-evt" title="18h30 — Yoga Ashtanga / Vinyasa (Monika)"><strong>18h30</strong> Yoga Ashtanga / Vinyasa</span>
+            
+          </div>
+          
+          <div class="cal-jour a-events" role="gridcell">
+            <span class="cal-num">23</span>
+            
+            <span class="cal-evt" title="10h00 — Atelier bébé signe (Floriane)"><strong>10h00</strong> Atelier bébé signe</span>
+            
+          </div>
+          
+          <div class="cal-jour a-events" role="gridcell">
+            <span class="cal-num">24</span>
+            
+            <span class="cal-evt" title="14h00 — Atelier allaitement (Justine)"><strong>14h00</strong> Atelier allaitement</span>
+            
+          </div>
+          
+          <div class="cal-jour" role="gridcell">
+            <span class="cal-num">25</span>
+            
+          </div>
+          
+          <div class="cal-jour a-events" role="gridcell">
+            <span class="cal-num">26</span>
+            
+            <span class="cal-evt" title="10h30 — Atelier sommeil de bébé (Nathalie)"><strong>10h30</strong> Atelier sommeil de bébé</span>
+            
+          </div>
+          
+          <div class="cal-jour" role="gridcell">
+            <span class="cal-num">27</span>
+            
+          </div>
+          
+        </div>
+        
+        <div class="cal-ligne" role="row">
+          
+          <div class="cal-jour" role="gridcell">
+            <span class="cal-num">28</span>
+            
+          </div>
+          
+          <div class="cal-jour a-events" role="gridcell">
+            <span class="cal-num">29</span>
+            
+            <span class="cal-evt" title="19h00 — Voyage sonore (Maéva)"><strong>19h00</strong> Voyage sonore</span>
+            
+          </div>
+          
+          <div class="cal-jour" role="gridcell">
+            <span class="cal-num">30</span>
+            
+          </div>
+          
+          <div class="cal-jour hors-mois" role="gridcell">
+            <span class="cal-num">1</span>
+            
+          </div>
+          
+          <div class="cal-jour hors-mois" role="gridcell">
+            <span class="cal-num">2</span>
+            
+          </div>
+          
+          <div class="cal-jour hors-mois" role="gridcell">
+            <span class="cal-num">3</span>
+            
+          </div>
+          
+          <div class="cal-jour hors-mois" role="gridcell">
+            <span class="cal-num">4</span>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      <p class="cal-aide">Passez la souris sur un créneau pour le détail — et retrouvez chaque rendez-vous complet dans la vue « Par semaine ».</p>
+    </div>
+
+    
+    <div class="vue-planning" id="vue-praticiennes" hidden>
       
-      <article class="evenement">
-        <div class="date-disque" aria-hidden="true">
+      
+      <div class="prat-groupe">
+        <div class="prat-tete">
+          <div class="medaillon prat-medaillon"><img src="assets/img/equipe/nathalie-constant.png" alt="Portrait de Nathalie Constant" loading="lazy"></div>
           <div>
-            <div class="jour-num">7</div>
-            <div class="jour-nom">lun.</div>
+            <a class="prat-nom" href="equipe/nathalie-constant.html">Nathalie Constant</a>
+            <div class="prat-role">Périnatalité · Parentalité · Doula post-partum</div>
           </div>
         </div>
-        <div>
-          <div class="quoi">Yoga Iyengar</div>
-          <div class="qui"><a class="lien-praticienne" href="equipe/anna-lena-well.html"><span class="mini-medaillon"><img src="assets/img/equipe/anna-lena-well.png" alt=""></span>Anna Lena
-</a></div>
-        </div>
-        <div class="quand">
-          18h00 · 1 h 30
-          <br><span class="pastille-tarif">15 €</span>
-        </div>
-      </article>
+        <ul class="prat-dates">
+          
+          <li>
+            <span class="prat-date">jeu. 10</span>
+            <span class="prat-titre">Café parlotte</span>
+            <span class="prat-heure">09h30 · 2 h</span>
+            <span class="pastille-tarif">5 €</span>
+          </li>
+          
+          <li>
+            <span class="prat-date">sam. 26</span>
+            <span class="prat-titre">Atelier sommeil de bébé</span>
+            <span class="prat-heure">10h30 · 1 h 30</span>
+            <span class="pastille-tarif">25 € / 35 €</span>
+          </li>
+          
+        </ul>
+      </div>
       
-      <article class="evenement">
-        <div class="date-disque" aria-hidden="true">
+      
+      <div class="prat-groupe">
+        <div class="prat-tete">
+          <div class="medaillon prat-medaillon"><img src="assets/img/equipe/justine-vergnaud.png" alt="Portrait de Justine Vergnaud" loading="lazy"></div>
           <div>
-            <div class="jour-num">8</div>
-            <div class="jour-nom">mar.</div>
+            <a class="prat-nom" href="equipe/justine-vergnaud.html">Justine Vergnaud</a>
+            <div class="prat-role">Périnatalité · Allaitement · DME</div>
           </div>
         </div>
-        <div>
-          <div class="quoi">Yoga postnatal (bébés bienvenus)</div>
-          <div class="qui"><a class="lien-praticienne" href="equipe/limor-sneh.html"><span class="mini-medaillon"><img src="assets/img/equipe/limor-sneh.png" alt=""></span>Limor
-</a></div>
-        </div>
-        <div class="quand">
-          10h45 · 1 h
-          <br><span class="pastille-tarif">18 €</span>
-        </div>
-      </article>
+        <ul class="prat-dates">
+          
+          <li>
+            <span class="prat-date">jeu. 24</span>
+            <span class="prat-titre">Atelier allaitement</span>
+            <span class="prat-heure">14h00 · 2 h</span>
+            <span class="pastille-tarif">20 €</span>
+          </li>
+          
+        </ul>
+      </div>
       
-      <article class="evenement">
-        <div class="date-disque" aria-hidden="true">
+      
+      <div class="prat-groupe">
+        <div class="prat-tete">
+          <div class="medaillon prat-medaillon"><img src="assets/img/equipe/maeva-caballero.png" alt="Portrait de Maéva Caballero" loading="lazy"></div>
           <div>
-            <div class="jour-num">10</div>
-            <div class="jour-nom">jeu.</div>
+            <a class="prat-nom" href="equipe/maeva-caballero.html">Maéva Caballero</a>
+            <div class="prat-role">Sophrologie · Périnatalité</div>
           </div>
         </div>
-        <div>
-          <div class="quoi">Café parlotte</div>
-          <div class="qui"><a class="lien-praticienne" href="equipe/nathalie-constant.html"><span class="mini-medaillon"><img src="assets/img/equipe/nathalie-constant.png" alt=""></span>Nathalie
-</a></div>
-        </div>
-        <div class="quand">
-          09h30 · 2 h
-          <br><span class="pastille-tarif">5 €</span>
-        </div>
-      </article>
+        <ul class="prat-dates">
+          
+          <li>
+            <span class="prat-date">jeu. 17</span>
+            <span class="prat-titre">Sophrologie collective</span>
+            <span class="prat-heure">18h30 · 1 h</span>
+            <span class="pastille-tarif">15 €</span>
+          </li>
+          
+          <li>
+            <span class="prat-date">mar. 29</span>
+            <span class="prat-titre">Voyage sonore</span>
+            <span class="prat-heure">19h00 · 1 h</span>
+            <span class="pastille-tarif">20 €</span>
+          </li>
+          
+        </ul>
+      </div>
       
-      <article class="evenement">
-        <div class="date-disque" aria-hidden="true">
+      
+      <div class="prat-groupe">
+        <div class="prat-tete">
+          <div class="medaillon prat-medaillon"><img src="assets/img/equipe/floriane-vargas.png" alt="Portrait de Floriane Vargas" loading="lazy"></div>
           <div>
-            <div class="jour-num">11</div>
-            <div class="jour-nom">ven.</div>
+            <a class="prat-nom" href="equipe/floriane-vargas.html">Floriane Vargas</a>
+            <div class="prat-role">Parentalité · Bébé signe · Portage</div>
           </div>
         </div>
-        <div>
-          <div class="quoi">Cercle mamans-bébés (0-7 mois)</div>
-          <div class="qui"><a class="lien-praticienne" href="equipe/floriane-vargas.html"><span class="mini-medaillon"><img src="assets/img/equipe/floriane-vargas.png" alt=""></span>Floriane
-</a></div>
+        <ul class="prat-dates">
+          
+          <li>
+            <span class="prat-date">ven. 11</span>
+            <span class="prat-titre">Cercle mamans-bébés (0-7 mois)</span>
+            <span class="prat-heure">10h00 · 1 h 30</span>
+            <span class="pastille-tarif">30 €</span>
+          </li>
+          
+          <li>
+            <span class="prat-date">sam. 19</span>
+            <span class="prat-titre">Atelier portage physiologique</span>
+            <span class="prat-heure">14h30 · 2 h</span>
+            <span class="pastille-tarif">35 € / 50 €</span>
+          </li>
+          
+          <li>
+            <span class="prat-date">mer. 23</span>
+            <span class="prat-titre">Atelier bébé signe</span>
+            <span class="prat-heure">10h00 · 1 h</span>
+            <span class="pastille-tarif">10 € / 20 €</span>
+          </li>
+          
+        </ul>
+      </div>
+      
+      
+      <div class="prat-groupe">
+        <div class="prat-tete">
+          <div class="medaillon prat-medaillon"><img src="assets/img/equipe/limor-sneh.png" alt="Portrait de Limor Sneh de Oliveira" loading="lazy"></div>
+          <div>
+            <a class="prat-nom" href="equipe/limor-sneh.html">Limor Sneh de Oliveira</a>
+            <div class="prat-role">Yoga prénatal · Postnatal · Ashtanga</div>
+          </div>
         </div>
-        <div class="quand">
-          10h00 · 1 h 30
-          <br><span class="pastille-tarif">30 €</span>
+        <ul class="prat-dates">
+          
+          <li>
+            <span class="prat-date">mar. 1</span>
+            <span class="prat-titre">Yoga prénatal</span>
+            <span class="prat-heure">09h30 · 1 h</span>
+            <span class="pastille-tarif">18 €</span>
+          </li>
+          
+          <li>
+            <span class="prat-date">sam. 5</span>
+            <span class="prat-titre">Yoga tout public (1er samedi du mois)</span>
+            <span class="prat-heure">10h00 · 1 h</span>
+            <span class="pastille-tarif">13 €</span>
+          </li>
+          
+          <li>
+            <span class="prat-date">mar. 8</span>
+            <span class="prat-titre">Yoga postnatal (bébés bienvenus)</span>
+            <span class="prat-heure">10h45 · 1 h</span>
+            <span class="pastille-tarif">18 €</span>
+          </li>
+          
+          <li>
+            <span class="prat-date">mar. 15</span>
+            <span class="prat-titre">Yoga prénatal</span>
+            <span class="prat-heure">09h30 · 1 h</span>
+            <span class="pastille-tarif">18 €</span>
+          </li>
+          
+          <li>
+            <span class="prat-date">sam. 19</span>
+            <span class="prat-titre">Yoga tout public (3e samedi du mois)</span>
+            <span class="prat-heure">10h00 · 1 h</span>
+            <span class="pastille-tarif">13 €</span>
+          </li>
+          
+        </ul>
+      </div>
+      
+      
+      <div class="prat-groupe">
+        <div class="prat-tete">
+          <div class="medaillon prat-medaillon"><img src="assets/img/equipe/anna-lena-well.png" alt="Portrait de Anna Lena Well" loading="lazy"></div>
+          <div>
+            <a class="prat-nom" href="equipe/anna-lena-well.html">Anna Lena Well</a>
+            <div class="prat-role">Yoga Iyengar · Acroyoga</div>
+          </div>
         </div>
-      </article>
+        <ul class="prat-dates">
+          
+          <li>
+            <span class="prat-date">mar. 1</span>
+            <span class="prat-titre">Yoga Iyengar</span>
+            <span class="prat-heure">18h30 · 1 h 30</span>
+            <span class="pastille-tarif">15 €</span>
+          </li>
+          
+          <li>
+            <span class="prat-date">lun. 7</span>
+            <span class="prat-titre">Yoga Iyengar</span>
+            <span class="prat-heure">18h00 · 1 h 30</span>
+            <span class="pastille-tarif">15 €</span>
+          </li>
+          
+        </ul>
+      </div>
+      
+      
+      <div class="prat-groupe">
+        <div class="prat-tete">
+          <div class="medaillon prat-medaillon initiales" aria-hidden="true">MM</div>
+          <div>
+            <a class="prat-nom" href="equipe/monika-mszyca.html">Monika Mszyca</a>
+            <div class="prat-role">Yoga Ashtanga · Vinyasa</div>
+          </div>
+        </div>
+        <ul class="prat-dates">
+          
+          <li>
+            <span class="prat-date">mer. 2</span>
+            <span class="prat-titre">Yoga Ashtanga / Vinyasa</span>
+            <span class="prat-heure">18h30 · 1 h</span>
+            <span class="pastille-tarif">13 €</span>
+          </li>
+          
+          <li>
+            <span class="prat-date">mer. 16</span>
+            <span class="prat-titre">Yoga Ashtanga / Vinyasa</span>
+            <span class="prat-heure">18h30 · 1 h</span>
+            <span class="pastille-tarif">13 €</span>
+          </li>
+          
+          <li>
+            <span class="prat-date">mar. 22</span>
+            <span class="prat-titre">Yoga Ashtanga / Vinyasa</span>
+            <span class="prat-heure">18h30 · 1 h</span>
+            <span class="pastille-tarif">13 €</span>
+          </li>
+          
+        </ul>
+      </div>
       
     </div>
-    
-    <div class="semaine">
-      <div class="semaine-titre">Semaine du 14 septembre</div>
-      
-      <article class="evenement">
-        <div class="date-disque" aria-hidden="true">
-          <div>
-            <div class="jour-num">15</div>
-            <div class="jour-nom">mar.</div>
-          </div>
-        </div>
-        <div>
-          <div class="quoi">Yoga prénatal</div>
-          <div class="qui"><a class="lien-praticienne" href="equipe/limor-sneh.html"><span class="mini-medaillon"><img src="assets/img/equipe/limor-sneh.png" alt=""></span>Limor
-</a></div>
-        </div>
-        <div class="quand">
-          09h30 · 1 h
-          <br><span class="pastille-tarif">18 €</span>
-        </div>
-      </article>
-      
-      <article class="evenement">
-        <div class="date-disque" aria-hidden="true">
-          <div>
-            <div class="jour-num">16</div>
-            <div class="jour-nom">mer.</div>
-          </div>
-        </div>
-        <div>
-          <div class="quoi">Yoga Ashtanga / Vinyasa</div>
-          <div class="qui"><a class="lien-praticienne" href="equipe/monika-mszyca.html"><span class="mini-medaillon initiales" aria-hidden="true">MM</span>Monika
-</a></div>
-        </div>
-        <div class="quand">
-          18h30 · 1 h
-          <br><span class="pastille-tarif">13 €</span>
-        </div>
-      </article>
-      
-      <article class="evenement">
-        <div class="date-disque" aria-hidden="true">
-          <div>
-            <div class="jour-num">17</div>
-            <div class="jour-nom">jeu.</div>
-          </div>
-        </div>
-        <div>
-          <div class="quoi">Sophrologie collective</div>
-          <div class="qui"><a class="lien-praticienne" href="equipe/maeva-caballero.html"><span class="mini-medaillon"><img src="assets/img/equipe/maeva-caballero.png" alt=""></span>Maéva
-</a></div>
-        </div>
-        <div class="quand">
-          18h30 · 1 h
-          <br><span class="pastille-tarif">15 €</span>
-        </div>
-      </article>
-      
-      <article class="evenement">
-        <div class="date-disque" aria-hidden="true">
-          <div>
-            <div class="jour-num">19</div>
-            <div class="jour-nom">sam.</div>
-          </div>
-        </div>
-        <div>
-          <div class="quoi">Yoga tout public (3e samedi du mois)</div>
-          <div class="qui"><a class="lien-praticienne" href="equipe/limor-sneh.html"><span class="mini-medaillon"><img src="assets/img/equipe/limor-sneh.png" alt=""></span>Limor
-</a></div>
-        </div>
-        <div class="quand">
-          10h00 · 1 h
-          <br><span class="pastille-tarif">13 €</span>
-        </div>
-      </article>
-      
-      <article class="evenement">
-        <div class="date-disque" aria-hidden="true">
-          <div>
-            <div class="jour-num">19</div>
-            <div class="jour-nom">sam.</div>
-          </div>
-        </div>
-        <div>
-          <div class="quoi">Atelier portage physiologique</div>
-          <div class="qui"><a class="lien-praticienne" href="equipe/floriane-vargas.html"><span class="mini-medaillon"><img src="assets/img/equipe/floriane-vargas.png" alt=""></span>Floriane
-</a></div>
-        </div>
-        <div class="quand">
-          14h30 · 2 h
-          <br><span class="pastille-tarif">35 € / 50 €</span>
-        </div>
-      </article>
-      
-    </div>
-    
-    <div class="semaine">
-      <div class="semaine-titre">Semaine du 21 septembre</div>
-      
-      <article class="evenement">
-        <div class="date-disque" aria-hidden="true">
-          <div>
-            <div class="jour-num">22</div>
-            <div class="jour-nom">mar.</div>
-          </div>
-        </div>
-        <div>
-          <div class="quoi">Yoga Ashtanga / Vinyasa</div>
-          <div class="qui"><a class="lien-praticienne" href="equipe/monika-mszyca.html"><span class="mini-medaillon initiales" aria-hidden="true">MM</span>Monika
-</a></div>
-        </div>
-        <div class="quand">
-          18h30 · 1 h
-          <br><span class="pastille-tarif">13 €</span>
-        </div>
-      </article>
-      
-      <article class="evenement">
-        <div class="date-disque" aria-hidden="true">
-          <div>
-            <div class="jour-num">23</div>
-            <div class="jour-nom">mer.</div>
-          </div>
-        </div>
-        <div>
-          <div class="quoi">Atelier bébé signe</div>
-          <div class="qui"><a class="lien-praticienne" href="equipe/floriane-vargas.html"><span class="mini-medaillon"><img src="assets/img/equipe/floriane-vargas.png" alt=""></span>Floriane
-</a></div>
-        </div>
-        <div class="quand">
-          10h00 · 1 h
-          <br><span class="pastille-tarif">10 € / 20 €</span>
-        </div>
-      </article>
-      
-      <article class="evenement">
-        <div class="date-disque" aria-hidden="true">
-          <div>
-            <div class="jour-num">24</div>
-            <div class="jour-nom">jeu.</div>
-          </div>
-        </div>
-        <div>
-          <div class="quoi">Atelier allaitement</div>
-          <div class="qui"><a class="lien-praticienne" href="equipe/justine-vergnaud.html"><span class="mini-medaillon"><img src="assets/img/equipe/justine-vergnaud.png" alt=""></span>Justine
-</a></div>
-        </div>
-        <div class="quand">
-          14h00 · 2 h
-          <br><span class="pastille-tarif">20 €</span>
-        </div>
-      </article>
-      
-      <article class="evenement">
-        <div class="date-disque" aria-hidden="true">
-          <div>
-            <div class="jour-num">26</div>
-            <div class="jour-nom">sam.</div>
-          </div>
-        </div>
-        <div>
-          <div class="quoi">Atelier sommeil de bébé</div>
-          <div class="qui"><a class="lien-praticienne" href="equipe/nathalie-constant.html"><span class="mini-medaillon"><img src="assets/img/equipe/nathalie-constant.png" alt=""></span>Nathalie
-</a></div>
-        </div>
-        <div class="quand">
-          10h30 · 1 h 30
-          <br><span class="pastille-tarif">25 € / 35 €</span>
-        </div>
-      </article>
-      
-    </div>
-    
-    <div class="semaine">
-      <div class="semaine-titre">Semaine du 28 septembre</div>
-      
-      <article class="evenement">
-        <div class="date-disque" aria-hidden="true">
-          <div>
-            <div class="jour-num">29</div>
-            <div class="jour-nom">mar.</div>
-          </div>
-        </div>
-        <div>
-          <div class="quoi">Voyage sonore</div>
-          <div class="qui"><a class="lien-praticienne" href="equipe/maeva-caballero.html"><span class="mini-medaillon"><img src="assets/img/equipe/maeva-caballero.png" alt=""></span>Maéva
-</a></div>
-        </div>
-        <div class="quand">
-          19h00 · 1 h
-          <br><span class="pastille-tarif">20 €</span>
-        </div>
-      </article>
-      
-    </div>
-    
+
   </div>
 </section>
 
