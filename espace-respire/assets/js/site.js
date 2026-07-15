@@ -32,6 +32,33 @@
   });
 })();
 
+// Planning : bascule entre les vues (semaine / calendrier / praticienne)
+(function () {
+  var tabs = document.querySelectorAll('.vues-planning [data-vue]');
+  if (!tabs.length) return;
+  function activer(nom) {
+    tabs.forEach(function (t) {
+      var actif = t.getAttribute('data-vue') === nom;
+      t.setAttribute('aria-selected', actif ? 'true' : 'false');
+    });
+    document.querySelectorAll('.vue-planning').forEach(function (v) {
+      v.hidden = v.id !== 'vue-' + nom;
+    });
+  }
+  var demande = null;
+  try {
+    demande = new URLSearchParams(location.search).get('vue') || localStorage.getItem('er-vue-planning');
+  } catch (e) {}
+  if (demande && document.getElementById('vue-' + demande)) activer(demande);
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      var nom = t.getAttribute('data-vue');
+      activer(nom);
+      try { localStorage.setItem('er-vue-planning', nom); } catch (e) {}
+    });
+  });
+})();
+
 // Formulaire de démonstration : pas d'envoi réel
 (function () {
   var form = document.querySelector('.formulaire');
