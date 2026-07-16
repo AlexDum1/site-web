@@ -208,22 +208,33 @@
   passer.addEventListener('click',e=>{e.stopPropagation();terminer();});
   intro.addEventListener('click',terminer);
 
-  // Chaque feuille : sa place finale = la VRAIE feuille du logo,
-  // mesurée sur logo-arbre.png (centroïde, largeur, teinte, orientation
-  // par analyse des composantes connexes) — l'atterrissage coïncide au
-  // pixel avec le logo, la fusion est invisible. x,y en % de la scène
-  // (même ratio 450/600 que l'image), s = largeur en % de la scène.
-  const D='#E8B857',A='#AD6510';
-  const CIBLES=[
-    {x:52.9,y:11.3,r:-159,s:5.6,c:D},{x:37.8,y:12.6,r:-9,s:6.6,c:A},
-    {x:65.7,y:17.6,r:43,s:8.1,c:A},  {x:52.9,y:20.6,r:32,s:6.6,c:D},
-    {x:76.6,y:22.5,r:78,s:5.5,c:D},  {x:27.3,y:23.9,r:-16,s:10.7,c:D},
-    {x:41.3,y:24.5,r:-3,s:8.9,c:D},  {x:60.3,y:27.8,r:45,s:5.4,c:D},
-    {x:16.1,y:29.3,r:-26,s:6.6,c:D}, {x:75.2,y:29.8,r:77,s:10.7,c:A},
-    {x:47.0,y:34.7,r:23,s:9.8,c:A},  {x:28.5,y:35.5,r:-26,s:6.5,c:D},
-    {x:61.6,y:37.5,r:62,s:6.6,c:D},  {x:83.6,y:40.4,r:106,s:10.6,c:D},
-    {x:16.9,y:41.0,r:-64,s:10.6,c:D},{x:70.8,y:46.5,r:124,s:6.5,c:D},
-    {x:26.3,y:49.0,r:-74,s:5.5,c:A}
+  // Le logo lui-même est animé : logo-arbre.png a été découpé en 20
+  // pièces réelles (assets/intro/) — 17 feuilles, le tronc avec le sol,
+  // les lettres L et C. Chaque pièce est positionnée à sa place exacte
+  // (x,y = coin haut-gauche, w = largeur, en % de la scène 450/600) et
+  // seule sa transform bouge : une fois posées, les pièces SONT le
+  // logo, il n'y a rien à échanger ni à fondre.
+  const PIECES=[
+    {f:'tronc.png',x:9.78,y:38.33,w:75.56,role:'tronc'},
+    {f:'lettre-08.png',x:54.44,y:56.83,w:15.33,role:'lettre'},
+    {f:'lettre-05.png',x:69.33,y:56.17,w:19.78,role:'lettre'},
+    {f:'feuille-01.png',x:22.00,y:16.83,w:12.44,role:'feuille'},
+    {f:'feuille-02.png',x:72.89,y:36.00,w:21.56,role:'feuille'},
+    {f:'feuille-03.png',x:64.00,y:26.00,w:21.11,role:'feuille'},
+    {f:'feuille-04.png',x:6.67,y:36.67,w:20.44,role:'feuille'},
+    {f:'feuille-06.png',x:41.11,y:27.50,w:11.56,role:'feuille'},
+    {f:'feuille-07.png',x:36.89,y:18.00,w:9.56,role:'feuille'},
+    {f:'feuille-09.png',x:59.56,y:12.33,w:11.56,role:'feuille'},
+    {f:'feuille-10.png',x:48.44,y:15.83,w:8.67,role:'feuille'},
+    {f:'feuille-11.png',x:34.67,y:7.83,w:7.33,role:'feuille'},
+    {f:'feuille-12.png',x:64.89,y:43.17,w:12.44,role:'feuille'},
+    {f:'feuille-13.png',x:24.22,y:31.50,w:9.56,role:'feuille'},
+    {f:'feuille-14.png',x:55.11,y:34.17,w:12.00,role:'feuille'},
+    {f:'feuille-15.png',x:11.78,y:25.17,w:9.56,role:'feuille'},
+    {f:'feuille-16.png',x:49.33,y:7.17,w:6.89,role:'feuille'},
+    {f:'feuille-17.png',x:70.67,y:20.50,w:11.33,role:'feuille'},
+    {f:'feuille-18.png',x:55.78,y:24.17,w:8.44,role:'feuille'},
+    {f:'feuille-19.png',x:20.67,y:46.67,w:11.56,role:'feuille'}
   ];
 
   if(reduit){
@@ -234,59 +245,60 @@
   }
 
   const rnd=(a,b)=>a+Math.random()*(b-a);
-  const leaves=[];
-  // Ordre d'entrée mélangé : la reconstruction n'est pas mécanique.
-  const ordre=CIBLES.map((_,i)=>i).sort(()=>Math.random()-.5);
-  let maxFin=0;
-
-  ordre.forEach((idx,k)=>{
-    const t=CIBLES[idx];
-    const el=document.createElement('span');
-    el.className='intro-leaf';
-    el.style.left=t.x+'%'; el.style.top=t.y+'%';
-    el.style.width=t.s+'%';
-    el.innerHTML='<svg viewBox="0 0 48 60" fill="'+t.c+'"><use href="#feuille-logo"/></svg>';
+  const cree=t=>{
+    const el=document.createElement('img');
+    el.className='intro-piece';
+    el.src='assets/intro/'+t.f;
+    el.style.left=t.x+'%'; el.style.top=t.y+'%'; el.style.width=t.w+'%';
     stage.appendChild(el);
-    leaves.push(el);
+    return el;
+  };
 
-    // Point de départ dispersé + errance "en folie" avant de se poser.
+  // Feuilles : entrée en ordre mélangé, errance puis atterrissage.
+  const feuilles=PIECES.filter(t=>t.role==='feuille')
+    .map(t=>({t,el:cree(t)}))
+    .sort(()=>Math.random()-.5);
+  let maxFin=0;
+  feuilles.forEach((o,k)=>{
     const dep={x:rnd(-230,230),y:rnd(-200,200)};
     const err={x:rnd(-90,90),y:rnd(-80,80)};
-    const app={x:rnd(-24,24),y:rnd(-24,24)};
-    const rd=rnd(-220,220),re=rnd(-260,260);
-    const base=t.r;
-    const T=v=>'translate(-50%,-50%) '+v;
+    const app={x:rnd(-20,20),y:rnd(-20,20)};
+    const rd=rnd(-220,220),re=rnd(-200,200);
     const delay=260+k*55+rnd(0,150);
     const dur=1500+rnd(0,450);
-
     // Easing par segment : la vitesse s'annule en douceur à chaque
-    // changement de direction, aucun à-coup entre les étapes du vol.
-    el.animate([
-      {opacity:0,transform:T('translate('+dep.x+'px,'+dep.y+'px) rotate('+rd+'deg) scale(.35)'),offset:0,easing:'ease-out'},
-      {opacity:1,transform:T('translate('+(dep.x*.75)+'px,'+(dep.y*.75)+'px) rotate('+(rd+140)+'deg) scale(.7)'),offset:.16,easing:'ease-in-out'},
-      {opacity:1,transform:T('translate('+err.x+'px,'+err.y+'px) rotate('+re+'deg) scale(.9)'),offset:.46,easing:'ease-in-out'},
-      {opacity:1,transform:T('translate('+app.x+'px,'+app.y+'px) rotate('+(base+16)+'deg) scale(1.05)'),offset:.82,easing:'ease-out'},
-      {opacity:1,transform:T('rotate('+base+'deg) scale(1)'),offset:1}
+    // changement de direction ; la pièce finit à transform:none,
+    // c'est-à-dire exactement à sa place dans le logo.
+    o.el.animate([
+      {opacity:0,transform:'translate('+dep.x+'px,'+dep.y+'px) rotate('+rd+'deg) scale(.35)',offset:0,easing:'ease-out'},
+      {opacity:1,transform:'translate('+(dep.x*.75)+'px,'+(dep.y*.75)+'px) rotate('+(rd+140)+'deg) scale(.7)',offset:.16,easing:'ease-in-out'},
+      {opacity:1,transform:'translate('+err.x+'px,'+err.y+'px) rotate('+re+'deg) scale(.9)',offset:.46,easing:'ease-in-out'},
+      {opacity:1,transform:'translate('+app.x+'px,'+app.y+'px) rotate('+rnd(-14,14)+'deg) scale(1.04)',offset:.82,easing:'ease-out'},
+      {opacity:1,transform:'none',offset:1}
     ],{duration:dur,delay:delay,fill:'both'});
-
     maxFin=Math.max(maxFin,delay+dur);
   });
 
-  // La couronne posée, le logo émerge SOUS les feuilles (le tronc et
-  // les lettres complètent l'arbre), puis les feuilles esquissées
-  // s'effacent — chacune étant posée sur sa jumelle du logo, la
-  // substitution est invisible.
-  setTimeout(()=>{
-    stage.classList.add('assemble');
-    intro.classList.add('montre-mot');
-    leaves.forEach((el,i)=>el.animate(
-      [{opacity:1},{opacity:0}],
-      {duration:600,delay:600+i*15,easing:'ease',fill:'forwards'}
-    ));
-  },maxFin+150);
+  // Le tronc pousse pendant que les dernières feuilles se posent :
+  // l'arbre se complète, sans aucune bascule d'image.
+  const tronc=cree(PIECES.find(t=>t.role==='tronc'));
+  tronc.style.transformOrigin='50% 100%';
+  tronc.animate([
+    {opacity:0,transform:'translateY(26px) scale(.94)',easing:'cubic-bezier(.22,.7,.3,1)'},
+    {opacity:1,transform:'none'}
+  ],{duration:1100,delay:maxFin-850,fill:'both'});
 
+  // Puis la signature "LC" vient signer l'arbre reconstruit.
+  PIECES.filter(t=>t.role==='lettre').forEach((t,i)=>{
+    cree(t).animate([
+      {opacity:0,transform:'translateY(10px)',easing:'ease-out'},
+      {opacity:1,transform:'none'}
+    ],{duration:700,delay:maxFin+250+i*260,fill:'both'});
+  });
+
+  setTimeout(()=>intro.classList.add('montre-mot'),maxFin+500);
   setTimeout(()=>intro.classList.add('montre-passer'),700);
-  setTimeout(terminer,maxFin+2350);
+  setTimeout(terminer,maxFin+2600);
 })();
 
 // Sans intro (déjà vue cette session), le hero se lance au chargement.
