@@ -191,13 +191,9 @@ html.intro-actif,html.intro-actif body{overflow:hidden}
   filter:drop-shadow(0 22px 40px rgba(107,64,20,.16));
 }
 .intro-stage.assemble .intro-logo{opacity:1;scale:1}
-.intro-leaf{
-  position:absolute;translate:-50% -50%;
+.intro-piece{
+  position:absolute;height:auto;
   will-change:transform,opacity;opacity:0;pointer-events:none;
-}
-.intro-leaf svg{
-  width:100%;height:auto;display:block;
-  filter:drop-shadow(0 6px 12px rgba(107,64,20,.14));
 }
 .intro-mot{
   font-family:var(--serif);font-style:italic;font-weight:400;
@@ -509,5 +505,5 @@ footer.pied{
   body.chargee .feuille svg{animation:none}
   .reveal,blockquote .ligne,blockquote footer{opacity:1;translate:0 0;transition:none}
   .carte,.btn{transition:none}
-  .intro-leaf{display:none}
+  .intro-piece{display:none}
 }
