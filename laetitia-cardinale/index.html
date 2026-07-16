@@ -10,365 +10,27 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --fond:#FFFEF8;
-  --encre:#0D2123;
-  --turquoise:#54B6BF;
-  --turquoise-fonce:#2C6F76;
-  --turquoise-pale:#EDF7F8;
-  --ambre:#D89B2E;
-  --dore:#E8C06A;
-  --brun:#6B4014;
-  --serif:'Playfair Display',Georgia,serif;
-  --sans:'Montserrat',system-ui,sans-serif;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  background:var(--fond);
-  color:var(--encre);
-  font-family:var(--sans);
-  font-size:16px;
-  line-height:1.79;
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-}
-img{max-width:100%;height:auto;display:block}
-a{color:var(--turquoise-fonce)}
-
-/* ---------- bandeau démo ---------- */
-.demo{
-  background:var(--encre);color:rgba(255,254,248,.85);
-  font-size:11.5px;letter-spacing:.08em;text-align:center;
-  padding:7px 16px;
-}
-.demo strong{color:var(--dore);font-weight:600}
-
-/* ---------- header ---------- */
-header{
-  position:sticky;top:0;z-index:50;
-  background:rgba(255,254,248,.94);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(13,33,35,.08);
-}
-.header-in{
-  max-width:1160px;margin:0 auto;padding:12px 24px;
-  display:flex;align-items:center;justify-content:space-between;gap:16px;
-}
-.header-in img{height:58px;width:auto}
-nav{display:flex;gap:26px;flex-wrap:wrap}
-nav a{
-  font-size:12.5px;font-weight:500;letter-spacing:.06em;
-  color:var(--encre);text-decoration:none;
-  padding-bottom:3px;position:relative;white-space:nowrap;
-}
-nav a::after{
-  content:"";position:absolute;left:0;bottom:0;height:2px;width:0;
-  background:var(--ambre);transition:width .3s ease;
-}
-nav a:hover::after,nav a:focus-visible::after{width:100%}
-nav a:focus-visible{outline:2px solid var(--turquoise);outline-offset:4px}
-.burger{display:none}
-
-/* ---------- hero ---------- */
-.hero{
-  position:relative;overflow:hidden;
-  padding:110px 24px 130px;
-  text-align:center;
-  background:
-    radial-gradient(52% 46% at 50% 0%, rgba(167,217,222,.28), transparent 70%),
-    radial-gradient(40% 34% at 88% 78%, rgba(232,192,106,.16), transparent 70%),
-    var(--fond);
-}
-.hero-in{max-width:780px;margin:0 auto;position:relative;z-index:2}
-.hero .identite{
-  font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
-  color:var(--turquoise-fonce);margin-bottom:30px;
-  display:inline-flex;align-items:center;gap:14px;
-}
-.hero .identite::before,.hero .identite::after{
-  content:"";width:34px;height:1px;background:var(--ambre);
-}
-.hero h1{
-  font-family:var(--serif);font-weight:400;
-  font-size:clamp(29px,4.4vw,48px);line-height:1.35;
-  margin-bottom:30px;
-}
-.hero p{
-  font-size:16.5px;line-height:1.85;max-width:620px;margin:0 auto 16px;
-  color:rgba(13,33,35,.86);
-}
-.hero .premier-pas{
-  font-family:var(--serif);font-style:italic;
-  font-size:clamp(21px,2.7vw,28px);
-  color:var(--turquoise-fonce);margin:40px auto 18px;
-}
-/* branche de feuilles — formes reprises du logo (feuille pointue fendue) */
-.feuille{
-  position:absolute;opacity:0;pointer-events:none;z-index:1;
-}
-.feuille svg{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 14px rgba(107,64,20,.10))}
-body.chargee .feuille{animation:se-poser 2s cubic-bezier(.23,.75,.32,1) forwards}
-.f1{width:52px;top:9%;left:6%;rotate:-28deg;animation-delay:.1s !important}
-.f2{width:38px;top:30%;left:12%;rotate:42deg;animation-delay:.55s !important}
-.f3{width:44px;top:13%;right:8%;rotate:24deg;animation-delay:.3s !important}
-.f4{width:30px;top:38%;right:14%;rotate:-48deg;animation-delay:.8s !important}
-.f5{width:34px;bottom:16%;left:20%;rotate:70deg;animation-delay:1s !important}
-.f6{width:42px;bottom:10%;right:22%;rotate:-12deg;animation-delay:1.2s !important}
-@keyframes se-poser{
-  0%{opacity:0;translate:0 -60px}
-  60%{opacity:.9}
-  100%{opacity:.9;translate:0 0}
-}
-body.chargee .feuille svg{animation:respire 7s ease-in-out 2.2s infinite}
-@keyframes respire{
-  0%,100%{transform:translateY(0) rotate(0deg)}
-  50%{transform:translateY(-9px) rotate(4deg)}
-}
-
-/* ---------- séparateur feuille ---------- */
-.sep{
-  display:flex;align-items:center;justify-content:center;gap:16px;
-  max-width:440px;margin:0 auto;padding:0 24px;
-}
-.sep::before,.sep::after{
-  content:"";flex:1;height:1px;background:rgba(13,33,35,.16);
-}
-.sep svg{width:22px;height:auto;flex:none}
-
-/* ---------- réassurance ---------- */
-.reassurance{padding:100px 24px 90px}
-.reassurance-in{
-  max-width:1120px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 1.05fr;gap:72px;align-items:center;
-}
-.reassurance figure{position:relative;margin-right:14px}
-.reassurance img{
-  border-radius:8px;
-  box-shadow:0 30px 70px -30px rgba(13,33,35,.4);
-  aspect-ratio:4/3;object-fit:cover;width:100%;
-}
-.reassurance figure::after{
-  content:"";position:absolute;top:20px;left:20px;right:-14px;bottom:-14px;
-  border:1.5px solid var(--dore);border-radius:8px;z-index:-1;
-}
-.eyebrow{
-  font-size:11.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--ambre);margin-bottom:16px;
-  display:flex;align-items:center;gap:12px;
-}
-.eyebrow::before{content:"";width:26px;height:1px;background:var(--ambre)}
-.reassurance h2{
-  font-family:var(--serif);font-weight:400;
-  font-size:clamp(25px,3vw,36px);line-height:1.4;margin-bottom:20px;
-}
-.reassurance p{margin-bottom:14px;font-size:15.5px;color:rgba(13,33,35,.86)}
-.publics{list-style:none;margin:26px 0 0;display:grid;gap:12px}
-.publics li{display:flex;gap:14px;align-items:baseline;font-size:14.5px;font-weight:500}
-.publics svg{width:14px;flex:none;translate:0 2px}
-
-/* ---------- portes d'entrée ---------- */
-.portes{
-  background:linear-gradient(180deg,var(--turquoise-pale) 0%,#E2F1F3 100%);
-  padding:90px 24px;position:relative;
-}
-.portes-in{
-  max-width:1120px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:26px;
-}
-.portes h2{
-  max-width:1120px;margin:0 auto 46px;
-  font-family:var(--serif);font-weight:400;text-align:center;
-  font-size:clamp(24px,2.8vw,32px);
-}
-.porte{
-  background:var(--fond);
-  border-radius:8px;padding:38px 32px 32px;
-  text-decoration:none;color:var(--encre);
-  display:flex;flex-direction:column;gap:12px;
-  box-shadow:0 10px 34px -18px rgba(44,111,118,.28);
-  border-top:3px solid transparent;
-  transition:translate .35s ease,box-shadow .35s ease,border-color .35s ease;
-}
-.porte:hover,.porte:focus-visible{
-  translate:0 -6px;
-  box-shadow:0 26px 50px -22px rgba(44,111,118,.45);
-  border-top-color:var(--ambre);
-}
-.porte:focus-visible{outline:2px solid var(--turquoise-fonce);outline-offset:3px}
-.porte .pictofeuille{width:30px;margin-bottom:4px}
-.porte h3{font-family:var(--serif);font-weight:500;font-size:21.5px}
-.porte p{font-size:14px;line-height:1.75;flex:1;color:rgba(13,33,35,.82)}
-.porte span{
-  font-size:13px;font-weight:600;color:var(--turquoise-fonce);
-  border-bottom:2px solid var(--ambre);align-self:flex-start;padding-bottom:2px;
-}
-
-/* ---------- citation ---------- */
-.citation{
-  background:
-    radial-gradient(60% 90% at 82% 100%, rgba(84,182,191,.14), transparent 70%),
-    var(--encre);
-  color:var(--fond);
-  padding:120px 24px;text-align:center;position:relative;overflow:hidden;
-}
-.citation .arbre-fond{
-  position:absolute;right:-40px;bottom:-70px;width:min(320px,42vw);opacity:.1;
-  pointer-events:none;
-}
-blockquote{max-width:740px;margin:0 auto;position:relative;z-index:2}
-blockquote .ligne{
-  display:block;font-family:var(--serif);font-style:italic;font-weight:400;
-  font-size:clamp(25px,3.5vw,38px);line-height:1.5;
-  opacity:0;translate:0 20px;transition:opacity 1s ease,translate 1s ease;
-}
-blockquote .ligne.vue{opacity:1;translate:0 0}
-blockquote .ligne:nth-child(2).vue{transition-delay:.5s}
-blockquote footer{
-  margin-top:34px;font-size:12px;letter-spacing:.28em;text-transform:uppercase;
-  color:var(--dore);
-  opacity:0;transition:opacity 1s ease 1.1s;
-}
-blockquote footer.vue{opacity:1}
-
-/* ---------- médiations : liste éditoriale ---------- */
-.mediations{padding:110px 24px 100px}
-.mediations-in{max-width:900px;margin:0 auto}
-.mediations .tete{max-width:640px;margin-bottom:64px}
-.mediations h2{
-  font-family:var(--serif);font-weight:400;
-  font-size:clamp(25px,3vw,36px);line-height:1.4;margin-bottom:18px;
-}
-.mediations .tete p{font-size:15.5px;color:rgba(13,33,35,.86)}
-.med{
-  display:grid;grid-template-columns:64px 1fr;gap:26px;
-  padding:38px 0;
-  border-top:1px solid rgba(13,33,35,.13);
-}
-.med:last-child{border-bottom:1px solid rgba(13,33,35,.13)}
-.med .pictofeuille{width:36px;margin-top:6px;justify-self:center}
-.med h3{
-  font-family:var(--serif);font-weight:500;font-size:clamp(20px,2.2vw,25px);
-  margin-bottom:8px;
-}
-.med p{font-size:14.5px;line-height:1.8;color:rgba(13,33,35,.84);max-width:640px}
-.mediations .suite{
-  margin-top:44px;font-size:14px;
-}
-.mediations .suite a{
-  font-weight:600;text-decoration:none;color:var(--turquoise-fonce);
-  border-bottom:2px solid var(--ambre);padding-bottom:2px;
-}
-
-/* ---------- contact ---------- */
-.contact{
-  background:linear-gradient(180deg,var(--turquoise-pale),#E2F1F3);
-  padding:100px 24px;text-align:center;position:relative;overflow:hidden;
-}
-.contact h2{
-  font-family:var(--serif);font-weight:400;
-  font-size:clamp(26px,3.2vw,38px);margin-bottom:14px;
-}
-.contact>div{position:relative;z-index:2}
-.contact p{max-width:520px;margin:0 auto 36px;font-size:15.5px;color:rgba(13,33,35,.86)}
-.boutons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-.btn{
-  display:inline-block;text-decoration:none;font-weight:600;font-size:14px;
-  padding:16px 36px;border-radius:3px;letter-spacing:.04em;
-  transition:translate .3s ease,box-shadow .3s ease;
-}
-.btn:hover{translate:0 -3px}
-.btn-plein{
-  background:var(--turquoise-fonce);color:var(--fond);
-  box-shadow:0 16px 34px -14px rgba(44,111,118,.65);
-}
-.btn-ligne{
-  border:1.5px solid var(--turquoise-fonce);color:var(--turquoise-fonce);
-  background:rgba(255,254,248,.6);
-}
-.contact .tel{margin-top:30px;font-size:15px}
-.contact .tel a{font-weight:600;text-decoration:none;color:var(--encre);border-bottom:2px solid var(--ambre)}
-
-/* ---------- footer ---------- */
-footer.pied{
-  background:var(--encre);color:rgba(255,254,248,.82);
-  padding:60px 24px 40px;font-size:13.5px;
-}
-.pied-in{
-  max-width:1120px;margin:0 auto;
-  display:flex;justify-content:space-between;gap:36px;flex-wrap:wrap;align-items:center;
-}
-.pied-in img{height:80px;width:auto;filter:brightness(0) invert(1);opacity:.85}
-.pied-in address{font-style:normal;line-height:2.1;text-align:right}
-.pied-in a{color:var(--dore);text-decoration:none}
-.mention{max-width:1120px;margin:36px auto 0;padding-top:22px;border-top:1px solid rgba(255,254,248,.14);font-size:12px;color:rgba(255,254,248,.5)}
-
-/* ---------- révélation au scroll ---------- */
-.reveal{opacity:0;translate:0 28px;transition:opacity .8s ease,translate .8s ease}
-.reveal.vue{opacity:1;translate:0 0}
-
-/* ---------- responsive ---------- */
-@media (max-width:920px){
-  .reassurance{padding:76px 24px 64px}
-  .reassurance-in{grid-template-columns:1fr;gap:52px}
-  .reassurance figure{margin-right:14px;margin-left:0;max-width:520px}
-  .portes-in{grid-template-columns:1fr;max-width:520px}
-  .med{grid-template-columns:44px 1fr;gap:18px}
-  .med .pictofeuille{width:28px}
-  .pied-in{flex-direction:column;align-items:flex-start}
-  .pied-in address{text-align:left}
-  nav{display:none}
-  .burger{
-    display:block;background:none;border:1px solid rgba(13,33,35,.2);border-radius:3px;
-    cursor:pointer;flex:none;
-    font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.08em;
-    color:var(--encre);padding:9px 14px;
-  }
-  header.ouvert nav{
-    display:flex;flex-direction:column;gap:0;
-    position:absolute;top:100%;left:0;right:0;
-    background:var(--fond);border-bottom:1px solid rgba(13,33,35,.1);
-    padding:10px 24px 18px;box-shadow:0 18px 30px -18px rgba(13,33,35,.25);
-  }
-  header.ouvert nav a{padding:12px 0}
-  .f2,.f4,.f5{display:none}
-  .f1{width:38px;left:4%}
-  .f3{width:34px;right:5%}
-  .f6{width:32px;right:8%}
-  .hero{padding:80px 22px 96px}
-}
-
-/* ---------- reduced motion : site calme ---------- */
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .feuille,body.chargee .feuille{animation:none;opacity:.9;translate:0 0}
-  body.chargee .feuille svg{animation:none}
-  .reveal,blockquote .ligne,blockquote footer{opacity:1;translate:0 0;transition:none}
-  .porte,.btn{transition:none}
-}
-</style>
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
 <div class="demo"><strong>Maquette de démonstration</strong> — proposition de refonte, contenu repris du site actuel</div>
 
-<header id="haut">
+<header class="site" id="haut">
   <div class="header-in">
-    <img src="assets/logo-horizontal.png" alt="Laëtitia Cardinale — Thérapeute">
+    <a href="index.html"><img src="assets/logo-horizontal.png" alt="Laëtitia Cardinale — Thérapeute"></a>
     <button class="burger" aria-expanded="false" aria-controls="menu">Menu</button>
     <nav id="menu" aria-label="Navigation principale">
-      <a href="#haut">Accueil</a>
-      <a href="#presentation">Mon parcours</a>
-      <a href="#mediations">Ma pratique</a>
-      <a href="#portes">Ateliers d'exploration</a>
-      <a href="#contact">Tarifs</a>
-      <a href="#contact">Contact &amp; rendez-vous</a>
+      <a href="index.html" class="actif" aria-current="page">Accueil</a>
+      <a href="mon-parcours.html">Mon parcours</a>
+      <a href="ma-pratique.html">Ma pratique</a>
+      <a href="ateliers.html">Ateliers d'exploration</a>
+      <a href="tarifs.html">Tarifs</a>
+      <a href="contact.html">Contact & rendez-vous</a>
     </nav>
   </div>
 </header>
 
-<!-- Feuille du logo, réutilisée partout (symbole) -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <g id="feuille-logo">
@@ -379,14 +41,13 @@ footer.pied{
 </svg>
 
 <main>
-  <!-- HERO -->
   <section class="hero" aria-label="Introduction">
-    <span class="feuille f1" aria-hidden="true"><svg viewBox="0 0 48 60" fill="#D89B2E"><use href="#feuille-logo"/></svg></span>
-    <span class="feuille f2" aria-hidden="true"><svg viewBox="0 0 48 60" fill="#E8C06A"><use href="#feuille-logo"/></svg></span>
-    <span class="feuille f3" aria-hidden="true"><svg viewBox="0 0 48 60" fill="#E8C06A"><use href="#feuille-logo"/></svg></span>
-    <span class="feuille f4" aria-hidden="true"><svg viewBox="0 0 48 60" fill="#A96314"><use href="#feuille-logo"/></svg></span>
-    <span class="feuille f5" aria-hidden="true"><svg viewBox="0 0 48 60" fill="#A96314"><use href="#feuille-logo"/></svg></span>
-    <span class="feuille f6" aria-hidden="true"><svg viewBox="0 0 48 60" fill="#D89B2E"><use href="#feuille-logo"/></svg></span>
+    <span class="feuille f1" aria-hidden="true"><svg viewBox="0 0 48 60" fill="#D89B2E" aria-hidden="true"><use href="#feuille-logo"/></svg></span>
+    <span class="feuille f2" aria-hidden="true"><svg viewBox="0 0 48 60" fill="#E8C06A" aria-hidden="true"><use href="#feuille-logo"/></svg></span>
+    <span class="feuille f3" aria-hidden="true"><svg viewBox="0 0 48 60" fill="#E8C06A" aria-hidden="true"><use href="#feuille-logo"/></svg></span>
+    <span class="feuille f4" aria-hidden="true"><svg viewBox="0 0 48 60" fill="#A96314" aria-hidden="true"><use href="#feuille-logo"/></svg></span>
+    <span class="feuille f5" aria-hidden="true"><svg viewBox="0 0 48 60" fill="#A96314" aria-hidden="true"><use href="#feuille-logo"/></svg></span>
+    <span class="feuille f6" aria-hidden="true"><svg viewBox="0 0 48 60" fill="#D89B2E" aria-hidden="true"><use href="#feuille-logo"/></svg></span>
 
     <div class="hero-in">
       <p class="identite">Laëtitia Cardinale · Psychopraticienne à Gignac</p>
@@ -398,55 +59,50 @@ footer.pied{
     </div>
   </section>
 
-  <div class="sep" aria-hidden="true">
-    <svg viewBox="0 0 48 60" fill="#D89B2E"><use href="#feuille-logo"/></svg>
-  </div>
+  <div class="sep" aria-hidden="true"><svg viewBox="0 0 48 60" fill="#D89B2E" aria-hidden="true"><use href="#feuille-logo"/></svg></div>
 
-  <!-- RÉASSURANCE -->
-  <section class="reassurance" id="presentation">
-    <div class="reassurance-in">
-      <figure class="reveal">
+  <section class="section" id="presentation">
+    <div class="duo">
+      <figure class="cadre reveal">
         <img src="assets/cabinet.jpg" alt="Le cabinet à l'Espace Respire : deux fauteuils face à face dans une pièce chaleureuse" loading="lazy">
       </figure>
-      <div class="reveal">
+      <div class="texte reveal">
         <p class="eyebrow">Un cadre confidentiel et bienveillant</p>
         <h2>Un espace pour élaborer, comprendre ce qui se rejoue, et retrouver votre capacité à avancer.</h2>
         <p>Je suis Laëtitia Cardinale, praticienne en psychothérapie, formée à la Psychosomatique Relationnelle. Je vous accueille à l'Espace Respire, à Gignac.</p>
-        <ul class="publics">
-          <li><svg viewBox="0 0 48 60" fill="#D89B2E" aria-hidden="true"><use href="#feuille-logo"/></svg>Adolescents, à partir de 11 ans</li>
-          <li><svg viewBox="0 0 48 60" fill="#D89B2E" aria-hidden="true"><use href="#feuille-logo"/></svg>Adultes, en individuel</li>
-          <li><svg viewBox="0 0 48 60" fill="#D89B2E" aria-hidden="true"><use href="#feuille-logo"/></svg>Futurs et jeunes parents — grossesse, naissance, premiers mois avec bébé</li>
+        <ul style="list-style:none;display:grid;gap:12px;margin-top:26px">
+          <li style="display:flex;gap:14px;align-items:baseline;font-size:14.5px;font-weight:500"><span style="width:14px;flex:none;translate:0 2px"><svg viewBox="0 0 48 60" fill="#D89B2E" aria-hidden="true"><use href="#feuille-logo"/></svg></span>Adolescents, à partir de 11 ans</li>
+          <li style="display:flex;gap:14px;align-items:baseline;font-size:14.5px;font-weight:500"><span style="width:14px;flex:none;translate:0 2px"><svg viewBox="0 0 48 60" fill="#D89B2E" aria-hidden="true"><use href="#feuille-logo"/></svg></span>Adultes, en individuel</li>
+          <li style="display:flex;gap:14px;align-items:baseline;font-size:14.5px;font-weight:500"><span style="width:14px;flex:none;translate:0 2px"><svg viewBox="0 0 48 60" fill="#D89B2E" aria-hidden="true"><use href="#feuille-logo"/></svg></span>Futurs et jeunes parents — grossesse, naissance, premiers mois avec bébé</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- TROIS PORTES D'ENTRÉE -->
-  <section class="portes" id="portes">
-    <h2 class="reveal">Par où commencer&nbsp;?</h2>
-    <div class="portes-in">
-      <a class="porte reveal" href="#mediations">
+  <section class="section bande" id="portes">
+    <h2 class="reveal" style="text-align:center;margin-bottom:46px">Par où commencer&nbsp;?</h2>
+    <div class="cartes">
+      <a class="carte reveal" href="ma-pratique.html">
         <svg class="pictofeuille" viewBox="0 0 48 60" fill="#54B6BF" aria-hidden="true"><use href="#feuille-logo"/></svg>
         <h3>Les consultations</h3>
         <p>Psychothérapie individuelle au cabinet ou en extérieur. Séances d'environ 1 heure — 60 € adulte, 50 € adolescent.</p>
-        <span>Découvrir ma pratique</span>
+        <span class="appel">Découvrir ma pratique</span>
       </a>
-      <a class="porte reveal" href="#mediations">
+      <a class="carte reveal" href="ateliers.html">
         <svg class="pictofeuille" viewBox="0 0 48 60" fill="#D89B2E" aria-hidden="true"><use href="#feuille-logo"/></svg>
         <h3>Explorer ses rêves</h3>
         <p>Ateliers en petit groupe, en présentiel et en visio : découvrir la fonction des rêves, apprendre à les recueillir et les observer.</p>
-        <span>Voir les ateliers</span>
+        <span class="appel">Voir les ateliers</span>
       </a>
-      <a class="porte reveal" href="#contact">
+      <a class="carte reveal" href="contact.html">
         <svg class="pictofeuille" viewBox="0 0 48 60" fill="#2C6F76" aria-hidden="true"><use href="#feuille-logo"/></svg>
         <h3>Prendre rendez-vous</h3>
         <p>Par téléphone, par e-mail ou directement en ligne — à l'Espace Respire, 15 rue des Armillières à Gignac.</p>
-        <span>Me contacter</span>
+        <span class="appel">Me contacter</span>
       </a>
     </div>
   </section>
 
-  <!-- CITATION SALOMÉ -->
   <section class="citation">
     <img class="arbre-fond" src="assets/logo-arbre.png" alt="" aria-hidden="true" loading="lazy">
     <blockquote>
@@ -456,60 +112,51 @@ footer.pied{
     </blockquote>
   </section>
 
-  <!-- MÉDIATIONS -->
-  <section class="mediations" id="mediations">
-    <div class="mediations-in">
-      <div class="tete reveal">
+  <section class="section" id="mediations">
+    <div class="section-in" style="max-width:900px">
+      <div class="reveal" style="max-width:640px;margin-bottom:64px">
         <p class="eyebrow">Ma pratique</p>
         <h2>Le corps, le psychisme et la relation, comme un ensemble indissociable.</h2>
-        <p>Ma pratique s'appuie sur la Psychosomatique Relationnelle, approche fondée par Sami-Ali. À la psychothérapie en cabinet, j'associe des médiations qui soutiennent le travail d'élaboration.</p>
+        <p class="prose">Ma pratique s'appuie sur la Psychosomatique Relationnelle, approche fondée par Sami-Ali. À la psychothérapie en cabinet, j'associe des médiations qui soutiennent le travail d'élaboration.</p>
       </div>
 
       <article class="med reveal">
         <svg class="pictofeuille" viewBox="0 0 48 60" fill="#E8C06A" aria-hidden="true"><use href="#feuille-logo"/></svg>
-        <div>
-          <h3>Le travail du rêve</h3>
-          <p>Le rêve est une activité créatrice, une mise en forme du corps, de l'affect et de la relation. Raconté en séance, il devient matière à association et ouvre des voies de symbolisation.</p>
-        </div>
+        <div><h3>Le travail du rêve</h3>
+        <p>Le rêve est une activité créatrice, une mise en forme du corps, de l'affect et de la relation. Raconté en séance, il devient matière à association et ouvre des voies de symbolisation.</p></div>
       </article>
       <article class="med reveal">
         <svg class="pictofeuille" viewBox="0 0 48 60" fill="#D89B2E" aria-hidden="true"><use href="#feuille-logo"/></svg>
-        <div>
-          <h3>La médiation corporelle</h3>
-          <p>Un travail de prise de contact avec le corps et ses sensations, à travers des parcours guidés — le corps entendu comme lieu d'expression de votre histoire.</p>
-        </div>
+        <div><h3>La médiation corporelle</h3>
+        <p>Un travail de prise de contact avec le corps et ses sensations, à travers des parcours guidés — le corps entendu comme lieu d'expression de votre histoire.</p></div>
       </article>
       <article class="med reveal">
         <svg class="pictofeuille" viewBox="0 0 48 60" fill="#A96314" aria-hidden="true"><use href="#feuille-logo"/></svg>
-        <div>
-          <h3>La médiation artistique</h3>
-          <p>Peinture, argile, dessin, collage : un support pour donner forme à ce qui se joue en vous, repris en séance comme on reprendrait le récit d'un rêve.</p>
-        </div>
+        <div><h3>La médiation artistique</h3>
+        <p>Peinture, argile, dessin, collage : un support pour donner forme à ce qui se joue en vous, repris en séance comme on reprendrait le récit d'un rêve.</p></div>
       </article>
       <article class="med reveal">
         <svg class="pictofeuille" viewBox="0 0 48 60" fill="#6B4014" aria-hidden="true"><use href="#feuille-logo"/></svg>
-        <div>
-          <h3>La marche thérapeutique</h3>
-          <p>Le travail thérapeutique associé aux bienfaits de la nature et de la marche, côte à côte et en mouvement. Séances d'une heure, à Villeneuvette.</p>
-        </div>
+        <div><h3>La marche thérapeutique</h3>
+        <p>Le travail thérapeutique associé aux bienfaits de la nature et de la marche, côte à côte et en mouvement. Séances d'une heure, à Villeneuvette.</p></div>
       </article>
 
-      <p class="suite reveal">Envie d'en savoir plus&nbsp;? <a href="#mediations">Découvrir ma pratique en détail</a></p>
+      <p class="reveal" style="margin-top:44px;font-size:14px">Envie d'en savoir plus&nbsp;? <a class="lien-ambre" href="ma-pratique.html">Découvrir ma pratique en détail</a></p>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
+  <section class="appel-final">
     <div class="reveal">
       <h2>Contactez-moi</h2>
       <p>Vous pouvez me contacter ou prendre rendez-vous de la manière qui vous convient le mieux.</p>
       <div class="boutons">
         <a class="btn btn-plein" href="https://perfactive.fr/laetitia-cardinale/new">Réserver en ligne</a>
-        <a class="btn btn-ligne" href="mailto:l.cardinale.psy@gmail.com">Écrire un e-mail</a>
+        <a class="btn btn-ligne" href="contact.html">Contact &amp; accès</a>
       </div>
       <p class="tel">ou par téléphone : <a href="tel:0695103729">06 95 10 37 29</a></p>
     </div>
   </section>
+
 </main>
 
 <footer class="pied">
@@ -530,7 +177,7 @@ const io=new IntersectionObserver(es=>{
   es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vue');io.unobserve(e.target)}});
 },{threshold:.16});
 document.querySelectorAll('.reveal, blockquote .ligne, blockquote footer').forEach(el=>io.observe(el));
-const burger=document.querySelector('.burger'),entete=document.querySelector('header');
+const burger=document.querySelector('.burger'),entete=document.querySelector('header.site');
 burger.addEventListener('click',()=>{
   const ouvert=entete.classList.toggle('ouvert');
   burger.setAttribute('aria-expanded',ouvert);
