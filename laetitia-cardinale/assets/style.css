@@ -137,22 +137,27 @@ nav a:focus-visible{outline:2px solid var(--turquoise);outline-offset:4px}
   color:var(--turquoise-fonce);margin:40px auto 18px;
 }
 
-/* ---------- feuilles animées ---------- */
-.feuille{position:absolute;opacity:0;pointer-events:none;z-index:1}
+/* ---------- feuilles animées ----------
+   Chaque feuille porte son propre délai (--d) : la chute dure 2.4s
+   et la respiration démarre exactement à l'atterrissage
+   (calc(var(--d) + 2.4s)), sans à-coup. Les durées de respiration
+   (--dur) varient d'une feuille à l'autre pour désynchroniser. */
+.feuille{position:absolute;opacity:0;pointer-events:none;z-index:1;--d:0s;--dur:7s}
 .feuille svg{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 14px rgba(107,64,20,.10))}
-body.chargee .feuille{animation:se-poser 2s cubic-bezier(.23,.75,.32,1) forwards}
-.f1{width:52px;top:9%;left:6%;rotate:-28deg;animation-delay:.1s !important}
-.f2{width:38px;top:30%;left:12%;rotate:42deg;animation-delay:.55s !important}
-.f3{width:44px;top:13%;right:8%;rotate:24deg;animation-delay:.3s !important}
-.f4{width:30px;top:38%;right:14%;rotate:-48deg;animation-delay:.8s !important}
-.f5{width:34px;bottom:16%;left:20%;rotate:70deg;animation-delay:1s !important}
-.f6{width:42px;bottom:10%;right:22%;rotate:-12deg;animation-delay:1.2s !important}
+body.chargee .feuille{animation:se-poser 2.4s cubic-bezier(.3,.6,.28,.99) var(--d) both}
+body.chargee .feuille svg{animation:respire var(--dur) ease-in-out calc(var(--d) + 2.4s) infinite}
+.f1{width:52px;top:9%;left:6%;rotate:-28deg;--d:.1s;--dur:6.4s}
+.f2{width:38px;top:30%;left:12%;rotate:42deg;--d:.55s;--dur:7.6s}
+.f3{width:44px;top:13%;right:8%;rotate:24deg;--d:.3s;--dur:7s}
+.f4{width:30px;top:38%;right:14%;rotate:-48deg;--d:.8s;--dur:6.8s}
+.f5{width:34px;bottom:16%;left:20%;rotate:70deg;--d:1s;--dur:8.2s}
+.f6{width:42px;bottom:10%;right:22%;rotate:-12deg;--d:1.2s;--dur:7.3s}
 @keyframes se-poser{
-  0%{opacity:0;translate:0 -60px}
-  60%{opacity:.9}
+  0%{opacity:0;translate:-18px -64px}
+  45%{opacity:.85;translate:8px -22px}
+  75%{translate:-3px -6px}
   100%{opacity:.9;translate:0 0}
 }
-body.chargee .feuille svg{animation:respire 7s ease-in-out 2.2s infinite}
 @keyframes respire{
   0%,100%{transform:translateY(0) rotate(0deg)}
   50%{transform:translateY(-9px) rotate(4deg)}

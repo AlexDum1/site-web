@@ -198,8 +198,12 @@
   function terminer(){
     if(fini) return; fini=true;
     intro.classList.add('parti');
-    html.classList.remove('intro-actif');
-    setTimeout(()=>intro.remove(),1050);
+    // Le hero démarre maintenant : ses feuilles se posent pendant que
+    // l'overlay se dissipe, la page n'apparaît jamais figée.
+    document.body.classList.add('chargee');
+    // overflow rendu à la fin du fondu, sinon la scrollbar décale la
+    // page derrière l'overlay encore visible.
+    setTimeout(()=>{html.classList.remove('intro-actif');intro.remove()},1050);
   }
   passer.addEventListener('click',e=>{e.stopPropagation();terminer();});
   intro.addEventListener('click',terminer);
@@ -251,33 +255,37 @@
     const delay=260+k*55+rnd(0,150);
     const dur=1500+rnd(0,450);
 
+    // Easing par segment : la vitesse s'annule en douceur à chaque
+    // changement de direction, aucun à-coup entre les étapes du vol.
     el.animate([
-      {opacity:0,transform:T('translate('+dep.x+'px,'+dep.y+'px) rotate('+rd+'deg) scale(.35)'),offset:0},
-      {opacity:1,transform:T('translate('+(dep.x*.75)+'px,'+(dep.y*.75)+'px) rotate('+(rd+140)+'deg) scale(.7)'),offset:.16},
-      {opacity:1,transform:T('translate('+err.x+'px,'+err.y+'px) rotate('+re+'deg) scale(.9)'),offset:.46},
-      {opacity:1,transform:T('translate('+app.x+'px,'+app.y+'px) rotate('+(base+16)+'deg) scale(1.05)'),offset:.82},
+      {opacity:0,transform:T('translate('+dep.x+'px,'+dep.y+'px) rotate('+rd+'deg) scale(.35)'),offset:0,easing:'ease-out'},
+      {opacity:1,transform:T('translate('+(dep.x*.75)+'px,'+(dep.y*.75)+'px) rotate('+(rd+140)+'deg) scale(.7)'),offset:.16,easing:'ease-in-out'},
+      {opacity:1,transform:T('translate('+err.x+'px,'+err.y+'px) rotate('+re+'deg) scale(.9)'),offset:.46,easing:'ease-in-out'},
+      {opacity:1,transform:T('translate('+app.x+'px,'+app.y+'px) rotate('+(base+16)+'deg) scale(1.05)'),offset:.82,easing:'ease-out'},
       {opacity:1,transform:T('rotate('+base+'deg) scale(1)'),offset:1}
-    ],{duration:dur,delay:delay,easing:'cubic-bezier(.34,.02,.2,1)',fill:'both'});
+    ],{duration:dur,delay:delay,fill:'both'});
 
     maxFin=Math.max(maxFin,delay+dur);
   });
 
-  // Le tronc et les lettres apparaissent quand la couronne se reforme,
-  // et les feuilles esquissées se fondent dans le vrai logo.
+  // La couronne reformée reste visible un court instant, PUIS le vrai
+  // logo émerge pendant que les feuilles esquissées s'y fondent —
+  // aucune feuille ne disparaît en plein vol.
   setTimeout(()=>{
     stage.classList.add('assemble');
     intro.classList.add('montre-mot');
     leaves.forEach((el,i)=>el.animate(
       [{opacity:1},{opacity:0}],
-      {duration:750,delay:100+i*18,easing:'ease',fill:'forwards'}
+      {duration:750,delay:150+i*18,easing:'ease',fill:'forwards'}
     ));
-  },maxFin-380);
+  },maxFin+150);
 
   setTimeout(()=>intro.classList.add('montre-passer'),700);
-  setTimeout(terminer,maxFin+1700);
+  setTimeout(terminer,maxFin+2350);
 })();
 
-addEventListener('load',()=>document.body.classList.add('chargee'));
+// Sans intro (déjà vue cette session), le hero se lance au chargement.
+if(!document.getElementById('intro'))addEventListener('load',()=>document.body.classList.add('chargee'));
 const io=new IntersectionObserver(es=>{
   es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vue');io.unobserve(e.target)}});
 },{threshold:.16});
