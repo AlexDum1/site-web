@@ -182,7 +182,7 @@ html.intro-actif,html.intro-actif body{overflow:hidden}
 #intro.parti{opacity:0;pointer-events:none}
 .intro-stage{
   position:relative;
-  width:min(66vw,290px);aspect-ratio:460/600;
+  width:min(66vw,290px);aspect-ratio:450/600;
 }
 .intro-logo{
   position:absolute;inset:0;width:100%;height:100%;

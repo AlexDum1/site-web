@@ -208,18 +208,22 @@
   passer.addEventListener('click',e=>{e.stopPropagation();terminer();});
   intro.addEventListener('click',terminer);
 
-  // Chaque feuille : sa place finale dans la couronne (x,y en %), sa
-  // rotation, sa taille relative et sa teinte reprise du logo.
-  const D='#E8C06A',A='#D89B2E',R='#A96314',B='#6B4014';
+  // Chaque feuille : sa place finale = la VRAIE feuille du logo,
+  // mesurée sur logo-arbre.png (centroïde, largeur, teinte, orientation
+  // par analyse des composantes connexes) — l'atterrissage coïncide au
+  // pixel avec le logo, la fusion est invisible. x,y en % de la scène
+  // (même ratio 450/600 que l'image), s = largeur en % de la scène.
+  const D='#E8B857',A='#AD6510';
   const CIBLES=[
-    {x:44,y:10,r:-8,s:.95,c:R},{x:33,y:15,r:-32,s:.85,c:D},
-    {x:55,y:13,r:22,s:.85,c:A}, {x:23,y:22,r:-58,s:.8,c:D},
-    {x:46,y:20,r:2,s:1,c:B},    {x:65,y:19,r:46,s:.85,c:D},
-    {x:15,y:32,r:-72,s:.75,c:D},{x:36,y:28,r:-18,s:.9,c:A},
-    {x:55,y:27,r:24,s:.9,c:R},  {x:75,y:28,r:58,s:.8,c:D},
-    {x:26,y:39,r:-44,s:.82,c:A},{x:46,y:35,r:6,s:.95,c:R},
-    {x:63,y:36,r:42,s:.85,c:A}, {x:85,y:37,r:80,s:.72,c:D},
-    {x:38,y:45,r:-12,s:.85,c:D},{x:57,y:45,r:16,s:.85,c:A}
+    {x:52.9,y:11.3,r:-159,s:5.6,c:D},{x:37.8,y:12.6,r:-9,s:6.6,c:A},
+    {x:65.7,y:17.6,r:43,s:8.1,c:A},  {x:52.9,y:20.6,r:32,s:6.6,c:D},
+    {x:76.6,y:22.5,r:78,s:5.5,c:D},  {x:27.3,y:23.9,r:-16,s:10.7,c:D},
+    {x:41.3,y:24.5,r:-3,s:8.9,c:D},  {x:60.3,y:27.8,r:45,s:5.4,c:D},
+    {x:16.1,y:29.3,r:-26,s:6.6,c:D}, {x:75.2,y:29.8,r:77,s:10.7,c:A},
+    {x:47.0,y:34.7,r:23,s:9.8,c:A},  {x:28.5,y:35.5,r:-26,s:6.5,c:D},
+    {x:61.6,y:37.5,r:62,s:6.6,c:D},  {x:83.6,y:40.4,r:106,s:10.6,c:D},
+    {x:16.9,y:41.0,r:-64,s:10.6,c:D},{x:70.8,y:46.5,r:124,s:6.5,c:D},
+    {x:26.3,y:49.0,r:-74,s:5.5,c:A}
   ];
 
   if(reduit){
@@ -240,7 +244,7 @@
     const el=document.createElement('span');
     el.className='intro-leaf';
     el.style.left=t.x+'%'; el.style.top=t.y+'%';
-    el.style.width=(t.s*15)+'%';
+    el.style.width=t.s+'%';
     el.innerHTML='<svg viewBox="0 0 48 60" fill="'+t.c+'"><use href="#feuille-logo"/></svg>';
     stage.appendChild(el);
     leaves.push(el);
@@ -268,15 +272,16 @@
     maxFin=Math.max(maxFin,delay+dur);
   });
 
-  // La couronne reformée reste visible un court instant, PUIS le vrai
-  // logo émerge pendant que les feuilles esquissées s'y fondent —
-  // aucune feuille ne disparaît en plein vol.
+  // La couronne posée, le logo émerge SOUS les feuilles (le tronc et
+  // les lettres complètent l'arbre), puis les feuilles esquissées
+  // s'effacent — chacune étant posée sur sa jumelle du logo, la
+  // substitution est invisible.
   setTimeout(()=>{
     stage.classList.add('assemble');
     intro.classList.add('montre-mot');
     leaves.forEach((el,i)=>el.animate(
       [{opacity:1},{opacity:0}],
-      {duration:750,delay:150+i*18,easing:'ease',fill:'forwards'}
+      {duration:600,delay:600+i*15,easing:'ease',fill:'forwards'}
     ));
   },maxFin+150);
 
