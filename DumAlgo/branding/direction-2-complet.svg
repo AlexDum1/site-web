@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="96" viewBox="0 0 360 96" role="img" aria-label="Logo DumAlgo, direction 2 - L'Organigramme">
+  <g stroke="#232a3d" stroke-width="4" fill="none" stroke-linecap="round">
+    <path d="M40 30 v10 M40 52 l-14 10 M40 52 l14 10"/>
+  </g>
+  <circle cx="40" cy="24" r="8" fill="none" stroke="#232a3d" stroke-width="4"/>
+  <circle cx="40" cy="52" r="6" fill="#232a3d"/>
+  <circle cx="22" cy="68" r="6" fill="#e07a3f"/>
+  <circle cx="58" cy="68" r="6" fill="none" stroke="#232a3d" stroke-width="4"/>
+  <text x="88" y="58" font-family="'Space Grotesk', Helvetica, Arial, sans-serif" font-weight="bold" font-size="32" letter-spacing="1" fill="#232a3d">DUM<tspan fill="#e07a3f">ALGO</tspan></text>
+  <text x="90" y="76" font-family="Inter, Helvetica, Arial, sans-serif" font-size="9.5" letter-spacing="1.9" fill="#5b6478">DU CAHIER DES CHARGES AU R&#201;SULTAT</text>
+</svg>
