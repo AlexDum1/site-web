@@ -1,0 +1,81 @@
+<!-- @dsCard group="Animations" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>DumAlgo — Scène vidéo 1:1</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; box-sizing:border-box; }
+  body { font-family:Inter, Helvetica, Arial, sans-serif; background:#EDE9E1; padding:24px; }
+  h1 { font-family:Fraunces, Georgia, serif; font-weight:500; font-size:18px; color:#1F2933; margin-bottom:4px; }
+  p.note { font-size:12px; color:#6B7280; margin-bottom:16px; }
+  button.replay { margin-top:14px; font:500 12px Inter, sans-serif; background:#1F2933; color:#FAF7F2;
+    border:0; border-radius:6px; padding:8px 14px; cursor:pointer; }
+
+  /* scène 1080×1080 (aperçu réduit à 420px) : respiration 0,5 s avant, logo centré, ~2,5 s au total */
+  .scene { width:420px; height:420px; max-width:100%; aspect-ratio:1; background:#16584E;
+    border-radius:12px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+
+  .scene .trunk, .scene .branch { fill:none; stroke:#FAF7F2; stroke-width:3.5; stroke-linecap:round;
+    stroke-dasharray:1; stroke-dashoffset:1; }
+  .scene .node { transform-box:fill-box; transform-origin:center; opacity:0; }
+  .scene .word, .scene .tagline { opacity:0; }
+
+  .scene.play .node1  { animation:nodeIn .35s ease-out .5s both; }
+  .scene.play .trunk  { animation:draw .9s cubic-bezier(.4,0,.2,1) .65s both; }
+  .scene.play .branch { animation:draw .35s ease-out .95s both; }
+  .scene.play .node2  { animation:nodeIn .3s ease-out 1.25s both; }
+  .scene.play .gold   { animation:nodeIn .35s ease-out 1.5s both, goldGlow .8s ease-out 1.55s; }
+  .scene.play .word-dum  { animation:fadeSlide .45s cubic-bezier(.4,0,.2,1) 1.65s both; }
+  .scene.play .word-algo { animation:fadeSlide .45s cubic-bezier(.4,0,.2,1) 1.8s both; }
+  .scene.play .tagline   { animation:fadeSlide .5s ease-out 2.05s both; }
+
+  @keyframes draw { to { stroke-dashoffset:0; } }
+  @keyframes nodeIn { from { opacity:0; transform:scale(.55); } to { opacity:1; transform:scale(1); } }
+  @keyframes fadeSlide { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes goldGlow {
+    0% { filter:drop-shadow(0 0 0 rgba(201,162,39,0)); }
+    35% { filter:drop-shadow(0 0 10px rgba(201,162,39,.85)); }
+    100% { filter:drop-shadow(0 0 0 rgba(201,162,39,0)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .scene .trunk, .scene .branch { stroke-dashoffset:0; }
+    .scene .node, .scene .word, .scene .tagline { opacity:1; }
+    .scene.play * { animation:none !important; }
+  }
+</style>
+</head>
+<body>
+<h1>Scène vidéo — carré 1:1, fond vert</h1>
+<p class="note">Base d'export MP4/GIF 1080×1080 : respiration 0,5 s, l'animation maître verticale (symbole au-dessus, texte dessous), ~2,5 s au total. Aperçu réduit ci-dessous.</p>
+
+<div class="scene" id="scene">
+  <svg width="62%" viewBox="0 0 240 220">
+    <g transform="translate(88,10)">
+      <path class="trunk" pathLength="1" d="M22 13 V45.5 Q22 50 26.5 50 H35.5"/>
+      <path class="branch" pathLength="1" d="M22 23.5 Q22 28 26.5 28 H31.75"/>
+      <rect class="node node1" x="17.5" y="8.5" width="9" height="9" rx="2.8" fill="#FAF7F2"/>
+      <rect class="node node2" x="33" y="24" width="8" height="8" rx="2.5" fill="#FAF7F2"/>
+      <rect class="node gold" x="36.5" y="44.5" width="11" height="11" rx="3.2" fill="#C9A227"/>
+    </g>
+    <text x="120" y="132" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="500" font-size="38">
+      <tspan class="word word-dum" fill="#FAF7F2">Dum</tspan><tspan class="word word-algo" fill="#C9A227">Algo</tspan>
+    </text>
+    <text class="tagline" x="120" y="158" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif"
+      font-size="9" font-weight="500" letter-spacing="3" fill="#C9D9D5">SITES WEB · OUTILS NUMÉRIQUES</text>
+  </svg>
+</div>
+<button class="replay" onclick="replay()">↻ Rejouer</button>
+
+<script>
+const scene = document.getElementById('scene');
+function replay() {
+  scene.classList.remove('play');
+  void scene.offsetWidth;
+  scene.classList.add('play');
+}
+requestAnimationFrame(() => requestAnimationFrame(() => scene.classList.add('play')));
+</script>
+</body>
+</html>

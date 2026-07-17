@@ -1,0 +1,54 @@
+<!-- @dsCard group="Animations" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>DumAlgo — Loader</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; box-sizing:border-box; }
+  body { font-family:Inter, Helvetica, Arial, sans-serif; background:#EDE9E1; padding:24px; }
+  h1 { font-family:Fraunces, Georgia, serif; font-weight:500; font-size:18px; color:#1F2933; margin-bottom:4px; }
+  p.note { font-size:12px; color:#6B7280; margin-bottom:16px; }
+  .row { display:flex; flex-wrap:wrap; gap:16px; }
+  .tile { border-radius:10px; padding:36px; display:flex; align-items:center; justify-content:center; min-width:180px; flex:1; }
+  .tile.vert { background:#16584E; }
+  .tile.ivoire { background:#FAF7F2; border:1px solid #E2DCD0; }
+  .tile.transp { background:repeating-conic-gradient(#D8D3C8 0% 25%, #EFEBE2 0% 50%) 0 0 / 20px 20px; }
+
+  /* boucle d'attente : seul le nœud doré respire */
+  .loader .gold { transform-box:fill-box; transform-origin:center;
+    animation:goldPulse 1.6s cubic-bezier(.4,0,.4,1) infinite; }
+  @keyframes goldPulse {
+    0%, 100% { opacity:.55; transform:scale(.92); }
+    50% { opacity:1; transform:scale(1.08); }
+  }
+  @media (prefers-reduced-motion: reduce) { .loader .gold { animation:none; opacity:1; } }
+</style>
+</head>
+<body>
+<h1>Loader — pulsation du nœud doré</h1>
+<p class="note">Le symbole reste stable, seul le nœud doré pulse (opacité + scale, 1,6 s par cycle). Ne fatigue pas l'œil même sur un chargement long.</p>
+
+<div class="row">
+  <div class="tile vert"></div>
+  <div class="tile ivoire"></div>
+  <div class="tile transp"></div>
+</div>
+
+<script>
+function sym(stroke) {
+  return `
+  <svg class="loader" width="72" height="72" viewBox="0 0 64 64">
+    <path fill="none" stroke="${stroke}" stroke-width="3.5" stroke-linecap="round"
+      d="M22 13 V45.5 Q22 50 26.5 50 H35.5 M22 23.5 Q22 28 26.5 28 H31.75"/>
+    <rect x="17.5" y="8.5" width="9" height="9" rx="2.8" fill="${stroke}"/>
+    <rect x="33" y="24" width="8" height="8" rx="2.5" fill="${stroke}"/>
+    <rect class="gold" x="36.5" y="44.5" width="11" height="11" rx="3.2" fill="#C9A227"/>
+  </svg>`;
+}
+const strokes = ["#FAF7F2", "#16584E", "#16584E"];
+document.querySelectorAll('.tile').forEach((t, i) => t.innerHTML = sym(strokes[i]));
+</script>
+</body>
+</html>

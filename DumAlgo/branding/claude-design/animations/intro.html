@@ -1,0 +1,97 @@
+<!-- @dsCard group="Animations" -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>DumAlgo — Animation d'intro</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&display=swap" rel="stylesheet">
+<style>
+  :root { --vert:#16584E; --ivoire:#FAF7F2; --or:#C9A227; --brume:#C9D9D5; }
+  * { margin:0; box-sizing:border-box; }
+  body { font-family: Inter, Helvetica, Arial, sans-serif; background:#EDE9E1; padding:24px; }
+  h1 { font-family:Fraunces, Georgia, serif; font-weight:500; font-size:18px; color:#1F2933; margin-bottom:4px; }
+  p.note { font-size:12px; color:#6B7280; margin-bottom:16px; }
+  .row { display:flex; flex-wrap:wrap; gap:16px; }
+  .tile { border-radius:10px; padding:28px 32px; display:flex; align-items:center; justify-content:center; min-width:280px; flex:1; }
+  .tile.vert { background:var(--vert); }
+  .tile.ivoire { background:var(--ivoire); border:1px solid #E2DCD0; }
+  .tile.transp { background:
+    repeating-conic-gradient(#D8D3C8 0% 25%, #EFEBE2 0% 50%) 0 0 / 20px 20px; }
+  button.replay { margin-top:14px; font:500 12px Inter, sans-serif; letter-spacing:.5px;
+    background:#1F2933; color:#FAF7F2; border:0; border-radius:6px; padding:8px 14px; cursor:pointer; }
+
+  /* ——— animation maître : l'algorithme s'exécute ——— */
+  .logo-anim .trunk, .logo-anim .branch {
+    fill:none; stroke-width:3.5; stroke-linecap:round;
+    stroke-dasharray:1; stroke-dashoffset:1;
+  }
+  .logo-anim .node { transform-box:fill-box; transform-origin:center; opacity:0; }
+  .logo-anim .word { opacity:0; }
+
+  .logo-anim.play .node1  { animation:nodeIn .35s ease-out 0s both; }
+  .logo-anim.play .trunk  { animation:draw .9s cubic-bezier(.4,0,.2,1) .15s both; }
+  .logo-anim.play .branch { animation:draw .35s ease-out .45s both; }
+  .logo-anim.play .node2  { animation:nodeIn .3s ease-out .75s both; }
+  .logo-anim.play .gold   { animation:nodeIn .35s ease-out 1s both, goldGlow .8s ease-out 1.05s; }
+  .logo-anim.play .word-dum  { animation:fadeSlide .45s cubic-bezier(.4,0,.2,1) 1.15s both; }
+  .logo-anim.play .word-algo { animation:fadeSlide .45s cubic-bezier(.4,0,.2,1) 1.3s both; }
+  .logo-anim.play .tagline   { animation:fadeSlide .5s ease-out 1.55s both; }
+
+  @keyframes draw { to { stroke-dashoffset:0; } }
+  @keyframes nodeIn { from { opacity:0; transform:scale(.55); } to { opacity:1; transform:scale(1); } }
+  @keyframes fadeSlide { from { opacity:0; transform:translateX(-6px); } to { opacity:1; transform:translateX(0); } }
+  @keyframes goldGlow {
+    0% { filter:drop-shadow(0 0 0 rgba(201,162,39,0)); }
+    35% { filter:drop-shadow(0 0 6px rgba(201,162,39,.85)); }
+    100% { filter:drop-shadow(0 0 0 rgba(201,162,39,0)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .logo-anim .trunk, .logo-anim .branch { stroke-dashoffset:0; }
+    .logo-anim .node, .logo-anim .word { opacity:1; }
+    .logo-anim.play * { animation:none !important; }
+  }
+</style>
+</head>
+<body>
+<h1>Animation d'intro — « l'algorithme s'exécute »</h1>
+<p class="note">Le trait se trace, chaque nœud s'allume à son passage, le nœud doré s'allume en dernier — le résultat. Puis « Dum » apparaît, « Algo » se dore en écho. ≈ 1,6 s, jouée à la première visite (sessionStorage), prefers-reduced-motion respecté.</p>
+
+<div class="row" id="tiles">
+  <div class="tile vert"></div>
+  <div class="tile ivoire"></div>
+  <div class="tile transp"></div>
+</div>
+<button class="replay" onclick="replay()">↻ Rejouer</button>
+
+<script>
+function logoSvg(stroke, gold, txt, algo, tag) {
+  return `
+  <svg class="logo-anim" width="310" height="80" viewBox="0 0 372 96">
+    <g transform="translate(8,16)">
+      <path class="trunk" pathLength="1" stroke="${stroke}" d="M22 13 V45.5 Q22 50 26.5 50 H35.5"/>
+      <path class="branch" pathLength="1" stroke="${stroke}" d="M22 23.5 Q22 28 26.5 28 H31.75"/>
+      <rect class="node node1" x="17.5" y="8.5" width="9" height="9" rx="2.8" fill="${stroke}"/>
+      <rect class="node node2" x="33" y="24" width="8" height="8" rx="2.5" fill="${stroke}"/>
+      <rect class="node gold" x="36.5" y="44.5" width="11" height="11" rx="3.2" fill="${gold}"/>
+    </g>
+    <text x="88" y="57" font-family="Fraunces, Georgia, serif" font-weight="500" font-size="34">
+      <tspan class="word word-dum" fill="${txt}">Dum</tspan><tspan class="word word-algo" fill="${algo}">Algo</tspan>
+    </text>
+    <text class="word tagline" x="89" y="76" font-family="Inter, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="500" letter-spacing="3.2" fill="${tag}">SITES WEB · OUTILS NUMÉRIQUES</text>
+  </svg>`;
+}
+const variants = [
+  ["#FAF7F2", "#C9A227", "#FAF7F2", "#C9A227", "#C9D9D5"],
+  ["#16584E", "#C9A227", "#16584E", "#C9A227", "#7A8B87"],
+  ["#16584E", "#C9A227", "#16584E", "#C9A227", "#5B6B67"],
+];
+function mount() {
+  document.querySelectorAll('.tile').forEach((t, i) => { t.innerHTML = logoSvg(...variants[i]); });
+  requestAnimationFrame(() => requestAnimationFrame(() =>
+    document.querySelectorAll('.logo-anim').forEach(s => s.classList.add('play'))));
+}
+function replay() { mount(); }
+mount();
+</script>
+</body>
+</html>
