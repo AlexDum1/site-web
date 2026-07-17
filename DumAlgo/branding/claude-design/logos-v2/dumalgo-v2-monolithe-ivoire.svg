@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-label="Symbole DumAlgo v2 — le monolithe facetté, pour fond vert sombre">
+<path d="M48 10 L81 29 V48 H48 Z" fill="#FAF7F2"/>
+<path d="M48 10 L15 29 V48 H48 Z" fill="#E3EFEC"/>
+<path d="M15 48 V67 L48 86 V48 Z" fill="#FAF7F2"/>
+<path d="M81 48 V67 L48 86 V48 Z" fill="#E3EFEC"/>
+<path d="M48 34 L60 41 V55 L48 62 L36 55 V41 Z" fill="#0E3F38"/>
+<path d="M48 34 L60 41 L48 48 L36 41 Z" fill="#C9A227"/>
+</svg>
