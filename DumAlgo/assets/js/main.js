@@ -2,7 +2,7 @@
    Configuration centralisée — à compléter avant mise en ligne
    ========================================================================== */
 const SITE = {
-  brand: 'Atelier·34',            // TODO : nom de marque définitif
+  brand: 'DumAlgo',            // Nom de marque validé
   phone: '06 XX XX XX XX',        // TODO : numéro de téléphone réel
   phoneHref: '+33600000000',      // TODO : numéro au format international
   email: 'contact@exemple.fr',    // TODO : adresse email pro
