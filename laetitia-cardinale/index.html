@@ -26,7 +26,10 @@
 
 <header class="site" id="haut">
   <div class="header-in">
-    <a href="index.html"><img src="assets/logo-horizontal.png" alt="Laëtitia Cardinale — Thérapeute"></a>
+    <a class="marque" href="index.html">
+      <img src="assets/logo-arbre.png" alt="Laëtitia Cardinale — Psychothérapie">
+      <span class="marque-txt"><strong>Laëtitia Cardinale</strong><small>Psychothérapie · Psychosomatique</small></span>
+    </a>
     <button class="burger" aria-expanded="false" aria-controls="menu">Menu</button>
     <nav id="menu" aria-label="Navigation principale">
       <a href="index.html" class="actif" aria-current="page">Accueil</a>
@@ -42,8 +45,8 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <g id="feuille-logo">
-      <path d="M24 2C36 16 46 30 43 44c-2.4 9-10 14-19 14S7.4 53 5 44C2 30 12 16 24 2Z"/>
-      <path d="M24 14c-2.5 10-3 22-1.5 36l3-.3C24 36 24.5 25 24 14Z" fill="#FFFEF8" opacity=".55"/>
+      <path fill-rule="evenodd" d="M24 3C39 20 41 40 24 57 7 40 9 20 24 3ZM24 8.5C35 21.5 36.4 39.5 24 51.5 11.6 39.5 13 21.5 24 8.5Z"/>
+      <path d="M24.8 50C22.8 39 26 27 27.4 15.6L26.1 15.9C24.7 27 21.5 39 23.5 50.3Z"/>
     </g>
   </defs>
 </svg>
@@ -91,7 +94,7 @@
     <h2 class="reveal" style="text-align:center;margin-bottom:46px">Par où commencer&nbsp;?</h2>
     <div class="cartes">
       <a class="carte reveal" href="ma-pratique.html">
-        <svg class="pictofeuille" viewBox="0 0 48 60" fill="#54B6BF" aria-hidden="true"><use href="#feuille-logo"/></svg>
+        <svg class="pictofeuille" viewBox="0 0 48 60" fill="#DFA945" aria-hidden="true"><use href="#feuille-logo"/></svg>
         <h3>Les consultations</h3>
         <p>Psychothérapie individuelle au cabinet ou en extérieur. Séances d'environ 1 heure — 60 € adulte, 50 € adolescent.</p>
         <span class="appel">Découvrir ma pratique</span>
@@ -103,7 +106,7 @@
         <span class="appel">Voir les ateliers</span>
       </a>
       <a class="carte reveal" href="contact.html">
-        <svg class="pictofeuille" viewBox="0 0 48 60" fill="#2C6F76" aria-hidden="true"><use href="#feuille-logo"/></svg>
+        <svg class="pictofeuille" viewBox="0 0 48 60" fill="#7A4416" aria-hidden="true"><use href="#feuille-logo"/></svg>
         <h3>Prendre rendez-vous</h3>
         <p>Par téléphone, par e-mail ou directement en ligne — à l'Espace Respire, 15 rue des Armillières à Gignac.</p>
         <span class="appel">Me contacter</span>
@@ -208,33 +211,32 @@
   passer.addEventListener('click',e=>{e.stopPropagation();terminer();});
   intro.addEventListener('click',terminer);
 
-  // Le logo lui-même est animé : logo-arbre.png a été découpé en 20
-  // pièces réelles (assets/intro/) — 17 feuilles, le tronc avec le sol,
-  // les lettres L et C. Chaque pièce est positionnée à sa place exacte
-  // (x,y = coin haut-gauche, w = largeur, en % de la scène 450/600) et
-  // seule sa transform bouge : une fois posées, les pièces SONT le
-  // logo, il n'y a rien à échanger ni à fondre.
+  // Le nouveau logo est animé : logo-arbre.png (arbre au trait, feuilles
+  // filaires) a été redécoupé en 19 pièces réelles (assets/intro/) — 16
+  // feuilles, le tronc avec le sol, les lettres L et C. Chaque pièce est
+  // positionnée à sa place exacte (x,y = coin haut-gauche, w = largeur,
+  // en % de la scène 1000/1283) et seule sa transform bouge : une fois
+  // posées, les pièces SONT le logo, rien à échanger ni à fondre.
   const PIECES=[
-    {f:'tronc.png',x:9.78,y:38.33,w:75.56,role:'tronc'},
-    {f:'lettre-08.png',x:54.44,y:56.83,w:15.33,role:'lettre'},
-    {f:'lettre-05.png',x:69.33,y:56.17,w:19.78,role:'lettre'},
-    {f:'feuille-01.png',x:22.00,y:16.83,w:12.44,role:'feuille'},
-    {f:'feuille-02.png',x:72.89,y:36.00,w:21.56,role:'feuille'},
-    {f:'feuille-03.png',x:64.00,y:26.00,w:21.11,role:'feuille'},
-    {f:'feuille-04.png',x:6.67,y:36.67,w:20.44,role:'feuille'},
-    {f:'feuille-06.png',x:41.11,y:27.50,w:11.56,role:'feuille'},
-    {f:'feuille-07.png',x:36.89,y:18.00,w:9.56,role:'feuille'},
-    {f:'feuille-09.png',x:59.56,y:12.33,w:11.56,role:'feuille'},
-    {f:'feuille-10.png',x:48.44,y:15.83,w:8.67,role:'feuille'},
-    {f:'feuille-11.png',x:34.67,y:7.83,w:7.33,role:'feuille'},
-    {f:'feuille-12.png',x:64.89,y:43.17,w:12.44,role:'feuille'},
-    {f:'feuille-13.png',x:24.22,y:31.50,w:9.56,role:'feuille'},
-    {f:'feuille-14.png',x:55.11,y:34.17,w:12.00,role:'feuille'},
-    {f:'feuille-15.png',x:11.78,y:25.17,w:9.56,role:'feuille'},
-    {f:'feuille-16.png',x:49.33,y:7.17,w:6.89,role:'feuille'},
-    {f:'feuille-17.png',x:70.67,y:20.50,w:11.33,role:'feuille'},
-    {f:'feuille-18.png',x:55.78,y:24.17,w:8.44,role:'feuille'},
-    {f:'feuille-19.png',x:20.67,y:46.67,w:11.56,role:'feuille'}
+    {f:'tronc.png',x:16.1,y:44.19,w:63.4,role:'tronc'},
+    {f:'lettre-C.png',x:56.6,y:61.65,w:39.6,role:'lettre'},
+    {f:'lettre-L.png',x:74.8,y:60.25,w:21.4,role:'lettre'},
+    {f:'feuille-14.png',x:1.0,y:39.44,w:30.0,role:'feuille'},
+    {f:'feuille-03.png',x:44.8,y:6.39,w:18.7,role:'feuille'},
+    {f:'feuille-06.png',x:21.8,y:17.07,w:14.6,role:'feuille'},
+    {f:'feuille-09.png',x:7.1,y:26.5,w:23.8,role:'feuille'},
+    {f:'feuille-17.png',x:73.9,y:44.43,w:25.1,role:'feuille'},
+    {f:'feuille-05.png',x:64.1,y:10.83,w:13.3,role:'feuille'},
+    {f:'feuille-08.png',x:68.0,y:20.03,w:23.9,role:'feuille'},
+    {f:'feuille-12.png',x:70.2,y:33.67,w:20.1,role:'feuille'},
+    {f:'feuille-11.png',x:51.5,y:27.9,w:11.0,role:'feuille'},
+    {f:'feuille-10.png',x:39.4,y:27.9,w:13.3,role:'feuille'},
+    {f:'feuille-02.png',x:56.9,y:3.43,w:10.9,role:'feuille'},
+    {f:'feuille-04.png',x:31.8,y:9.28,w:13.4,role:'feuille'},
+    {f:'feuille-15.png',x:30.1,y:41.15,w:13.8,role:'feuille'},
+    {f:'feuille-07.png',x:11.9,y:17.54,w:11.5,role:'feuille'},
+    {f:'feuille-01.png',x:37.7,y:0.78,w:15.6,role:'feuille'},
+    {f:'feuille-13.png',x:62.3,y:38.35,w:10.4,role:'feuille'}
   ];
 
   if(reduit){
