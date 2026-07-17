@@ -1,7 +1,7 @@
 # site-web
 
-Le site vitrine personnel (page principale GitHub Pages) est à la racine : `index.html` + `assets/`.
-Le nom de marque, le téléphone, l'email et l'endpoint du formulaire sont centralisés dans `assets/js/main.js` (objet `SITE`) — à compléter avant mise en ligne, ainsi que les vraies captures d'écran dans `assets/img/`.
+Le site vitrine DumAlgo est dans `DumAlgo/` (`index.html` + `assets/`).
+Le téléphone, l'email et l'endpoint du formulaire sont centralisés dans `DumAlgo/assets/js/main.js` (objet `SITE`) — à compléter avant mise en ligne, ainsi que les vraies captures d'écran dans `DumAlgo/assets/img/`.
 
 ## Maquettes prospects
 
