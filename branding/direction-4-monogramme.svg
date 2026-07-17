@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Monogramme DumAlgo, direction 4">
+  <rect width="64" height="64" rx="15" fill="#274156"/>
+  <path d="M32 10 51 21 51 43 32 54 13 43 13 21 Z" fill="none" stroke="#dfe6ea" stroke-width="3.5" stroke-linejoin="round"/>
+  <text x="32" y="39" text-anchor="middle" font-family="Fraunces, Georgia, 'Times New Roman', serif" font-size="17" fill="#e8b64c">DA</text>
+</svg>

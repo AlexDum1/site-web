@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Monogramme DumAlgo, direction 2">
+  <rect width="64" height="64" rx="15" fill="#232a3d"/>
+  <g stroke="#f5f1ea" stroke-width="4" fill="none" stroke-linecap="round">
+    <path d="M32 22 v10 M32 38 l-12 10 M32 38 l12 10"/>
+  </g>
+  <circle cx="32" cy="17" r="6" fill="none" stroke="#f5f1ea" stroke-width="4"/>
+  <circle cx="32" cy="38" r="5" fill="#f5f1ea"/>
+  <circle cx="18" cy="50" r="5" fill="#e07a3f"/>
+  <circle cx="46" cy="50" r="5" fill="none" stroke="#f5f1ea" stroke-width="4"/>
+</svg>

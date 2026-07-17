@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="372" height="96" viewBox="0 0 372 96" role="img" aria-label="Logo DumAlgo — variante 4d, fond vert">
+<defs></defs><rect width="372" height="96" fill="#16584E"></rect>
+<g transform="translate(8,16)"><path d="M21 12.5 V45.5 Q21 50.5 26 50.5 H34 M21 23 Q21 28 26 28 H32" fill="none" stroke="#FAF7F2" stroke-width="4.5" stroke-linecap="round"></path><rect x="16" y="7.5" width="10" height="10" rx="3" fill="#FAF7F2"></rect><rect x="33.5" y="23.5" width="9" height="9" rx="2.8" fill="#FAF7F2"></rect><rect x="35.75" y="44.25" width="12.5" height="12.5" rx="3.6" fill="#C9A227"></rect></g>
+<text x="88" y="57" font-family="Fraunces, Georgia, serif" font-weight="500" font-size="34" fill="#FAF7F2">Dum<tspan fill="#C9A227">Algo</tspan></text>
+<text x="89" y="76" font-family="Inter, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="500" letter-spacing="3.2" fill="#C9D9D5">SITES WEB · OUTILS NUMÉRIQUES</text>
+</svg>

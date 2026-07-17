@@ -10,7 +10,19 @@
   <meta property="og:description" content="Sites web professionnels et outils numériques sur-mesure, pensés pour les indépendants et petites entreprises de l'Hérault.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2316584e'/><text x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='17' fill='%23faf7f2'>D</text></svg>">
+  <meta name="theme-color" content="#16584e">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "DumAlgo",
+    "description": "Sites web professionnels et outils numériques sur-mesure pour les indépendants et petites entreprises de l'Hérault.",
+    "areaServed": "Hérault, France",
+    "knowsLanguage": "fr",
+    "priceRange": "€"
+  }
+  </script>
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo/dumalgo-favicon.svg">
   <link rel="preload" href="assets/fonts/fraunces-latin-39ce2001.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin-56724408.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/fonts/fonts.css">
@@ -22,7 +34,10 @@
 
   <header class="site-header" id="haut">
     <nav class="nav" aria-label="Navigation principale">
-      <a class="nav__brand" href="#accueil" data-brand>DumAlgo</a>
+      <a class="nav__brand" href="#accueil">
+        <svg class="nav__brand-mark" viewBox="8 4 44 56" width="30" height="38" aria-hidden="true" focusable="false"><path d="M21 12.5 V45.5 Q21 50.5 26 50.5 H34 M21 23 Q21 28 26 28 H32" fill="none" stroke="#16584E" stroke-width="4.5" stroke-linecap="round"></path><rect x="16" y="7.5" width="10" height="10" rx="3" fill="#16584E"></rect><rect x="33.5" y="23.5" width="9" height="9" rx="2.8" fill="#16584E"></rect><rect x="35.75" y="44.25" width="12.5" height="12.5" rx="3.6" fill="#C9A227"></rect></svg>
+        <span data-brand>DumAlgo</span>
+      </a>
       <button class="nav__toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Ouvrir le menu">
         <span></span><span></span>
       </button>
@@ -108,10 +123,9 @@
         </header>
 
         <div class="works">
-          <!-- TODO : remplacer les visuels SVG par de vraies captures d'écran -->
           <article class="card work reveal">
             <a class="work__media" href="../sutra-charpente-clermont-lherault/" aria-label="Voir la maquette Sutra Charpente">
-              <img src="assets/img/sutra-charpente.svg" alt="Aperçu de la maquette Sutra Charpente" loading="lazy" width="640" height="400">
+              <img src="assets/img/sutra-charpente-clermont-lherault.webp" alt="Capture d'écran de la maquette Sutra Charpente" loading="lazy" width="640" height="400">
             </a>
             <div class="work__body">
               <h3>Sutra Charpente</h3>
@@ -122,7 +136,7 @@
 
           <article class="card work reveal">
             <a class="work__media" href="../passion-metal-aniane/" aria-label="Voir la maquette Passion Métal 34">
-              <img src="assets/img/passion-metal.svg" alt="Aperçu de la maquette Passion Métal 34" loading="lazy" width="640" height="400">
+              <img src="assets/img/passion-metal-aniane.webp" alt="Capture d'écran de la maquette Passion Métal 34" loading="lazy" width="640" height="400">
             </a>
             <div class="work__body">
               <h3>Passion Métal 34</h3>
@@ -133,12 +147,45 @@
 
           <article class="card work reveal">
             <a class="work__media" href="../renov-facades34-montarnaud/" aria-label="Voir la maquette Renov' Façades 34">
-              <img src="assets/img/renov-facades.svg" alt="Aperçu de la maquette Renov' Façades 34" loading="lazy" width="640" height="400">
+              <img src="assets/img/renov-facades34-montarnaud.webp" alt="Capture d'écran de la maquette Renov' Façades 34" loading="lazy" width="640" height="400">
             </a>
             <div class="work__body">
               <h3>Renov' Façades 34</h3>
               <p>Ravalement et rénovation de façades à Montarnaud — maquette one-page orientée avant/après et demande de devis.</p>
               <a class="work__link" href="../renov-facades34-montarnaud/">Voir la maquette</a>
+            </div>
+          </article>
+
+          <article class="card work reveal">
+            <a class="work__media" href="../espace-respire/" aria-label="Voir la maquette Espace Respire">
+              <img src="assets/img/espace-respire.webp" alt="Capture d'écran de la maquette Espace Respire" loading="lazy" width="640" height="400">
+            </a>
+            <div class="work__body">
+              <h3>Espace Respire</h3>
+              <p>Lieu dédié au bien-être, à la périnatalité et à la parentalité à Gignac — site multi-pages avec planning des activités et présentation de l'équipe.</p>
+              <a class="work__link" href="../espace-respire/">Voir la maquette</a>
+            </div>
+          </article>
+
+          <article class="card work reveal">
+            <a class="work__media" href="../laetitia-cardinale/" aria-label="Voir la maquette Laëtitia Cardinale">
+              <img src="assets/img/laetitia-cardinale.webp" alt="Capture d'écran de la maquette Laëtitia Cardinale" loading="lazy" width="640" height="400">
+            </a>
+            <div class="work__body">
+              <h3>Laëtitia Cardinale</h3>
+              <p>Psychopraticienne à Gignac — site multi-pages sobre et chaleureux : parcours, pratique, ateliers et prise de rendez-vous.</p>
+              <a class="work__link" href="../laetitia-cardinale/">Voir la maquette</a>
+            </div>
+          </article>
+
+          <article class="card work reveal">
+            <a class="work__media" href="../menuiserie-durand-le-pouget/" aria-label="Voir la maquette Menuiserie Durand">
+              <img src="assets/img/menuiserie-durand-le-pouget.webp" alt="Capture d'écran de la maquette Menuiserie Durand" loading="lazy" width="640" height="400">
+            </a>
+            <div class="work__body">
+              <h3>Menuiserie Durand</h3>
+              <p>Atelier familial de menuiserie bois au Pouget — maquette one-page axée sur le savoir-faire local et le contact direct.</p>
+              <a class="work__link" href="../menuiserie-durand-le-pouget/">Voir la maquette</a>
             </div>
           </article>
 
@@ -174,17 +221,6 @@
           <h2 class="section__title">La rigueur du terrain, au service du numérique</h2>
         </header>
         <p class="about__text reveal">Ancien chargé d'affaires en courants faibles et sûreté électronique, j'ai passé plus de dix ans à intégrer des systèmes de sécurité complexes sur des sites sensibles, y compris pour des ambassades françaises à l'étranger. Aujourd'hui, je mets cette rigueur et cette culture du process au service du numérique — sites web, applications, automatisation.</p>
-      </div>
-    </section>
-
-    <!-- ============ TÉMOIGNAGES ============ -->
-    <section class="section section--alt section--slim" id="temoignages">
-      <div class="container">
-        <header class="section__head reveal">
-          <p class="section__eyebrow">Témoignages</p>
-          <h2 class="section__title">Ils me font confiance</h2>
-        </header>
-        <p class="testimonials-empty reveal">Les premiers retours clients apparaîtront ici très prochainement.</p>
       </div>
     </section>
 
