@@ -207,6 +207,16 @@ if (viewer) {
   };
   new ResizeObserver(scalePhone).observe(phoneFrameBox);
 
+  /* Même principe pour le laptop : le site est rendu à 1200 px logiques
+     (version desktop garantie) puis réduit à la taille du cadre. */
+  const laptopFrameBox = viewer.querySelector('.vlaptop__frame');
+  const scaleLaptop = () => {
+    if (laptopFrameBox.clientWidth > 0) {
+      laptopFrameBox.style.setProperty('--lscale', String(laptopFrameBox.clientWidth / 1200));
+    }
+  };
+  new ResizeObserver(scaleLaptop).observe(laptopFrameBox);
+
   const openViewer = (slug, title, device) => {
     const isLaptop = device !== 'phone';
     lastFocus = document.activeElement;
@@ -222,9 +232,11 @@ if (viewer) {
       ? 'Version ordinateur : faites défiler dans l’écran'
       : 'Version mobile : faites défiler dans l’écran';
     viewer.setAttribute('aria-label', 'Aperçu de la maquette ' + title);
+    viewer.querySelector('[data-viewer-rotate]').hidden = !isLaptop;
     viewer.hidden = false;
     document.body.style.overflow = 'hidden';
     if (!isLaptop) { scalePhone(); requestAnimationFrame(scalePhone); }
+    else { scaleLaptop(); requestAnimationFrame(scaleLaptop); }
     closeBtn.focus();
   };
 
@@ -466,6 +478,7 @@ if (viewerEl) {
       viewerEl.querySelector('[data-viewer-hint]').textContent = isLaptop
         ? 'Version ordinateur : faites défiler dans l’écran'
         : 'Version mobile : faites défiler dans l’écran';
+      viewerEl.querySelector('[data-viewer-rotate]').hidden = !isLaptop;
       viewerEl.setAttribute('aria-label', 'Aperçu de ' + btn.dataset.title);
       viewerEl.hidden = false;
       document.body.style.overflow = 'hidden';
