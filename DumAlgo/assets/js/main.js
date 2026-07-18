@@ -80,7 +80,12 @@ const setBilling = (mode) => {
     btn.classList.toggle('is-active', active);
     btn.setAttribute('aria-pressed', String(active));
   });
-  document.querySelectorAll('[data-price]').forEach((el) => { el.textContent = el.dataset[mode]; });
+  document.querySelectorAll('[data-price]').forEach((el) => {
+    el.textContent = el.dataset[mode];
+    // classe alternée pour rejouer l'animation d'apparition du prix
+    el.classList.remove('price-pop-a', 'price-pop-b');
+    el.classList.add(mode === 'annuel' ? 'price-pop-a' : 'price-pop-b');
+  });
   document.querySelectorAll('[data-billing-meta]').forEach((el) => { el.textContent = el.dataset[mode]; });
 };
 billingButtons.forEach((btn) =>
@@ -108,6 +113,19 @@ document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el))
    ========================================================================== */
 const form = document.getElementById('contact-form');
 const status = form.querySelector('.form-status');
+const submitBtn = form.querySelector('button[type="submit"]');
+let sentTimer = 0;
+
+/* Feedback visuel du bouton d'envoi (design « Accueil DumAlgo ») */
+const markSent = () => {
+  submitBtn.classList.add('is-sent');
+  submitBtn.textContent = 'Message prêt ✓';
+  clearTimeout(sentTimer);
+  sentTimer = setTimeout(() => {
+    submitBtn.classList.remove('is-sent');
+    submitBtn.textContent = 'Envoyer';
+  }, 4000);
+};
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -127,6 +145,7 @@ form.addEventListener('submit', async (e) => {
       '?subject=' + encodeURIComponent('Demande de projet — ' + data.get('nom')) +
       '&body=' + encodeURIComponent(body);
     status.textContent = 'Votre logiciel de messagerie va s’ouvrir avec le message pré-rempli.';
+    markSent();
     return;
   }
 
@@ -140,6 +159,7 @@ form.addEventListener('submit', async (e) => {
     if (res.ok) {
       form.reset();
       status.textContent = 'Merci ! Votre message a bien été envoyé, je reviens vers vous rapidement.';
+      markSent();
     } else {
       status.textContent = 'Une erreur est survenue. Vous pouvez me joindre directement par téléphone ou email.';
     }
@@ -147,3 +167,102 @@ form.addEventListener('submit', async (e) => {
     status.textContent = 'Une erreur est survenue. Vous pouvez me joindre directement par téléphone ou email.';
   }
 });
+
+/* ==========================================================================
+   Visionneuse de maquettes — écran agrandi (Mac ou iPhone), vrai site en iframe
+   Implémentation du design « Accueil DumAlgo.dc.html »
+   ========================================================================== */
+const viewer = document.getElementById('viewer');
+if (viewer) {
+  const stageLaptop = viewer.querySelector('.vlaptop');
+  const stagePhone = viewer.querySelector('.vphone');
+  const phoneFrameBox = viewer.querySelector('.vphone__frame');
+  const frames = {
+    laptop: viewer.querySelector('[data-viewer-frame="laptop"]'),
+    phone: viewer.querySelector('[data-viewer-frame="phone"]'),
+  };
+  const urlEl = viewer.querySelector('[data-viewer-url]');
+  const titleEl = viewer.querySelector('[data-viewer-title]');
+  const hintEl = viewer.querySelector('[data-viewer-hint]');
+  const closeBtn = viewer.querySelector('.viewer__close');
+  let lastFocus = null;
+
+  /* L'iframe mobile rend le site à 390 px logiques puis est mise à l'échelle
+     du cadre — recalculé à chaque redimensionnement. */
+  const scalePhone = () => {
+    if (phoneFrameBox.clientWidth > 0) {
+      phoneFrameBox.style.setProperty('--pscale', String(phoneFrameBox.clientWidth / 390));
+    }
+  };
+  new ResizeObserver(scalePhone).observe(phoneFrameBox);
+
+  const openViewer = (slug, title, device) => {
+    const isLaptop = device !== 'phone';
+    lastFocus = document.activeElement;
+    stageLaptop.hidden = !isLaptop;
+    stagePhone.hidden = isLaptop;
+    const frame = isLaptop ? frames.laptop : frames.phone;
+    frame.parentElement.querySelector('.viewer__loader').hidden = false;
+    frame.title = 'Maquette ' + title + (isLaptop ? ' — version ordinateur' : ' — version mobile');
+    frame.src = '../' + slug + '/';
+    urlEl.textContent = 'dumalgo.fr/' + slug + '/';
+    titleEl.textContent = title;
+    hintEl.textContent = isLaptop
+      ? 'Version ordinateur — faites défiler dans l’écran'
+      : 'Version mobile — faites défiler dans l’écran';
+    viewer.setAttribute('aria-label', 'Aperçu de la maquette ' + title);
+    viewer.hidden = false;
+    document.body.style.overflow = 'hidden';
+    if (!isLaptop) { scalePhone(); requestAnimationFrame(scalePhone); }
+    closeBtn.focus();
+  };
+
+  const closeViewer = () => {
+    viewer.hidden = true;
+    frames.laptop.src = 'about:blank';
+    frames.phone.src = 'about:blank';
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  };
+
+  Object.values(frames).forEach((frame) => {
+    frame.addEventListener('load', () => {
+      if (frame.src && !frame.src.endsWith('about:blank')) {
+        frame.parentElement.querySelector('.viewer__loader').hidden = true;
+      }
+    });
+  });
+
+  viewer.addEventListener('click', (e) => {
+    if (!e.target.closest('.viewer__stage') || e.target.closest('.viewer__close')) closeViewer();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !viewer.hidden) closeViewer();
+  });
+
+  /* Écrans des cartes + vignettes du pied de page */
+  document.querySelectorAll('[data-slug][data-device]').forEach((btn) => {
+    btn.addEventListener('click', () => openViewer(btn.dataset.slug, btn.dataset.title, btn.dataset.device));
+  });
+
+  /* Démo du héro : rotation des maquettes dans le mini-laptop */
+  const shots = [...document.querySelectorAll('.hlap__shot')];
+  const heroDemo = document.querySelector('[data-hero-demo]');
+  const heroTitle = document.querySelector('[data-hero-title]');
+  if (shots.length && heroDemo) {
+    let heroIndex = 0;
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion) {
+      setInterval(() => {
+        shots[heroIndex].classList.remove('is-on');
+        heroIndex = (heroIndex + 1) % shots.length;
+        shots[heroIndex].classList.add('is-on');
+        heroTitle.textContent = shots[heroIndex].dataset.title;
+        heroDemo.setAttribute('aria-label', 'Agrandir la maquette ' + shots[heroIndex].dataset.title);
+      }, 3500);
+    }
+    heroDemo.addEventListener('click', () => {
+      openViewer(shots[heroIndex].dataset.slug, shots[heroIndex].dataset.title, 'laptop');
+    });
+  }
+}
