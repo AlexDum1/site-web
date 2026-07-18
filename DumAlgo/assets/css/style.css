@@ -272,25 +272,22 @@ a { color: var(--accent); }
    ========================================================================== */
 .hero {
   padding-block: var(--space-section);
-  position: relative;
-  overflow: hidden;
 }
-/* Hexagone filigrane (charte FIG. 05 — opacité ≤ 16 %) */
-.hero::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: -8%;
-  transform: translateY(-50%);
-  width: min(52vw, 660px);
-  aspect-ratio: 1;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.08;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,6 88.1,28 88.1,72 50,94 11.9,72 11.9,28" fill="none" stroke="%23EAF6F0" stroke-width="1"/><line x1="50" y1="50" x2="50" y2="6" stroke="%23EAF6F0" stroke-width="0.5"/><line x1="50" y1="50" x2="88.1" y2="28" stroke="%23EAF6F0" stroke-width="0.5"/><line x1="50" y1="50" x2="88.1" y2="72" stroke="%23EAF6F0" stroke-width="0.5"/><line x1="50" y1="50" x2="50" y2="94" stroke="%23EAF6F0" stroke-width="0.5"/><line x1="50" y1="50" x2="11.9" y2="72" stroke="%23EAF6F0" stroke-width="0.5"/><line x1="50" y1="50" x2="11.9" y2="28" stroke="%23EAF6F0" stroke-width="0.5"/></svg>') center / contain no-repeat;
-}
-.hero > * { position: relative; z-index: 1; }
 .hero__inner { max-width: 50rem; }
+
+/* Emblème hexagonal du héro (charte FIG. 06.1) */
+.hero__emblem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero__emblem svg {
+  width: min(30vw, 360px);
+  height: auto;
+}
+@media (max-width: 820px) {
+  .hero__emblem { display: none; }
+}
 
 .hero__eyebrow,
 .section__eyebrow {
