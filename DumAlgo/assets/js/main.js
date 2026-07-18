@@ -138,6 +138,7 @@ const markSent = () => {
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const data = new FormData(form);
+  if (panierSummary()) data.set('selection', panierSummary());
 
   if (!SITE.formspree) {
     // Endpoint non configuré : repli sur le client mail du visiteur.
@@ -145,14 +146,16 @@ form.addEventListener('submit', async (e) => {
       'Nom : ' + data.get('nom'),
       'Email : ' + data.get('email'),
       'Type de projet : ' + (data.get('type_de_projet') || 'Non précisé'),
+      panierSummary() ? 'Sélection : ' + panierSummary() : '',
       '',
       data.get('message'),
-    ].join('\n');
+    ].filter((l, i) => l !== '' || i >= 4).join('\n');
     window.location.href =
       'mailto:' + SITE.email +
       '?subject=' + encodeURIComponent('Demande de projet : ' + data.get('nom')) +
       '&body=' + encodeURIComponent(body);
-    status.textContent = 'Votre logiciel de messagerie va s’ouvrir avec le message pré-rempli.';
+    status.textContent = 'Votre logiciel de messagerie va s’ouvrir avec le message pré-rempli.' +
+      (panierSummary() ? ' Votre sélection (' + panierSummary() + ') est jointe au message.' : '');
     markSent();
     return;
   }
@@ -273,4 +276,200 @@ if (viewer) {
       openViewer(shots[heroIndex].dataset.slug, shots[heroIndex].dataset.title, 'laptop');
     });
   }
+}
+
+/* ==========================================================================
+   v2 — Fiche détail des offres (design « DumAlgo Accueil v2 »)
+   ========================================================================== */
+const OFFERS = {
+  essentiel: { kicker: 'Site vitrine', name: 'Essentiel', price: '489 €', cta: 'Choisir Essentiel', sel: 'offre:essentiel',
+    intro: 'Une présence en ligne rapide, propre et professionnelle. L’essentiel, bien fait.',
+    inclus: ['Site one-page ou 2-3 pages', 'Maquette gratuite avant engagement', 'Design responsive (mobile, tablette, ordinateur)', 'Formulaire de contact simple', 'Référencement naturel de base (titres, descriptions, vitesse)', 'Nom de domaine enregistré à votre nom', 'Mise en ligne et vérifications finales'],
+    exclus: ['Pages supplémentaires ou galerie photo avancée', 'Rédaction complète des textes (aide à la relecture incluse)', 'Réservation ou paiement en ligne', 'Maintenance après livraison (forfaits séparés)', 'Campagnes publicitaires / SEO avancé'] },
+  pro: { kicker: 'Site vitrine', name: 'Pro', price: '989 €', cta: 'Choisir Pro', sel: 'offre:pro',
+    intro: 'Un site complet qui met vraiment votre activité en valeur, pensé pour convertir.',
+    inclus: ['Tout le contenu de la formule Essentiel', 'Jusqu’à 6-8 pages (activité détaillée, réalisations, équipe…)', 'Galerie photos / avant-après', 'Formulaire de contact avancé (choix du besoin, pièces jointes)', 'Accompagnement à la structuration des contenus', 'Optimisation locale (fiche Google, zones d’intervention)'],
+    exclus: ['Réservation ou paiement en ligne', 'Espace client / contenu à mise à jour autonome', 'Rédaction complète des textes', 'Maintenance après livraison (forfaits séparés)'] },
+  surmesure: { kicker: 'Site vitrine', name: 'Sur-mesure', price: 'Sur devis', cta: 'Demander un devis', sel: 'offre:surmesure',
+    intro: 'Pour les besoins qui sortent du cadre : on définit ensemble le périmètre exact, puis je m’engage sur un devis précis.',
+    inclus: ['Analyse du besoin et cahier des charges ensemble', 'Fonctionnalités spécifiques (réservation, espace membre, catalogue…)', 'Outil métier associé si pertinent', 'Accompagnement renforcé tout au long du projet', 'Devis ferme avant démarrage : pas de surprise'],
+    exclus: ['Rien n’est exclu par principe : tout se définit au devis', 'Ce qui ne se justifie pas : je vous le dis honnêtement'] },
+  mEssentiel: { kicker: 'Maintenance & suivi', name: 'Maintenance Essentiel', price: 'dès 19 €/mois', cta: 'Choisir Essentiel', sel: 'plan:mEssentiel',
+    intro: 'Le minimum vital pour un site en bonne santé, sans vous en occuper.',
+    inclus: ['Hébergement du site', 'Sauvegardes mensuelles', '1 modification de contenu par mois (texte, photo, horaire)', 'Support par email sous 5 jours ouvrés', 'Surveillance de la disponibilité du site'],
+    exclus: ['Mises à jour techniques régulières', 'Modifications supplémentaires (facturées à l’acte)', 'Suivi analytics', 'Évolutions fonctionnelles'] },
+  mConfort: { kicker: 'Maintenance & suivi', name: 'Maintenance Confort', price: 'dès 39 €/mois', cta: 'Choisir Confort', sel: 'plan:mConfort',
+    intro: 'Le bon équilibre : votre site reste à jour, vous gardez la main sans y penser.',
+    inclus: ['Hébergement et sauvegardes hebdomadaires', 'Mises à jour techniques régulières', '3 modifications de contenu par mois', 'Support prioritaire sous 48 h', 'Suivi analytics basique (visites, pages vues)'],
+    exclus: ['Modifications illimitées', 'Point d’appel mensuel', 'Petites évolutions fonctionnelles', 'Restauration prioritaire en cas d’incident majeur'] },
+  mSerenite: { kicker: 'Maintenance & suivi', name: 'Maintenance Sérénité', price: 'dès 79 €/mois', cta: 'Choisir Sérénité', sel: 'plan:mSerenite',
+    intro: 'Vous ne touchez à rien : je gère votre site comme si c’était le mien.',
+    inclus: ['Hébergement et sauvegardes quotidiennes', 'Mises à jour techniques régulières', 'Modifications illimitées (usage raisonnable)', 'Restauration prioritaire en cas d’incident', 'Point d’appel mensuel', 'Petites évolutions incluses'],
+    exclus: ['Refonte complète du site', 'Développement d’un nouvel outil métier', 'Campagnes publicitaires / SEO avancé'] },
+};
+
+const offerViewer = document.getElementById('offer-viewer');
+let currentDetail = null;
+
+const closeDetail = () => {
+  offerViewer.hidden = true;
+  currentDetail = null;
+  document.body.style.overflow = '';
+};
+
+const openDetail = (key) => {
+  const d = OFFERS[key];
+  if (!d) return;
+  currentDetail = key;
+  offerViewer.querySelector('[data-offer-kicker]').textContent = d.kicker;
+  offerViewer.querySelector('[data-offer-name]').textContent = d.name;
+  offerViewer.querySelector('[data-offer-price]').textContent = d.price;
+  offerViewer.querySelector('[data-offer-intro]').textContent = d.intro;
+  const fill = (sel, items) => {
+    const ul = offerViewer.querySelector(sel);
+    ul.textContent = '';
+    items.forEach((t) => { const li = document.createElement('li'); li.textContent = t; ul.append(li); });
+  };
+  fill('[data-offer-inclus]', d.inclus);
+  fill('[data-offer-exclus]', d.exclus);
+  offerViewer.querySelector('[data-offer-choose]').textContent = d.cta;
+  offerViewer.hidden = false;
+  document.body.style.overflow = 'hidden';
+  offerViewer.querySelector('.viewer__close').focus();
+};
+
+document.querySelectorAll('[data-detail]').forEach((btn) =>
+  btn.addEventListener('click', () => openDetail(btn.dataset.detail))
+);
+offerViewer.addEventListener('click', (e) => {
+  if (!e.target.closest('.offer-modal') || e.target.closest('.viewer__close') || e.target.closest('[data-offer-close]')) closeDetail();
+});
+offerViewer.querySelector('[data-offer-choose]').addEventListener('click', () => {
+  if (currentDetail) setSelection(OFFERS[currentDetail].sel, true);
+  closeDetail();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !offerViewer.hidden) closeDetail();
+});
+
+/* ==========================================================================
+   v2 — Sélection d'offres (panier joint au message de contact)
+   ========================================================================== */
+const PANIER_LABELS = {
+  'offre:essentiel': { label: 'Site vitrine Essentiel', price: () => '489 €' },
+  'offre:pro': { label: 'Site vitrine Pro', price: () => '989 €' },
+  'offre:surmesure': { label: 'Site sur-mesure', price: () => 'Sur devis' },
+  'plan:mEssentiel': { label: 'Maintenance Essentiel', prices: { annuel: 19, mensuel: 25 } },
+  'plan:mConfort': { label: 'Maintenance Confort', prices: { annuel: 39, mensuel: 49 } },
+  'plan:mSerenite': { label: 'Maintenance Sérénité', prices: { annuel: 79, mensuel: 99 } },
+};
+const selection = { offre: null, plan: null };
+const panierEl = document.getElementById('panier');
+
+const currentBilling = () => {
+  const active = document.querySelector('.billing-toggle__btn.is-active');
+  return active ? active.dataset.billing : 'annuel';
+};
+
+function panierEntry(key) {
+  const def = PANIER_LABELS[key];
+  const billing = currentBilling();
+  if (def.prices) {
+    return {
+      label: def.label + (billing === 'annuel' ? ' (annuel)' : ' (mensuel)'),
+      price: def.prices[billing] + ' €/mois',
+    };
+  }
+  return { label: def.label, price: def.price() };
+}
+
+function panierSummary() {
+  return ['offre', 'plan']
+    .filter((t) => selection[t])
+    .map((t) => { const e = panierEntry(t + ':' + selection[t]); return e.label + ' — ' + e.price; })
+    .join(' + ');
+}
+
+function renderPanier() {
+  const keys = ['offre', 'plan'].filter((t) => selection[t]).map((t) => t + ':' + selection[t]);
+  panierEl.hidden = keys.length === 0;
+  const lines = panierEl.querySelector('[data-panier-lines]');
+  lines.textContent = '';
+  keys.forEach((key) => {
+    const e = panierEntry(key);
+    const li = document.createElement('li');
+    const label = document.createElement('span'); label.className = 'panier__label'; label.textContent = e.label;
+    const price = document.createElement('span'); price.className = 'panier__price'; price.textContent = e.price;
+    const rm = document.createElement('button'); rm.type = 'button'; rm.className = 'panier__remove'; rm.textContent = 'Retirer';
+    rm.addEventListener('click', () => setSelection(key, false));
+    li.append(label, price, rm);
+    lines.append(li);
+  });
+  panierEl.querySelector('[data-panier-total]').textContent = keys.map((k) => panierEntry(k).price).join(' + ');
+  document.querySelectorAll('[data-select]').forEach((btn) => {
+    const [type, key] = btn.dataset.select.split(':');
+    const active = selection[type] === key;
+    btn.classList.toggle('is-selected', active);
+    btn.closest('.price-card').classList.toggle('is-selected', active);
+    if (!btn.dataset.ctaDefault) btn.dataset.ctaDefault = btn.textContent;
+    btn.textContent = active ? '✓ Sélectionné' : btn.dataset.ctaDefault;
+  });
+}
+
+function setSelection(fullKey, forceOn) {
+  const [type, key] = fullKey.split(':');
+  selection[type] = forceOn ? key : (selection[type] === key && forceOn === undefined ? null : (forceOn === false ? null : key));
+  renderPanier();
+}
+
+document.querySelectorAll('[data-select]').forEach((btn) =>
+  btn.addEventListener('click', () => setSelection(btn.dataset.select))
+);
+billingButtons.forEach((btn) => btn.addEventListener('click', renderPanier));
+
+/* ==========================================================================
+   v2 — Visionneuse en mode image (captures Symbolea)
+   ========================================================================== */
+const viewerEl = document.getElementById('viewer');
+if (viewerEl) {
+  const imgEls = {
+    laptop: viewerEl.querySelector('[data-viewer-img="laptop"]'),
+    phone: viewerEl.querySelector('[data-viewer-img="phone"]'),
+  };
+  const frameEls = {
+    laptop: viewerEl.querySelector('[data-viewer-frame="laptop"]'),
+    phone: viewerEl.querySelector('[data-viewer-frame="phone"]'),
+  };
+  const setImageMode = (on) => {
+    Object.keys(imgEls).forEach((k) => {
+      imgEls[k].hidden = true;
+      frameEls[k].style.display = on ? 'none' : '';
+    });
+  };
+  /* Les boutons iframe classiques repassent en mode site */
+  document.querySelectorAll('[data-slug][data-device]').forEach((btn) =>
+    btn.addEventListener('click', () => setImageMode(false), true)
+  );
+  /* Boutons image (teaser Symbolea) */
+  document.querySelectorAll('[data-img][data-device]').forEach((btn) =>
+    btn.addEventListener('click', () => {
+      const device = btn.dataset.device;
+      const isLaptop = device !== 'phone';
+      setImageMode(true);
+      imgEls[device].hidden = false;
+      imgEls[device].src = btn.dataset.img;
+      viewerEl.querySelector('.vlaptop').hidden = !isLaptop;
+      viewerEl.querySelector('.vphone').hidden = isLaptop;
+      viewerEl.querySelectorAll('.viewer__loader').forEach((l) => { l.hidden = true; });
+      viewerEl.querySelector('[data-viewer-url]').textContent = btn.dataset.url || '';
+      viewerEl.querySelector('[data-viewer-title]').textContent = btn.dataset.title;
+      viewerEl.querySelector('[data-viewer-hint]').textContent = isLaptop
+        ? 'Version ordinateur : faites défiler dans l’écran'
+        : 'Version mobile : faites défiler dans l’écran';
+      viewerEl.setAttribute('aria-label', 'Aperçu de ' + btn.dataset.title);
+      viewerEl.hidden = false;
+      document.body.style.overflow = 'hidden';
+      viewerEl.querySelector('.viewer__close').focus();
+    })
+  );
 }
