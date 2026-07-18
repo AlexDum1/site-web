@@ -112,6 +112,14 @@ document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el))
    Formulaire de contact — Formspree si configuré, repli mailto sinon
    ========================================================================== */
 const form = document.getElementById('contact-form');
+
+/* Pré-remplissage du type de projet (boutons portant data-prefill) */
+document.querySelectorAll('a[data-prefill]').forEach((link) => {
+  link.addEventListener('click', () => {
+    const select = form.querySelector('select[name="type_de_projet"]');
+    if (select) select.value = link.dataset.prefill;
+  });
+});
 const status = form.querySelector('.form-status');
 const submitBtn = form.querySelector('button[type="submit"]');
 let sentTimer = 0;
@@ -142,7 +150,7 @@ form.addEventListener('submit', async (e) => {
     ].join('\n');
     window.location.href =
       'mailto:' + SITE.email +
-      '?subject=' + encodeURIComponent('Demande de projet — ' + data.get('nom')) +
+      '?subject=' + encodeURIComponent('Demande de projet : ' + data.get('nom')) +
       '&body=' + encodeURIComponent(body);
     status.textContent = 'Votre logiciel de messagerie va s’ouvrir avec le message pré-rempli.';
     markSent();
@@ -203,13 +211,13 @@ if (viewer) {
     stagePhone.hidden = isLaptop;
     const frame = isLaptop ? frames.laptop : frames.phone;
     frame.parentElement.querySelector('.viewer__loader').hidden = false;
-    frame.title = 'Maquette ' + title + (isLaptop ? ' — version ordinateur' : ' — version mobile');
+    frame.title = 'Maquette ' + title + (isLaptop ? ' : version ordinateur' : ' : version mobile');
     frame.src = '../' + slug + '/';
     urlEl.textContent = 'dumalgo.fr/' + slug + '/';
     titleEl.textContent = title;
     hintEl.textContent = isLaptop
-      ? 'Version ordinateur — faites défiler dans l’écran'
-      : 'Version mobile — faites défiler dans l’écran';
+      ? 'Version ordinateur : faites défiler dans l’écran'
+      : 'Version mobile : faites défiler dans l’écran';
     viewer.setAttribute('aria-label', 'Aperçu de la maquette ' + title);
     viewer.hidden = false;
     document.body.style.overflow = 'hidden';
