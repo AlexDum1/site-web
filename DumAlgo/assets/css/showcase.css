@@ -189,14 +189,14 @@ body:not(.no-lift) .work:hover .device--laptop { transform: translateY(-3px); }
 .vlaptop__screen {
   position: relative;
   background: linear-gradient(#2c343a, #1e2528);
-  border-radius: 16px 16px 0 0;
-  padding: 14px 14px 0;
+  border-radius: 12px 12px 0 0;
+  padding: 8px 8px 0;
   box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.6);
 }
 .vlaptop__screen::before {
   content: "";
   position: absolute;
-  top: 5.5px;
+  top: 2.5px;
   left: 50%;
   transform: translateX(-50%);
   width: 4px;
@@ -209,13 +209,13 @@ body:not(.no-lift) .work:hover .device--laptop { transform: translateY(-3px); }
   align-items: center;
   gap: 0.6rem;
   background: #2a3237;
-  border-radius: 8px 8px 0 0;
-  padding: 0.5rem 0.8rem;
+  border-radius: 6px 6px 0 0;
+  padding: 0.35rem 0.7rem;
 }
 .vlaptop__dots { display: flex; gap: 6px; }
 .vlaptop__dots i {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: #55636b;
 }
@@ -238,10 +238,21 @@ body:not(.no-lift) .work:hover .device--laptop { transform: translateY(-3px); }
   position: relative;
   aspect-ratio: 16 / 9;
   background: #fff;
+  overflow: auto;
+}
+
+/* L'écran rend le site à 1200 px logiques (vraie largeur desktop) puis est
+   mis à l'échelle pour remplir le cadre — on voit la version ordinateur,
+   même sur mobile. */
+.viewer .vlaptop__frame iframe {
+  width: 1200px;
+  height: calc(100% / var(--lscale, 1));
+  transform: scale(var(--lscale, 1));
+  transform-origin: top left;
 }
 .vlaptop--nobar .vlaptop__frame { border-radius: 6px 6px 0 0; overflow: hidden; }
 .vlaptop__base {
-  height: 16px;
+  height: 12px;
   width: 110%;
   margin-left: -5%;
   background:
@@ -325,8 +336,18 @@ body:not(.no-lift) .work:hover .device--laptop { transform: translateY(-3px); }
 @media (max-width: 640px) {
   .viewer { gap: 0.75rem; }
   .vlaptop { width: 96vw; }
+  .vlaptop__screen { padding: 5px 5px 0; border-radius: 9px 9px 0 0; }
+  .vlaptop__screen::before { display: none; }
+  .vlaptop__bar { padding: 0.25rem 0.5rem; }
+  .vlaptop__base { height: 9px; }
   .vphone { height: min(72vh, 700px); width: calc(min(72vh, 700px) * 0.4674); }
   .viewer__close { width: 2.3rem; height: 2.3rem; }
+}
+
+/* Invitation à passer en paysage — mobile portrait uniquement, aperçu laptop */
+.viewer__rotate { display: none; margin: 0; font-family: var(--font-body); font-size: 0.82rem; color: #c2d5cf; text-align: center; }
+@media (max-width: 740px) and (orientation: portrait) {
+  .viewer__rotate:not([hidden]) { display: block; }
 }
 
 @media (prefers-reduced-motion: reduce) {
