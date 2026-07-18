@@ -1,0 +1,11 @@
+# dumalgo.fr — seul le site principal est indexable.
+# Les maquettes de démonstration sont exclues (elles portent aussi une balise noindex).
+User-agent: *
+Disallow: /espace-respire/
+Disallow: /laetitia-cardinale/
+Disallow: /menuiserie-durand-le-pouget/
+Disallow: /passion-metal-aniane/
+Disallow: /renov-facades34-montarnaud/
+Disallow: /sutra-charpente-clermont-lherault/
+
+Sitemap: https://dumalgo.fr/sitemap.xml
