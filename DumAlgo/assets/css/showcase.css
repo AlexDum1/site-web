@@ -344,6 +344,20 @@ body:not(.no-lift) .work:hover .device--laptop { transform: translateY(-3px); }
   .viewer__close { width: 2.3rem; height: 2.3rem; }
 }
 
+/* Paysage mobile : la hauteur d'écran est minuscule, on libère tout ce qui
+   la consomme (titre, hint, base) pour que l'écran du laptop la remplisse */
+@media (max-height: 520px) and (orientation: landscape) {
+  .viewer { gap: 0.4rem; padding: 0.5rem; }
+  .viewer__title, .viewer__rotate { display: none; }
+  .vlaptop { width: min(96vw, calc((100vh - 3.2rem) * (16 / 9))); }
+  .vlaptop__screen { padding: 3px 3px 0; border-radius: 7px; }
+  .vlaptop__screen::before { display: none; }
+  .vlaptop__bar { padding: 0.15rem 0.45rem; }
+  .vlaptop__url { font-size: 0.68rem; padding: 0.15rem 0.8rem; }
+  .vlaptop__base { display: none; }
+  .viewer__close { top: 0.4rem; right: 0.4rem; width: 2rem; height: 2rem; font-size: 1.1rem; }
+}
+
 /* Invitation à passer en paysage — mobile portrait uniquement, aperçu laptop */
 .viewer__rotate { display: none; margin: 0; font-family: var(--font-body); font-size: 0.82rem; color: #c2d5cf; text-align: center; }
 @media (max-width: 740px) and (orientation: portrait) {
