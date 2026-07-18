@@ -71,6 +71,23 @@ const activeObserver = new IntersectionObserver(
 sections.forEach((s) => activeObserver.observe(s));
 
 /* ==========================================================================
+   Forfaits maintenance — bascule Annuel / Mensuel
+   ========================================================================== */
+const billingButtons = [...document.querySelectorAll('.billing-toggle__btn')];
+const setBilling = (mode) => {
+  billingButtons.forEach((btn) => {
+    const active = btn.dataset.billing === mode;
+    btn.classList.toggle('is-active', active);
+    btn.setAttribute('aria-pressed', String(active));
+  });
+  document.querySelectorAll('[data-price]').forEach((el) => { el.textContent = el.dataset[mode]; });
+  document.querySelectorAll('[data-billing-meta]').forEach((el) => { el.textContent = el.dataset[mode]; });
+};
+billingButtons.forEach((btn) =>
+  btn.addEventListener('click', () => setBilling(btn.dataset.billing))
+);
+
+/* ==========================================================================
    Révélation au scroll (respecte prefers-reduced-motion via CSS)
    ========================================================================== */
 const revealObserver = new IntersectionObserver(

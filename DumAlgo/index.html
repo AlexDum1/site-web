@@ -107,7 +107,62 @@
           </article>
         </div>
 
-        <p class="pricing__note reveal">Maintenance (option, hors formules) : forfait à partir de 20-30&nbsp;€/mois — mises à jour, sauvegardes, petites modifications de contenu.</p>
+        <!-- ============ MAINTENANCE ============ -->
+        <div class="maintenance" id="maintenance">
+          <header class="maintenance__head reveal">
+            <h3 class="maintenance__title">Maintenance &amp; suivi</h3>
+            <p class="maintenance__intro">Une fois votre site en ligne, gardez l'esprit tranquille. Trois forfaits de suivi, indépendants des formules ci-dessus et souscrits séparément après la livraison.</p>
+            <div class="billing-toggle" role="group" aria-label="Choix du mode de facturation">
+              <button type="button" class="billing-toggle__btn is-active" data-billing="annuel" aria-pressed="true">Annuel<span class="billing-toggle__hint">engagement 12&nbsp;mois</span></button>
+              <button type="button" class="billing-toggle__btn" data-billing="mensuel" aria-pressed="false">Mensuel<span class="billing-toggle__hint">sans engagement</span></button>
+            </div>
+          </header>
+
+          <div class="pricing pricing--maintenance">
+            <article class="card price-card plan reveal">
+              <h4 class="price-card__name">Essentiel</h4>
+              <p class="price-card__price"><span data-price data-annuel="19" data-mensuel="25">19</span>&nbsp;€<span class="price-card__period">/mois</span></p>
+              <p class="price-card__meta" data-billing-meta data-annuel="Facturé mensuellement, engagement 12&nbsp;mois" data-mensuel="Sans engagement, résiliable à tout moment">Facturé mensuellement, engagement 12&nbsp;mois</p>
+              <ul class="plan__list">
+                <li>Hébergement et sauvegardes mensuelles</li>
+                <li>1 modification de contenu par mois</li>
+                <li>Support par email sous 5&nbsp;jours ouvrés</li>
+              </ul>
+              <a class="btn btn--ghost price-card__btn" href="#contact">Choisir Essentiel</a>
+            </article>
+
+            <article class="card price-card price-card--featured plan reveal">
+              <span class="badge">Le plus choisi</span>
+              <h4 class="price-card__name">Confort</h4>
+              <p class="price-card__price"><span data-price data-annuel="39" data-mensuel="49">39</span>&nbsp;€<span class="price-card__period">/mois</span></p>
+              <p class="price-card__meta" data-billing-meta data-annuel="Facturé mensuellement, engagement 12&nbsp;mois" data-mensuel="Sans engagement, résiliable à tout moment">Facturé mensuellement, engagement 12&nbsp;mois</p>
+              <ul class="plan__list">
+                <li>Sauvegardes hebdomadaires</li>
+                <li>Mises à jour techniques régulières</li>
+                <li>3 modifications de contenu par mois</li>
+                <li>Support prioritaire sous 48&nbsp;h</li>
+                <li>Suivi analytics basique</li>
+              </ul>
+              <a class="btn btn--primary price-card__btn" href="#contact">Choisir Confort</a>
+            </article>
+
+            <article class="card price-card plan reveal">
+              <h4 class="price-card__name">Sérénité</h4>
+              <p class="price-card__price"><span data-price data-annuel="79" data-mensuel="99">79</span>&nbsp;€<span class="price-card__period">/mois</span></p>
+              <p class="price-card__meta" data-billing-meta data-annuel="Facturé mensuellement, engagement 12&nbsp;mois" data-mensuel="Sans engagement, résiliable à tout moment">Facturé mensuellement, engagement 12&nbsp;mois</p>
+              <ul class="plan__list">
+                <li>Modifications illimitées (usage raisonnable)</li>
+                <li>Sauvegardes quotidiennes</li>
+                <li>Restauration prioritaire</li>
+                <li>Point d'appel mensuel</li>
+                <li>Petites évolutions incluses</li>
+              </ul>
+              <a class="btn btn--ghost price-card__btn" href="#contact">Choisir Sérénité</a>
+            </article>
+          </div>
+
+          <p class="pricing__note reveal">Forfaits indépendants des formules Essentiel, Pro et Sur-mesure — souscription séparée, une fois votre site livré. L'abonnement annuel est facturé mensuellement et engage sur 12&nbsp;mois&nbsp;; l'abonnement mensuel est résiliable à tout moment.</p>
+        </div>
 
         <div class="tools reveal">
           <h3 class="tools__title">Outils métiers</h3>
@@ -226,6 +281,17 @@
       </div>
     </section>
 
+    <!-- ============ TÉMOIGNAGES (emplacement — contenu à venir) ============ -->
+    <section class="section section--alt section--slim" id="temoignages">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="section__eyebrow">Témoignages</p>
+          <h2 class="section__title">Ce qu'en disent les clients</h2>
+        </header>
+        <p class="testimonials-empty reveal">Les premiers projets DumAlgo sont en cours de réalisation — les avis de leurs propriétaires prendront place ici très prochainement.</p>
+      </div>
+    </section>
+
     <!-- ============ FAQ ============ -->
     <section class="section" id="faq">
       <div class="container container--narrow">
@@ -241,7 +307,12 @@
 
         <details class="faq-item reveal">
           <summary>Que se passe-t-il après la mise en ligne&nbsp;?</summary>
-          <p>Une fois votre site en ligne, vous êtes libre — mais si vous préférez ne pas vous en occuper, un forfait maintenance à partir de 20-30&nbsp;€/mois couvre les mises à jour techniques et les petites modifications de contenu (changer un texte, une photo, un horaire...). Pas d'engagement de durée, vous pouvez l'activer ou l'arrêter selon vos besoins.</p>
+          <p>Une fois votre site en ligne, vous êtes libre — mais si vous préférez ne pas vous en occuper, trois <a href="#maintenance">forfaits de maintenance</a> (Essentiel, Confort, Sérénité) couvrent, selon le niveau choisi, l'hébergement, les sauvegardes, les mises à jour techniques et les modifications de contenu (changer un texte, une photo, un horaire...). À partir de 19&nbsp;€/mois, en formule annuelle ou mensuelle sans engagement.</p>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>Puis-je résilier mon forfait maintenance&nbsp;?</summary>
+          <p>Oui, selon la formule choisie. L'abonnement annuel est facturé mois par mois mais engage sur 12&nbsp;mois&nbsp;: en cas de résiliation avant la fin de l'engagement, les mensualités restantes demeurent dues. L'abonnement mensuel, sans engagement, peut en revanche être résilié à tout moment, sans frais ni justification.</p>
         </details>
 
         <details class="faq-item reveal">

@@ -68,6 +68,20 @@
   document.body.appendChild(ov);
   document.body.style.overflow = 'hidden';
 
+  /* Cadrage adapté au format de l'écran : la scène est composée en 1280x720 ;
+     en portrait, un viewBox plein cadre rognerait le D et le wordmark. On
+     recalcule donc un viewBox au ratio exact de l'écran, centré sur la
+     composition (zone utile ~x 210-910, impact vertical ~350). */
+  function fit() {
+    var ar = Math.max(0.3, Math.min(3.5, ov.clientWidth / Math.max(1, ov.clientHeight)));
+    var x, y, w, h;
+    if (ar >= 1) { h = 720; w = h * ar; x = 640 - w / 2; y = 0; }
+    else { w = 760; h = w / ar; x = 158; y = 350 - h / 2; }
+    svg.setAttribute('viewBox', x + ' ' + y + ' ' + w + ' ' + h);
+  }
+  fit();
+  window.addEventListener('resize', fit);
+
   /* centres des lettres, mesurés une fois les polices prêtes */
   var pos = null, uglyPos = null;
   function measure(font, weight, style, size, ls) {
@@ -129,7 +143,7 @@
       '<stop offset="1" stop-color="' + P.goldHot + '" stop-opacity="0"/></radialGradient></defs>';
 
     s += '<g transform="' + rootT + '" style="filter:saturate(' + lerp(1, 0.1, grade) + ') brightness(' + lerp(1, 0.72, grade) + ')">';
-    s += '<rect x="-120" y="-120" width="1520" height="960" fill="' + P.bg + '"/>';
+    s += '<rect x="-2200" y="-1600" width="5700" height="3950" fill="' + P.bg + '"/>';
     s += '<ellipse cx="590" cy="' + IMPACT_Y + '" rx="540" ry="260" fill="url(#spBloom)" opacity="' + (1 - grade) + '" style="mix-blend-mode:screen"/>';
 
     // le D (strates haute + basse)
@@ -207,7 +221,7 @@
     }
 
     if (flash > 0.001) {
-      s += '<rect x="0" y="0" width="1280" height="720" fill="' + P.goldHot + '" opacity="' + (flash * 0.5) + '" style="mix-blend-mode:screen"/>';
+      s += '<rect x="-2200" y="-1600" width="5700" height="3950" fill="' + P.goldHot + '" opacity="' + (flash * 0.5) + '" style="mix-blend-mode:screen"/>';
     }
     svg.innerHTML = s;
   }
