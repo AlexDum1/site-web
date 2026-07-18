@@ -18,7 +18,10 @@ Importé le 2026-07-17.
 ## Palette
 vert #16584E · vert sombre #0E3F38 · ivoire #FAF7F2 · brume #E3EFEC · or #C9A227
 
-## ⚠️ À arbitrer
-Cette v2 (strates / monolithe) est une refonte du symbole, distincte du logo arborescence v1
-(`assets/img/logo/`) sur lequel les animations « l'algorithme s'exécute » (dossier `../animations/`,
-projet Design « DumAlgo — Branding ») ont été construites. Choisir la direction avant d'intégrer au site.
+## ✅ Arbitrage rendu (2026-07-18)
+La piste **2a « Les strates »** est le logo officiel : c'est elle qui porte le splash d'accueil
+du site (« L'impact », `assets/js/splash.js`) et elle est désormais intégrée partout —
+en-tête, favicon et déclinaisons regénérées dans `assets/img/logo/`, avec la typo du splash
+(wordmark Fraunces 600 resserré, « Dum » neutre / « Algo » or, baseline Inter espacée).
+Le logo arborescence v1 et la piste monolithe sont archivés ici pour référence ; les
+animations « l'algorithme s'exécute » (dossier `../animations/`) restent liées à la v1.

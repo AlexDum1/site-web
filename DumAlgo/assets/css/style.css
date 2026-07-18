@@ -11,6 +11,7 @@
   --accent-deep: #0e3f38;
   --accent-soft: #e3efec;
   --gold: #c9a227;
+  --gold-ink: #896e1a; /* or assombri, lisible en texte sur fond clair (≥ 4.5:1) */
   --line: #e0d8ca;
 
   /* Typographie */
@@ -63,7 +64,8 @@ body {
 
 h1, h2, h3 {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   line-height: 1.2;
   margin: 0 0 var(--space-2);
   text-wrap: balance;
@@ -126,8 +128,11 @@ a { color: var(--accent); }
   font-weight: 600;
   color: var(--ink);
   text-decoration: none;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.02em;
 }
+
+/* « Algo » doré, repris du wordmark de l'animation d'accueil */
+.brand-accent { color: var(--gold-ink); }
 
 .nav__brand-mark {
   flex-shrink: 0;
@@ -232,8 +237,8 @@ a { color: var(--accent); }
 .hero__eyebrow,
 .section__eyebrow {
   font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-weight: 500;
+  letter-spacing: 0.24em; /* même chasse que la baseline du splash */
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: var(--space-2);
@@ -241,6 +246,7 @@ a { color: var(--accent); }
 
 .hero__title {
   font-size: var(--fs-hero);
+  letter-spacing: -0.02em;
   margin-bottom: var(--space-3);
 }
 .hero__title em {
