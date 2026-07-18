@@ -15,11 +15,11 @@
 
   /* ---------- palette « nuit » ---------- */
   var P = {
-    bg: '#0E3F38',
-    strateHi: '#FAF7F2', strateLo: '#E3EFEC',
-    gold: '#C9A227', goldHot: '#F2D879',
-    dum: '#FAF7F2', algo: '#C9A227',
-    baseline: '#9DBAB2',
+    bg: '#0B2F26',
+    strateHi: '#EAF6F0', strateLo: '#B9D2C7',
+    gold: '#F2C94C', goldHot: '#F7D767',
+    dum: '#EAF6F0', algo: '#F2C94C',
+    baseline: '#8CAE9F',
   };
 
   /* ---------- easing ---------- */
@@ -50,7 +50,7 @@
   var P_MED = 'M24 38 H71 V57 H24 Z';
   var P_ACC = 'M71 38 H81 V57 H71 Z';
   var WORD = 'DumAlgo', SPLIT = 3;
-  var FONT = "'Fraunces', Georgia, serif";
+  var FONT = "'Space Grotesk', system-ui, sans-serif";
   var UGLY_FONT = "'Comic Sans MS', 'Comic Sans', 'Chalkboard SE', cursive";
   var DUR = 5200;   // ms — une seule lecture
 
@@ -62,8 +62,8 @@
     'transition:opacity .55s ease;';
   ov.innerHTML = '<svg viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" ' +
     'style="width:100%;height:100%;display:block"></svg>' +
-    '<span style="position:absolute;right:18px;bottom:14px;font:500 12px/1 Inter,system-ui,sans-serif;' +
-    'letter-spacing:.12em;color:rgba(250,247,242,.45)">PASSER →</span>';
+    '<span style="position:absolute;right:18px;bottom:14px;font:500 12px/1 \'IBM Plex Mono\',ui-monospace,monospace;' +
+    'letter-spacing:.18em;color:rgba(234,246,240,.45)">PASSER →</span>';
   var svg = ov.querySelector('svg');
   document.body.appendChild(ov);
   document.body.style.overflow = 'hidden';
@@ -191,7 +191,7 @@
 
     // baseline balayée par le front
     if (ring > 0.02) {
-      s += '<text x="' + (WORD_X + 4) + '" y="436" clip-path="url(#spBase)" fill="' + P.baseline + '" style="font:500 15px Inter,system-ui,sans-serif;letter-spacing:3.6px">SITES WEB · OUTILS NUMÉRIQUES</text>';
+      s += '<text x="' + (WORD_X + 4) + '" y="436" clip-path="url(#spBase)" fill="' + P.baseline + '" style="font:500 14px \'IBM Plex Mono\',ui-monospace,monospace;letter-spacing:3.6px">SITES WEB · OUTILS NUMÉRIQUES</text>';
     }
     s += '</g>';
 
