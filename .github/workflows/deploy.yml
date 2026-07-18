@@ -37,14 +37,20 @@ jobs:
           echo "Contenu assemblé :"
           find _deploy -maxdepth 2 | sort
 
-      - name: Envoyer vers OVH par FTPS
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.OVH_FTP_SERVER }}
-          username: ${{ secrets.OVH_FTP_USERNAME }}
-          password: ${{ secrets.OVH_FTP_PASSWORD }}
-          protocol: ftps
-          local-dir: _deploy/
-          server-dir: www/
-          state-name: .ftp-deploy-sync-state.json
-          dangerous-clean-slate: false
+      - name: Installer lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      # Le FTP mutualisé OVH ne supporte pas FTPS (erreur "500 This security
+      # scheme is not implemented") ; OVH recommande SFTP sur le port 22.
+      - name: Envoyer vers OVH par SFTP
+        env:
+          SFTP_SERVER: ssh.cluster100.hosting.ovh.net
+          SFTP_USERNAME: ${{ secrets.OVH_FTP_USERNAME }}
+          LFTP_PASSWORD: ${{ secrets.OVH_FTP_PASSWORD }}
+        run: |
+          lftp --env-password -u "$SFTP_USERNAME" "sftp://$SFTP_SERVER" -e "
+            set sftp:auto-confirm yes;
+            set net:max-retries 2;
+            set net:timeout 30;
+            mirror -R --delete --parallel=4 --verbose=1 _deploy/ www/;
+            quit"

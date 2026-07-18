@@ -3,8 +3,9 @@
 > Étapes 1 à 3 effectuées le 18/07/2026 (utilisateur FTP, secrets GitHub, multisite/SSL vérifiés).
 
 Le déploiement est automatisé : à chaque mise à jour de la branche `main`, le workflow
-GitHub Actions (`.github/workflows/deploy.yml`) assemble le site et l'envoie par FTPS
-vers l'hébergement OVH (`dumalgk.cluster100.hosting.ovh.net`).
+GitHub Actions (`.github/workflows/deploy.yml`) assemble le site et l'envoie par SFTP
+vers l'hébergement OVH (`dumalgk.cluster100.hosting.ovh.net`, serveur
+`ssh.cluster100.hosting.ovh.net`, port 22 — le FTP mutualisé OVH ne supporte pas FTPS).
 
 Ce qui est mis en ligne :
 
@@ -31,13 +32,15 @@ vos accès).
 ## 2. Ajouter les secrets GitHub
 
 Dans le dépôt GitHub `AlexDum1/site-web` → **Settings** → **Secrets and variables** →
-**Actions** → **New repository secret**, créez ces trois secrets :
+**Actions** → **New repository secret**, créez ces deux secrets :
 
 | Nom | Valeur |
 |---|---|
-| `OVH_FTP_SERVER` | `ftp.cluster100.hosting.ovh.net` |
 | `OVH_FTP_USERNAME` | l'identifiant FTP (ex. `dumalgk`) |
 | `OVH_FTP_PASSWORD` | le mot de passe FTP |
+
+(L'adresse du serveur SFTP est fixée directement dans le workflow ; un éventuel secret
+`OVH_FTP_SERVER` n'est plus utilisé.)
 
 ## 3. Vérifier le multisite et le SSL (OVH)
 
