@@ -1,5 +1,7 @@
 # Mise en ligne sur OVH — dumalgo.fr
 
+> Étapes 1 à 3 effectuées le 18/07/2026 (utilisateur FTP, secrets GitHub, multisite/SSL vérifiés).
+
 Le déploiement est automatisé : à chaque mise à jour de la branche `main`, le workflow
 GitHub Actions (`.github/workflows/deploy.yml`) assemble le site et l'envoie par FTPS
 vers l'hébergement OVH (`dumalgk.cluster100.hosting.ovh.net`).
