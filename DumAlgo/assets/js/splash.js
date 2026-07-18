@@ -1,255 +1,149 @@
-/* Splash d'intro DumAlgo — « L'impact ».
-   Portage vanilla du prototype Claude Design (branding/splash/) : la strate
-   médiane du D se charge comme une flèche, tire, pulvérise l'ancien wordmark
-   Comic Sans ; l'onde de choc révèle le wordmark DumAlgo et la baseline.
-   Joue une fois par session, cliquable pour passer, ignoré si
-   prefers-reduced-motion. Aucune dépendance. */
+/* ==========================================================================
+   Splash « Tracé au compas » — animation d'accueil DumAlgo
+   Portage vanilla de « Splash B - Trace au compas.dc.html » (Claude Design).
+   Charte Vert-de-gris : l'hexagone facetté se dessine au compas (rayons +
+   contour en stroke-draw, cote pointillée), bascule du plan à la verticale,
+   puis le wordmark DUMALGO se compose. Joue une fois, respecte
+   prefers-reduced-motion, se saute au clic / PASSER.
+   ========================================================================== */
 (function () {
-  'use strict';
+  if (document.getElementById('dc-splash')) return;
 
-  var KEY = 'dumalgo_splash_seen';
-  try {
-    if (sessionStorage.getItem(KEY)) return;
-  } catch (e) { /* stockage bloqué : on joue quand même */ }
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var reduced = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- palette « nuit » ---------- */
-  var P = {
-    bg: '#0B2F26',
-    strateHi: '#EAF6F0', strateLo: '#B9D2C7',
-    gold: '#F2C94C', goldHot: '#F7D767',
-    dum: '#EAF6F0', algo: '#F2C94C',
-    baseline: '#8CAE9F',
-  };
+  var HEX = 'points="50,6 88.1,28 88.1,72 50,94 11.9,72 11.9,28"';
 
-  /* ---------- easing ---------- */
-  function clamp01(x) { return Math.max(0, Math.min(1, x)); }
-  function seg(a, b, x) { return clamp01((x - a) / (b - a)); }
-  function lerp(a, b, t) { return a + (b - a) * t; }
-  function smooth(t) { return t * t * (3 - 2 * t); }
-  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
-  function easeInFast(t) { return t * t * t * t; }
-  function backOut(t, s) { var p = t - 1; return 1 + (s + 1) * p * p * p + s * p * p; }
-  function mixHex(a, b, t) {
-    t = clamp01(t);
-    var c = '#';
-    for (var i = 1; i < 7; i += 2) {
-      var v = Math.round(lerp(parseInt(a.slice(i, i + 2), 16), parseInt(b.slice(i, i + 2), 16), t));
-      c += (v < 16 ? '0' : '') + v.toString(16);
-    }
-    return c;
-  }
-
-  /* ---------- géométrie (scène 1280x720) ---------- */
-  var S = 1.85, MX = 322, MY = 270;
-  var WORD_X = 522, WORD_Y = 392;
-  var IMPACT_X = 522, IMPACT_Y = MY + 47.5 * S;
-  var HIT_DX = 52, LOAD_DX = -150, CX = 640, CY = 360;
-  var P_HI = 'M28 14 H50 A17 17 0 0 1 67 31 V33 H28 Z';
-  var P_LO = 'M28 62 V81 H50 A17 17 0 0 0 67 64 V62 Z';
-  var P_MED = 'M24 38 H71 V57 H24 Z';
-  var P_ACC = 'M71 38 H81 V57 H71 Z';
-  var WORD = 'DumAlgo', SPLIT = 3;
-  var FONT = "'Space Grotesk', system-ui, sans-serif";
-  var UGLY_FONT = "'Comic Sans MS', 'Comic Sans', 'Chalkboard SE', cursive";
-  var DUR = 5200;   // ms — une seule lecture
+  /* ---------- keyframes (préfixées sp- pour éviter toute collision) ---------- */
+  var css =
+    '@keyframes sp-fadeIn{from{opacity:0}to{opacity:1}}' +
+    '@keyframes sp-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}' +
+    '@keyframes sp-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}' +
+    '@keyframes sp-goldOn{0%{opacity:0}40%{opacity:1}55%{opacity:.3}100%{opacity:1}}' +
+    '@keyframes sp-cote{0%{opacity:0}20%{opacity:1}70%{opacity:1}100%{opacity:0}}' +
+    '@keyframes sp-pop{from{opacity:0}to{opacity:1}}' +
+    '@keyframes sp-tiltUp{from{transform:rotateX(52deg)}to{transform:rotateX(0)}}' +
+    '#dc-splash .sp-skip:hover{color:#EAF6F0 !important}';
+  var style = document.createElement('style');
+  style.setAttribute('data-dc-splash', '');
+  style.textContent = css;
+  document.head.appendChild(style);
 
   /* ---------- overlay ---------- */
   var ov = document.createElement('div');
-  ov.setAttribute('aria-hidden', 'true');
-  ov.style.cssText = 'position:fixed;inset:0;z-index:9999;background:' + P.bg +
-    ';display:flex;align-items:center;justify-content:center;cursor:pointer;' +
-    'transition:opacity .55s ease;';
-  ov.innerHTML = '<svg viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" ' +
-    'style="width:100%;height:100%;display:block"></svg>' +
-    '<span style="position:absolute;right:18px;bottom:14px;font:500 12px/1 \'IBM Plex Mono\',ui-monospace,monospace;' +
-    'letter-spacing:.18em;color:rgba(234,246,240,.45)">PASSER →</span>';
-  var svg = ov.querySelector('svg');
+  ov.id = 'dc-splash';
+  ov.setAttribute('role', 'presentation');
+  ov.style.cssText =
+    'position:fixed;inset:0;z-index:9999;background:#0B2F26;overflow:hidden;' +
+    'display:flex;align-items:center;justify-content:center;cursor:pointer;' +
+    'transition:opacity .7s ease;opacity:1;';
+
+  var grid =
+    '<div style="position:absolute;inset:0;background-image:' +
+    'linear-gradient(rgba(255,255,255,0.05) 1px,transparent 1px),' +
+    'linear-gradient(90deg,rgba(255,255,255,0.05) 1px,transparent 1px);' +
+    'background-size:28px 28px;animation:sp-fadeIn .7s ease 0s both;"></div>';
+
+  var wordmarkStatic =
+    '<div style="font-family:\'IBM Plex Mono\',ui-monospace,monospace;font-size:44px;' +
+    'font-weight:700;color:#EAF6F0;letter-spacing:2px;">DUM<span style="color:#F2C94C;">ALGO</span></div>';
+
+  var baseline =
+    '<div style="font-family:\'IBM Plex Mono\',ui-monospace,monospace;font-size:12px;' +
+    'letter-spacing:4px;color:#8CAE9F;ANIMBASE">SITES WEB · OUTILS NUMÉRIQUES</div>';
+
+  var spokes = '';
+  var pts = [[50, 6], [88.1, 28], [88.1, 72], [50, 94], [11.9, 72], [11.9, 28]];
+  var delays = [0.5, 0.62, 0.74, 0.86, 0.98, 1.1];
+  for (var i = 0; i < pts.length; i++) {
+    spokes +=
+      '<line x1="50" y1="50" x2="' + pts[i][0] + '" y2="' + pts[i][1] + '" pathLength="1" ' +
+      'stroke="#EAF6F0" stroke-width="1" style="stroke-dasharray:1;' +
+      'animation:sp-draw .45s ease-out ' + delays[i] + 's both;"></line>';
+  }
+
+  var inner;
+  if (reduced) {
+    /* ---------- version statique (accessibilité) ---------- */
+    var staticSpokes = '';
+    for (var j = 0; j < pts.length; j++) {
+      staticSpokes += '<line x1="50" y1="50" x2="' + pts[j][0] + '" y2="' + pts[j][1] +
+        '" stroke="#EAF6F0" stroke-width="1"></line>';
+    }
+    inner =
+      '<div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:26px;">' +
+        '<svg width="160" height="160" viewBox="0 0 100 100">' +
+          '<polygon ' + HEX + ' fill="none" stroke="#EAF6F0" stroke-width="2"></polygon>' +
+          staticSpokes +
+          '<polygon points="50,34 63.9,42 50,50 36.1,42" fill="#F2C94C"></polygon>' +
+          '<polygon points="63.9,42 63.9,58 50,66 50,50" fill="none" stroke="#EAF6F0" stroke-width="1.5"></polygon>' +
+          '<polygon points="36.1,42 50,50 50,66 36.1,58" fill="#EAF6F0"></polygon>' +
+        '</svg>' +
+        wordmarkStatic +
+        baseline.replace('ANIMBASE', '') +
+      '</div>';
+  } else {
+    /* ---------- version animée ---------- */
+    var letters = 'DUMALGO';
+    var wm = '';
+    for (var k = 0; k < letters.length; k++) {
+      var gold = k >= 3 ? 'color:#F2C94C;' : '';
+      var pd = (2.95 + k * 0.07).toFixed(2);
+      wm += '<span style="' + gold + 'animation:sp-pop .02s linear ' + pd + 's both;">' + letters[k] + '</span>';
+    }
+    inner =
+      '<div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:26px;perspective:900px;">' +
+        '<div style="position:relative;transform-origin:50% 62%;' +
+          'animation:sp-tiltUp 1s cubic-bezier(.2,.7,.25,1) 2.1s both;">' +
+          '<svg width="160" height="160" viewBox="0 0 100 100" style="overflow:visible;display:block;">' +
+            '<circle cx="50" cy="50" r="1.4" fill="#F2C94C" style="animation:sp-fadeIn .3s ease .25s both;"></circle>' +
+            spokes +
+            '<polygon ' + HEX + ' pathLength="1" fill="none" stroke="#EAF6F0" stroke-width="2" ' +
+              'style="stroke-dasharray:1;animation:sp-draw .9s cubic-bezier(.4,0,.3,1) 1.25s both;"></polygon>' +
+            '<polygon points="63.9,42 63.9,58 50,66 50,50" fill="none" stroke="#EAF6F0" stroke-width="1.5" ' +
+              'style="animation:sp-fadeIn .5s ease 2.2s both;"></polygon>' +
+            '<polygon points="36.1,42 50,50 50,66 36.1,58" fill="#EAF6F0" ' +
+              'style="animation:sp-fadeIn .5s ease 2.2s both;"></polygon>' +
+            '<polygon points="50,34 63.9,42 50,50 36.1,42" fill="#F2C94C" ' +
+              'style="animation:sp-goldOn .6s ease 2.55s both;"></polygon>' +
+          '</svg>' +
+          '<div style="position:absolute;left:8px;right:8px;bottom:-22px;' +
+            'border-top:1px dashed rgba(234,246,240,0.5);display:flex;justify-content:center;' +
+            'animation:sp-cote 1.9s ease 1.5s both;">' +
+            '<div style="font-family:\'IBM Plex Mono\',ui-monospace,monospace;font-size:10px;' +
+            'letter-spacing:2px;color:#8CAE9F;background:#0B2F26;padding:0 10px;margin-top:-7px;">96 PX</div>' +
+          '</div>' +
+        '</div>' +
+        '<div style="font-family:\'IBM Plex Mono\',ui-monospace,monospace;font-size:44px;' +
+          'font-weight:700;color:#EAF6F0;letter-spacing:2px;">' + wm + '</div>' +
+        baseline.replace('ANIMBASE', 'animation:sp-rise .6s cubic-bezier(.2,.7,.3,1) 3.55s both;') +
+      '</div>';
+  }
+
+  var passer =
+    '<div class="sp-skip" style="position:absolute;right:28px;bottom:24px;' +
+    'font-family:\'IBM Plex Mono\',ui-monospace,monospace;font-size:12px;letter-spacing:2px;' +
+    'color:#8CAE9F;cursor:pointer;padding:8px;transition:color .2s ease;">PASSER →</div>';
+
+  ov.innerHTML = grid + inner + passer;
   document.body.appendChild(ov);
-  document.body.style.overflow = 'hidden';
 
-  /* Cadrage adapté au format de l'écran : la scène est composée en 1280x720 ;
-     en portrait, un viewBox plein cadre rognerait le D et le wordmark. On
-     recalcule donc un viewBox au ratio exact de l'écran, centré sur la
-     composition (zone utile ~x 210-910, impact vertical ~350). */
-  function fit() {
-    var ar = Math.max(0.3, Math.min(3.5, ov.clientWidth / Math.max(1, ov.clientHeight)));
-    var x, y, w, h;
-    if (ar >= 1) { h = 720; w = h * ar; x = 640 - w / 2; y = 0; }
-    else { w = 760; h = w / ar; x = 158; y = 350 - h / 2; }
-    svg.setAttribute('viewBox', x + ' ' + y + ' ' + w + ' ' + h);
-  }
-  fit();
-  window.addEventListener('resize', fit);
+  /* verrouille le défilement pendant le splash */
+  var prevOverflow = document.documentElement.style.overflow;
+  document.documentElement.style.overflow = 'hidden';
 
-  /* centres des lettres, mesurés une fois les polices prêtes */
-  var pos = null, uglyPos = null;
-  function measure(font, weight, style, size, ls) {
-    var t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    t.setAttribute('x', WORD_X); t.setAttribute('y', WORD_Y);
-    t.setAttribute('opacity', '0');
-    t.setAttribute('style', 'font:' + style + ' ' + weight + ' ' + size + 'px ' + font + ';letter-spacing:' + ls + 'px');
-    t.textContent = WORD;
-    svg.appendChild(t);
-    var arr = null;
-    try {
-      arr = [];
-      for (var i = 0; i < WORD.length; i++) {
-        var s = t.getStartPositionOfChar(i), e = t.getEndPositionOfChar(i);
-        arr.push((s.x + e.x) / 2);
-      }
-    } catch (err) { arr = null; }
-    svg.removeChild(t);
-    return arr;
-  }
-  function doMeasure() {
-    pos = measure(FONT, 600, 'normal', 92, -2);
-    uglyPos = measure(UGLY_FONT, 700, 'italic', 78, 0);
-  }
-  doMeasure();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { doMeasure(); });
-
-  /* ---------- rendu d'une frame (p ∈ [0,1]) ---------- */
-  function frame(p) {
-    // flèche : en place → armée → tir → retour
-    var load = backOut(seg(0.30, 0.355, p), 2.6);
-    var fire = easeInFast(seg(0.365, 0.40, p));
-    var ret = seg(0.40, 0.60, p);
-    var arrowDX = p < 0.365 ? lerp(0, LOAD_DX, load)
-      : p < 0.40 ? lerp(LOAD_DX, HIT_DX, fire)
-        : lerp(HIT_DX, 0, backOut(ret, 3));
-    var glow = Math.max(smooth(seg(0.164, 0.31, p)) * (1 - seg(0.329, 0.38, p)), 0.35 * (1 - seg(0.42, 0.92, p)));
-    var trail = seg(0.329, 0.376, p) * (1 - seg(0.376, 0.45, p));
-
-    // impact
-    var imp = seg(0.40, 0.80, p);
-    var shakeEnv = imp > 0 && imp < 1 ? Math.exp(-3.2 * imp) * (1 - imp) : 0;
-    var shakeX = shakeEnv * 22 * Math.sin(imp * 70);
-    var shakeY = shakeEnv * 12 * Math.sin(imp * 58 + 1);
-    var ring = seg(0.40, 0.86, p);
-    var fireEnv = smooth(seg(0.31, 0.40, p)) * (1 - seg(0.40, 0.47, p));
-    var dJx = fireEnv * 5 * Math.sin(p * 420), dJy = fireEnv * 3 * Math.sin(p * 360 + 1);
-    var sqEnv = Math.sin(Math.PI * clamp01((p - 0.52) / 0.12));
-    var sx = 1 + 0.18 * sqEnv, sy = 1 - 0.14 * sqEnv;
-    var cam = 1 + smooth(seg(0.31, 0.40, p)) * (1 - seg(0.41, 0.66, p)) * 0.04;
-    var grade = 1 - smooth(seg(0.40, 0.50, p));
-    var flash = Math.sin(Math.PI * clamp01((p - 0.395) / 0.06));
-    var ringR = lerp(6, 520, easeOut(ring));
-    var frontX = IMPACT_X + ringR;
-    var rootT = 'translate(' + CX + ' ' + CY + ') scale(' + cam + ') translate(' + (-CX) + ' ' + (-CY) + ') translate(' + shakeX + ' ' + shakeY + ')';
-
-    var s = '<defs><clipPath id="spBase"><rect x="0" y="0" width="' + frontX + '" height="720"/></clipPath>' +
-      '<radialGradient id="spBloom"><stop offset="0" stop-color="' + P.goldHot + '" stop-opacity="0.13"/>' +
-      '<stop offset="1" stop-color="' + P.goldHot + '" stop-opacity="0"/></radialGradient></defs>';
-
-    s += '<g transform="' + rootT + '" style="filter:saturate(' + lerp(1, 0.1, grade) + ') brightness(' + lerp(1, 0.72, grade) + ')">';
-    s += '<rect x="-2200" y="-1600" width="5700" height="3950" fill="' + P.bg + '"/>';
-    s += '<ellipse cx="590" cy="' + IMPACT_Y + '" rx="540" ry="260" fill="url(#spBloom)" opacity="' + (1 - grade) + '" style="mix-blend-mode:screen"/>';
-
-    // le D (strates haute + basse)
-    s += '<g transform="translate(' + (MX + dJx) + ' ' + (MY + dJy) + ') scale(' + S + ')">' +
-      '<path d="' + P_HI + '" fill="' + P.strateHi + '"/><path d="' + P_LO + '" fill="' + P.strateLo + '"/></g>';
-
-    // traînées + flèche
-    function arrow(dx, op, gl, asx, asy) {
-      return '<g transform="translate(' + (MX + dx) + ' ' + MY + ') scale(' + S + ') translate(0 47.5) scale(' + asx + ' ' + asy + ') translate(0 -47.5)" opacity="' + op + '"' +
-        (gl > 0.01 ? ' style="filter:drop-shadow(0 0 ' + (gl * 7) + 'px ' + P.goldHot + ')"' : '') + '>' +
-        '<path d="' + P_MED + '" fill="' + P.strateHi + '"/><path d="' + P_ACC + '" fill="' + mixHex(P.gold, P.goldHot, gl) + '"/></g>';
-    }
-    if (trail > 0.01) {
-      s += arrow(arrowDX - 34, 0.28 * trail, 0, 1, 1);
-      s += arrow(arrowDX - 78, 0.12 * trail, 0, 1, 1);
-    }
-    s += arrow(arrowDX, 1, glow, sx, sy);
-
-    // front d'onde
-    if (ring > 0.01) {
-      var hH = lerp(26, 134, ring), bulge = lerp(10, 46, ring);
-      var fade = clamp01(1 - ring / 0.58);
-      var arc = function (fx, b, h) { return 'M ' + fx + ' ' + (IMPACT_Y - h) + ' Q ' + (fx + b) + ' ' + IMPACT_Y + ' ' + fx + ' ' + (IMPACT_Y + h); };
-      s += '<path d="' + arc(frontX - 14, bulge + 10, hH) + '" fill="none" stroke="' + P.goldHot + '" stroke-width="16" stroke-linecap="round" opacity="' + (fade * 0.18) + '" style="mix-blend-mode:screen;filter:blur(6px)"/>';
-      s += '<path d="' + arc(frontX, bulge, hH) + '" fill="none" stroke="' + P.goldHot + '" stroke-width="' + lerp(4, 1.2, ring) + '" stroke-linecap="round" opacity="' + (fade * 0.95) + '"/>';
-    }
-
-    // wordmark final : vague dorée lettre à lettre
-    var fontCss = 'font:600 92px ' + FONT + ';letter-spacing:-2px';
-    if (pos) {
-      for (var i = 0; i < WORD.length; i++) {
-        var cx = pos[i], dist = frontX - cx;
-        var appear = clamp01((dist + 12) / 26);
-        if (appear <= 0) continue;
-        var hump = Math.sin(Math.PI * clamp01(dist / 42));
-        var dy = -36 * hump, sc = 1 + 0.16 * hump;
-        var fin = i < SPLIT ? P.dum : P.algo;
-        var col = mixHex(P.goldHot, fin, easeOut(clamp01(dist / 150)));
-        s += '<text x="' + cx + '" y="' + WORD_Y + '" text-anchor="middle" fill="' + col + '" opacity="' + appear + '" style="' + fontCss + '" transform="translate(0 ' + dy + ') translate(' + cx + ' ' + WORD_Y + ') scale(' + sc + ') translate(' + (-cx) + ' ' + (-WORD_Y) + ')">' + WORD[i] + '</text>';
-      }
-    } else if (frontX > WORD_X - 30) {
-      s += '<text x="' + WORD_X + '" y="' + WORD_Y + '" style="' + fontCss + '" opacity="' + clamp01((frontX - WORD_X + 60) / 200) + '">' +
-        '<tspan fill="' + P.dum + '">Dum</tspan><tspan fill="' + P.algo + '">Algo</tspan></text>';
-    }
-
-    // baseline balayée par le front
-    if (ring > 0.02) {
-      s += '<text x="' + (WORD_X + 4) + '" y="436" clip-path="url(#spBase)" fill="' + P.baseline + '" style="font:500 14px \'IBM Plex Mono\',ui-monospace,monospace;letter-spacing:3.6px">SITES WEB · OUTILS NUMÉRIQUES</text>';
-    }
-    s += '</g>';
-
-    // wordmark « 2005 » (hors filtre gris), pulvérisé par le front
-    if (p < 0.92) {
-      var blast = ring > 0.02 ? frontX : -99999;
-      var uFont = 'font:italic 700 78px ' + UGLY_FONT + ';paint-order:stroke';
-      s += '<g transform="' + rootT + '">';
-      if (uglyPos) {
-        for (var j = 0; j < WORD.length; j++) {
-          var ucx = uglyPos[j];
-          var b = clamp01((blast - ucx) / 72);
-          if (b >= 0.99) continue;
-          var ang = ((j * 137) % 360) * Math.PI / 180;
-          var speed = 300 + (j * 53 % 190);
-          var ddx = b * (speed * Math.cos(ang) + 150);
-          var ddy = b * (speed * Math.sin(ang)) + b * b * 240;
-          var rot = (j % 2 ? 1 : -1) * b * (140 + (j * 41 % 200));
-          var usc = 1 + b * 0.3;
-          s += '<text x="' + ucx + '" y="' + (WORD_Y - 2) + '" text-anchor="middle" opacity="' + (1 - b) + '" fill="' + (j < SPLIT ? P.dum : P.algo) + '" stroke="#001b3a" stroke-width="3.5" style="' + uFont + ';filter:drop-shadow(4px 4px 0 #000)" transform="translate(' + ddx + ' ' + ddy + ') translate(' + ucx + ' ' + (WORD_Y - 2) + ') rotate(' + rot + ') scale(' + usc + ') translate(' + (-ucx) + ' ' + (-(WORD_Y - 2)) + ')">' + WORD[j] + '</text>';
-        }
-      } else if (blast < WORD_X) {
-        s += '<text x="' + WORD_X + '" y="' + (WORD_Y - 2) + '" stroke="#001b3a" stroke-width="3.5" style="' + uFont + ';filter:drop-shadow(4px 4px 0 #000)">' +
-          '<tspan fill="' + P.dum + '">Dum</tspan><tspan fill="' + P.algo + '">Algo</tspan></text>';
-      }
-      s += '</g>';
-    }
-
-    if (flash > 0.001) {
-      s += '<rect x="-2200" y="-1600" width="5700" height="3950" fill="' + P.goldHot + '" opacity="' + (flash * 0.5) + '" style="mix-blend-mode:screen"/>';
-    }
-    svg.innerHTML = s;
-  }
-
-  /* ---------- lecture + sortie ---------- */
-  var start = null, done = false, raf = 0;
+  var done = false;
   function dismiss() {
     if (done) return;
     done = true;
-    cancelAnimationFrame(raf);
-    try { sessionStorage.setItem(KEY, '1'); } catch (e) { /* ignore */ }
+    clearTimeout(timer);
+    document.documentElement.style.overflow = prevOverflow;
     ov.style.opacity = '0';
-    document.body.style.overflow = '';
-    setTimeout(function () { if (ov.parentNode) ov.parentNode.removeChild(ov); }, 600);
+    setTimeout(function () { if (ov.parentNode) ov.parentNode.removeChild(ov); }, 750);
   }
-  function tick(now) {
-    if (done) return;
-    if (start === null) start = now;
-    var p = (now - start) / DUR;
-    if (p >= 1) { frame(1); setTimeout(dismiss, 350); return; }
-    frame(p);
-    raf = requestAnimationFrame(tick);
-  }
+
+  /* durée : ANIM_END 4200 ms + maintien 900 ms (statique : 1400 ms) */
+  var total = reduced ? 1400 : 4200 + 900;
+  var timer = setTimeout(dismiss, total);
   ov.addEventListener('click', dismiss);
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') dismiss(); }, { once: true });
-  frame(0);
-  // hook de QA : #splashp=0.55 fige la frame demandée (revue visuelle)
-  var dbg = /[#&]splashp=([\d.]+)/.exec(location.hash);
-  if (dbg) { var fp = parseFloat(dbg[1]); setTimeout(function () { frame(fp); }, 400); }
-  else raf = requestAnimationFrame(tick);
 })();
