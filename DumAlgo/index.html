@@ -34,6 +34,7 @@
   <link rel="preload" href="assets/fonts/inter-latin-56724408.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/fonts/fonts.css">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/showcase.css">
 </head>
 <body>
 
@@ -63,13 +64,29 @@
     <!-- ============ ACCUEIL ============ -->
     <section class="hero" id="accueil">
       <div class="container hero__inner">
-        <p class="hero__eyebrow reveal">Hérault · Indépendants &amp; petites entreprises</p>
-        <h1 class="hero__title reveal">Sites web professionnels et outils numériques <em>sur-mesure</em>, pensés pour les indépendants et petites entreprises de l'Hérault.</h1>
-        <p class="hero__text reveal">Fort de plus de dix ans d'expérience en gestion de projets techniques, j'apporte une approche méthodique à chaque réalisation — de la maquette de votre site à l'outil qui simplifie votre quotidien.</p>
-        <div class="hero__actions reveal">
-          <a class="btn btn--primary" href="#contact">Discutons de votre projet</a>
-          <a class="btn btn--ghost" href="#realisations">Voir les réalisations</a>
+        <div class="hero__copy">
+          <p class="hero__eyebrow reveal">Hérault · Indépendants &amp; petites entreprises</p>
+          <h1 class="hero__title"><span class="hw" style="animation-delay: 0ms;">Sites</span> <span class="hw" style="animation-delay: 55ms;">web</span> <span class="hw" style="animation-delay: 110ms;">professionnels</span> <span class="hw" style="animation-delay: 165ms;">et</span> <span class="hw" style="animation-delay: 220ms;">outils</span> <span class="hw" style="animation-delay: 275ms;">numériques</span> <em class="hw" style="animation-delay: 330ms;">sur-mesure,</em> <span class="hw" style="animation-delay: 385ms;">pensés</span> <span class="hw" style="animation-delay: 440ms;">pour</span> <span class="hw" style="animation-delay: 495ms;">les</span> <span class="hw" style="animation-delay: 550ms;">indépendants</span> <span class="hw" style="animation-delay: 605ms;">et</span> <span class="hw" style="animation-delay: 660ms;">petites</span> <span class="hw" style="animation-delay: 715ms;">entreprises</span> <span class="hw" style="animation-delay: 770ms;">de</span> <span class="hw" style="animation-delay: 825ms;">l'Hérault.</span></h1>
+          <p class="hero__text reveal">Fort de plus de dix ans d'expérience en gestion de projets techniques, j'apporte une approche méthodique à chaque réalisation — de la maquette de votre site à l'outil qui simplifie votre quotidien.</p>
+          <div class="hero__actions reveal">
+            <a class="btn btn--primary" href="#contact">Discutons de votre projet</a>
+            <a class="btn btn--ghost" href="#realisations">Voir les réalisations</a>
+          </div>
         </div>
+        <button type="button" class="hero__demo reveal" data-hero-demo aria-label="Agrandir la maquette Sutra Charpente">
+          <span class="hlap">
+            <span class="hlap__screen">
+              <span class="hlap__shot is-on" data-slug="sutra-charpente-clermont-lherault" data-title="Sutra Charpente" style="background-image: url('assets/img/works/sutra-charpente-clermont-lherault-desktop.webp');"></span>
+              <span class="hlap__shot" data-slug="passion-metal-aniane" data-title="Passion Métal 34" style="background-image: url('assets/img/works/passion-metal-aniane-desktop.webp');"></span>
+              <span class="hlap__shot" data-slug="renov-facades34-montarnaud" data-title="Renov' Façades 34" style="background-image: url('assets/img/works/renov-facades34-montarnaud-desktop.webp');"></span>
+              <span class="hlap__shot" data-slug="espace-respire" data-title="Espace Respire" style="background-image: url('assets/img/works/espace-respire-desktop.webp');"></span>
+              <span class="hlap__shot" data-slug="laetitia-cardinale" data-title="Laëtitia Cardinale" style="background-image: url('assets/img/works/laetitia-cardinale-desktop.webp');"></span>
+              <span class="hlap__shot" data-slug="menuiserie-durand-le-pouget" data-title="Menuiserie Durand" style="background-image: url('assets/img/works/menuiserie-durand-le-pouget-desktop.webp');"></span>
+            </span>
+            <span class="hlap__base"></span>
+          </span>
+          <span class="hero__demo-caption">Maquette — <strong data-hero-title>Sutra Charpente</strong> · cliquez pour explorer</span>
+        </button>
       </div>
     </section>
 
@@ -186,74 +203,110 @@
 
         <div class="works">
           <article class="card work reveal">
-            <a class="work__media work__media--devices" href="../sutra-charpente-clermont-lherault/" aria-label="Voir la maquette Sutra Charpente">
-              <span class="device--laptop"><img src="assets/img/works/sutra-charpente-clermont-lherault-desktop.webp" alt="Maquette Sutra Charpente sur ordinateur" loading="lazy" width="1200" height="750"></span>
-              <span class="device--phone"><img src="assets/img/works/sutra-charpente-clermont-lherault-mobile.webp" alt="Version mobile de la maquette Sutra Charpente" loading="lazy" width="480" height="1039"></span>
-            </a>
+            <div class="work__media work__media--devices">
+              <button type="button" class="device device--laptop" data-slug="sutra-charpente-clermont-lherault" data-title="Sutra Charpente" data-device="laptop" aria-label="Agrandir la version ordinateur — Sutra Charpente">
+                <img src="assets/img/works/sutra-charpente-clermont-lherault-desktop.webp" alt="Maquette Sutra Charpente sur ordinateur" loading="lazy" width="1200" height="750">
+                <span class="device__zoom" aria-hidden="true"><span>+</span></span>
+              </button>
+              <button type="button" class="device device--phone" data-slug="sutra-charpente-clermont-lherault" data-title="Sutra Charpente" data-device="phone" aria-label="Agrandir la version mobile — Sutra Charpente">
+                <img src="assets/img/works/sutra-charpente-clermont-lherault-mobile.webp" alt="Version mobile de la maquette Sutra Charpente" loading="lazy" width="480" height="1039">
+                <span class="device__zoom" aria-hidden="true"><span>+</span></span>
+              </button>
+            </div>
             <div class="work__body">
               <h3>Sutra Charpente</h3>
               <p>Charpentier à Clermont-l'Hérault — maquette one-page mettant en valeur le travail du bois et les chantiers réalisés.</p>
-              <a class="work__link" href="../sutra-charpente-clermont-lherault/">Voir la maquette</a>
+              <p class="work__hint">Cliquez sur un écran pour explorer la maquette</p>
             </div>
           </article>
 
           <article class="card work reveal">
-            <a class="work__media work__media--devices" href="../passion-metal-aniane/" aria-label="Voir la maquette Passion Métal 34">
-              <span class="device--laptop"><img src="assets/img/works/passion-metal-aniane-desktop.webp" alt="Maquette Passion Métal 34 sur ordinateur" loading="lazy" width="1200" height="750"></span>
-              <span class="device--phone"><img src="assets/img/works/passion-metal-aniane-mobile.webp" alt="Version mobile de la maquette Passion Métal 34" loading="lazy" width="480" height="1039"></span>
-            </a>
+            <div class="work__media work__media--devices">
+              <button type="button" class="device device--laptop" data-slug="passion-metal-aniane" data-title="Passion Métal 34" data-device="laptop" aria-label="Agrandir la version ordinateur — Passion Métal 34">
+                <img src="assets/img/works/passion-metal-aniane-desktop.webp" alt="Maquette Passion Métal 34 sur ordinateur" loading="lazy" width="1200" height="750">
+                <span class="device__zoom" aria-hidden="true"><span>+</span></span>
+              </button>
+              <button type="button" class="device device--phone" data-slug="passion-metal-aniane" data-title="Passion Métal 34" data-device="phone" aria-label="Agrandir la version mobile — Passion Métal 34">
+                <img src="assets/img/works/passion-metal-aniane-mobile.webp" alt="Version mobile de la maquette Passion Métal 34" loading="lazy" width="480" height="1039">
+                <span class="device__zoom" aria-hidden="true"><span>+</span></span>
+              </button>
+            </div>
             <div class="work__body">
               <h3>Passion Métal 34</h3>
               <p>Métallerie et ferronnerie à Aniane — maquette one-page axée sur les créations sur-mesure en métal.</p>
-              <a class="work__link" href="../passion-metal-aniane/">Voir la maquette</a>
+              <p class="work__hint">Cliquez sur un écran pour explorer la maquette</p>
             </div>
           </article>
 
           <article class="card work reveal">
-            <a class="work__media work__media--devices" href="../renov-facades34-montarnaud/" aria-label="Voir la maquette Renov' Façades 34">
-              <span class="device--laptop"><img src="assets/img/works/renov-facades34-montarnaud-desktop.webp" alt="Maquette Renov' Façades 34 sur ordinateur" loading="lazy" width="1200" height="750"></span>
-              <span class="device--phone"><img src="assets/img/works/renov-facades34-montarnaud-mobile.webp" alt="Version mobile de la maquette Renov' Façades 34" loading="lazy" width="480" height="1039"></span>
-            </a>
+            <div class="work__media work__media--devices">
+              <button type="button" class="device device--laptop" data-slug="renov-facades34-montarnaud" data-title="Renov' Façades 34" data-device="laptop" aria-label="Agrandir la version ordinateur — Renov' Façades 34">
+                <img src="assets/img/works/renov-facades34-montarnaud-desktop.webp" alt="Maquette Renov' Façades 34 sur ordinateur" loading="lazy" width="1200" height="750">
+                <span class="device__zoom" aria-hidden="true"><span>+</span></span>
+              </button>
+              <button type="button" class="device device--phone" data-slug="renov-facades34-montarnaud" data-title="Renov' Façades 34" data-device="phone" aria-label="Agrandir la version mobile — Renov' Façades 34">
+                <img src="assets/img/works/renov-facades34-montarnaud-mobile.webp" alt="Version mobile de la maquette Renov' Façades 34" loading="lazy" width="480" height="1039">
+                <span class="device__zoom" aria-hidden="true"><span>+</span></span>
+              </button>
+            </div>
             <div class="work__body">
               <h3>Renov' Façades 34</h3>
               <p>Ravalement et rénovation de façades à Montarnaud — maquette one-page orientée avant/après et demande de devis.</p>
-              <a class="work__link" href="../renov-facades34-montarnaud/">Voir la maquette</a>
+              <p class="work__hint">Cliquez sur un écran pour explorer la maquette</p>
             </div>
           </article>
 
           <article class="card work reveal">
-            <a class="work__media work__media--devices" href="../espace-respire/" aria-label="Voir la maquette Espace Respire">
-              <span class="device--laptop"><img src="assets/img/works/espace-respire-desktop.webp" alt="Maquette Espace Respire sur ordinateur" loading="lazy" width="1200" height="750"></span>
-              <span class="device--phone"><img src="assets/img/works/espace-respire-mobile.webp" alt="Version mobile de la maquette Espace Respire" loading="lazy" width="480" height="1039"></span>
-            </a>
+            <div class="work__media work__media--devices">
+              <button type="button" class="device device--laptop" data-slug="espace-respire" data-title="Espace Respire" data-device="laptop" aria-label="Agrandir la version ordinateur — Espace Respire">
+                <img src="assets/img/works/espace-respire-desktop.webp" alt="Maquette Espace Respire sur ordinateur" loading="lazy" width="1200" height="750">
+                <span class="device__zoom" aria-hidden="true"><span>+</span></span>
+              </button>
+              <button type="button" class="device device--phone" data-slug="espace-respire" data-title="Espace Respire" data-device="phone" aria-label="Agrandir la version mobile — Espace Respire">
+                <img src="assets/img/works/espace-respire-mobile.webp" alt="Version mobile de la maquette Espace Respire" loading="lazy" width="480" height="1039">
+                <span class="device__zoom" aria-hidden="true"><span>+</span></span>
+              </button>
+            </div>
             <div class="work__body">
               <h3>Espace Respire</h3>
               <p>Lieu dédié au bien-être, à la périnatalité et à la parentalité à Gignac — site multi-pages avec planning des activités et présentation de l'équipe.</p>
-              <a class="work__link" href="../espace-respire/">Voir la maquette</a>
+              <p class="work__hint">Cliquez sur un écran pour explorer la maquette</p>
             </div>
           </article>
 
           <article class="card work reveal">
-            <a class="work__media work__media--devices" href="../laetitia-cardinale/" aria-label="Voir la maquette Laëtitia Cardinale">
-              <span class="device--laptop"><img src="assets/img/works/laetitia-cardinale-desktop.webp" alt="Maquette Laëtitia Cardinale sur ordinateur" loading="lazy" width="1200" height="750"></span>
-              <span class="device--phone"><img src="assets/img/works/laetitia-cardinale-mobile.webp" alt="Version mobile de la maquette Laëtitia Cardinale" loading="lazy" width="480" height="1039"></span>
-            </a>
+            <div class="work__media work__media--devices">
+              <button type="button" class="device device--laptop" data-slug="laetitia-cardinale" data-title="Laëtitia Cardinale" data-device="laptop" aria-label="Agrandir la version ordinateur — Laëtitia Cardinale">
+                <img src="assets/img/works/laetitia-cardinale-desktop.webp" alt="Maquette Laëtitia Cardinale sur ordinateur" loading="lazy" width="1200" height="750">
+                <span class="device__zoom" aria-hidden="true"><span>+</span></span>
+              </button>
+              <button type="button" class="device device--phone" data-slug="laetitia-cardinale" data-title="Laëtitia Cardinale" data-device="phone" aria-label="Agrandir la version mobile — Laëtitia Cardinale">
+                <img src="assets/img/works/laetitia-cardinale-mobile.webp" alt="Version mobile de la maquette Laëtitia Cardinale" loading="lazy" width="480" height="1039">
+                <span class="device__zoom" aria-hidden="true"><span>+</span></span>
+              </button>
+            </div>
             <div class="work__body">
               <h3>Laëtitia Cardinale</h3>
               <p>Psychopraticienne à Gignac — site multi-pages sobre et chaleureux : parcours, pratique, ateliers et prise de rendez-vous.</p>
-              <a class="work__link" href="../laetitia-cardinale/">Voir la maquette</a>
+              <p class="work__hint">Cliquez sur un écran pour explorer la maquette</p>
             </div>
           </article>
 
           <article class="card work reveal">
-            <a class="work__media work__media--devices" href="../menuiserie-durand-le-pouget/" aria-label="Voir la maquette Menuiserie Durand">
-              <span class="device--laptop"><img src="assets/img/works/menuiserie-durand-le-pouget-desktop.webp" alt="Maquette Menuiserie Durand sur ordinateur" loading="lazy" width="1200" height="750"></span>
-              <span class="device--phone"><img src="assets/img/works/menuiserie-durand-le-pouget-mobile.webp" alt="Version mobile de la maquette Menuiserie Durand" loading="lazy" width="480" height="1039"></span>
-            </a>
+            <div class="work__media work__media--devices">
+              <button type="button" class="device device--laptop" data-slug="menuiserie-durand-le-pouget" data-title="Menuiserie Durand" data-device="laptop" aria-label="Agrandir la version ordinateur — Menuiserie Durand">
+                <img src="assets/img/works/menuiserie-durand-le-pouget-desktop.webp" alt="Maquette Menuiserie Durand sur ordinateur" loading="lazy" width="1200" height="750">
+                <span class="device__zoom" aria-hidden="true"><span>+</span></span>
+              </button>
+              <button type="button" class="device device--phone" data-slug="menuiserie-durand-le-pouget" data-title="Menuiserie Durand" data-device="phone" aria-label="Agrandir la version mobile — Menuiserie Durand">
+                <img src="assets/img/works/menuiserie-durand-le-pouget-mobile.webp" alt="Version mobile de la maquette Menuiserie Durand" loading="lazy" width="480" height="1039">
+                <span class="device__zoom" aria-hidden="true"><span>+</span></span>
+              </button>
+            </div>
             <div class="work__body">
               <h3>Menuiserie Durand</h3>
               <p>Atelier familial de menuiserie bois au Pouget — maquette one-page axée sur le savoir-faire local et le contact direct.</p>
-              <a class="work__link" href="../menuiserie-durand-le-pouget/">Voir la maquette</a>
+              <p class="work__hint">Cliquez sur un écran pour explorer la maquette</p>
             </div>
           </article>
 
@@ -389,11 +442,45 @@
   </main>
 
   <footer class="site-footer">
+    <div class="container footer-works">
+      <p class="footer-works__label">Les maquettes&nbsp;:</p>
+      <button type="button" class="footer-works__thumb" data-slug="sutra-charpente-clermont-lherault" data-title="Sutra Charpente" data-device="laptop" title="Sutra Charpente" aria-label="Agrandir la maquette Sutra Charpente"><span class="footer-works__shot" style="background-image: url('assets/img/works/sutra-charpente-clermont-lherault-desktop.webp');"></span></button>
+      <button type="button" class="footer-works__thumb" data-slug="passion-metal-aniane" data-title="Passion Métal 34" data-device="laptop" title="Passion Métal 34" aria-label="Agrandir la maquette Passion Métal 34"><span class="footer-works__shot" style="background-image: url('assets/img/works/passion-metal-aniane-desktop.webp');"></span></button>
+      <button type="button" class="footer-works__thumb" data-slug="renov-facades34-montarnaud" data-title="Renov' Façades 34" data-device="laptop" title="Renov' Façades 34" aria-label="Agrandir la maquette Renov' Façades 34"><span class="footer-works__shot" style="background-image: url('assets/img/works/renov-facades34-montarnaud-desktop.webp');"></span></button>
+      <button type="button" class="footer-works__thumb" data-slug="espace-respire" data-title="Espace Respire" data-device="laptop" title="Espace Respire" aria-label="Agrandir la maquette Espace Respire"><span class="footer-works__shot" style="background-image: url('assets/img/works/espace-respire-desktop.webp');"></span></button>
+      <button type="button" class="footer-works__thumb" data-slug="laetitia-cardinale" data-title="Laëtitia Cardinale" data-device="laptop" title="Laëtitia Cardinale" aria-label="Agrandir la maquette Laëtitia Cardinale"><span class="footer-works__shot" style="background-image: url('assets/img/works/laetitia-cardinale-desktop.webp');"></span></button>
+      <button type="button" class="footer-works__thumb" data-slug="menuiserie-durand-le-pouget" data-title="Menuiserie Durand" data-device="laptop" title="Menuiserie Durand" aria-label="Agrandir la maquette Menuiserie Durand"><span class="footer-works__shot" style="background-image: url('assets/img/works/menuiserie-durand-le-pouget-desktop.webp');"></span></button>
+    </div>
     <div class="container site-footer__inner">
       <p>© <span data-year>2026</span> <span data-brand>DumAlgo</span> — Sites web &amp; outils numériques sur-mesure, Hérault.</p>
       <a href="#haut">Retour en haut</a>
     </div>
   </footer>
+
+  <!-- Visionneuse de maquettes : écran agrandi (Mac ou iPhone) avec le vrai site en iframe -->
+  <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Aperçu de la maquette" hidden>
+    <button type="button" class="viewer__close" aria-label="Fermer l'aperçu">×</button>
+    <div class="viewer__stage vlaptop" hidden>
+      <div class="vlaptop__screen">
+        <div class="vlaptop__bar">
+          <span class="vlaptop__dots"><i></i><i></i><i></i></span>
+          <span class="vlaptop__url" data-viewer-url></span>
+        </div>
+        <div class="vlaptop__frame">
+          <div class="viewer__loader" hidden></div>
+          <iframe src="about:blank" title="Maquette — version ordinateur" data-viewer-frame="laptop"></iframe>
+        </div>
+      </div>
+      <div class="vlaptop__base"></div>
+    </div>
+    <div class="viewer__stage vphone" hidden>
+      <div class="vphone__frame">
+        <div class="viewer__loader" hidden></div>
+        <iframe src="about:blank" title="Maquette — version mobile" data-viewer-frame="phone"></iframe>
+      </div>
+    </div>
+    <p class="viewer__title"><span data-viewer-title></span><small data-viewer-hint></small></p>
+  </div>
 
   <script src="assets/js/splash.js"></script>
   <script src="assets/js/main.js"></script>
