@@ -1,3 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Monogramme DumAlgo — variante 4d, fond ivoire">
-<rect width="64" height="64" rx="14" fill="#FAF7F2"></rect><path d="M21 12.5 V45.5 Q21 50.5 26 50.5 H34 M21 23 Q21 28 26 28 H32" fill="none" stroke="#16584E" stroke-width="4.5" stroke-linecap="round"></path><rect x="16" y="7.5" width="10" height="10" rx="3" fill="#16584E"></rect><rect x="33.5" y="23.5" width="9" height="9" rx="2.8" fill="#16584E"></rect><rect x="35.75" y="44.25" width="12.5" height="12.5" rx="3.6" fill="#C9A227"></rect>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Monogramme DumAlgo — les strates, fond ivoire">
+<rect width="64" height="64" rx="14" fill="#FAF7F2"/>
+<g transform="translate(-3.7 -0.3) scale(0.68)"><path d="M28 14 H50 A17 17 0 0 1 67 31 V33 H28 Z" fill="#16584E"/><path d="M24 38 H71 V57 H24 Z" fill="#0E3F38"/><path d="M28 62 V81 H50 A17 17 0 0 0 67 64 V62 Z" fill="#16584E"/><rect x="71" y="38" width="10" height="19" fill="#C9A227"/></g>
 </svg>

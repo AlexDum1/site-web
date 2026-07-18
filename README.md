@@ -5,7 +5,7 @@ Dépôt du site vitrine **DumAlgo** (sites web & outils numériques sur-mesure, 
 ## Structure
 
 - `DumAlgo/` — le site vitrine (`index.html` + `assets/`). Les captures d'écran des maquettes (WebP) sont dans `DumAlgo/assets/img/`, le logo et ses déclinaisons dans `DumAlgo/assets/img/logo/`.
-- `branding/` — documents de travail identité : directions de logo (`propositions.html`), variantes retravaillées (`logo-final.html`), SVG, et `PROMPT.md` (prompt utilisé avec Claude Design). Le logo final retenu est la variante « D en graphe » avec nœud doré, intégré à l'en-tête et au favicon du site.
+- `DumAlgo/branding/` — documents de travail identité : directions de logo (`propositions.html`), variantes retravaillées (`logo-final.html`), refonte v2 (`claude-design/logos-v2/`), splash d'accueil (`splash/`) et `PROMPT.md` (prompt utilisé avec Claude Design). Le logo final retenu est la v2 « Les strates » (D tranché en trois bandes, strate médiane débordant en or) — celui du splash animé « L'impact » —, intégré à l'en-tête, au favicon et aux déclinaisons de `DumAlgo/assets/img/logo/`.
 - Un dossier par maquette prospect (slug = entreprise + commune) :
   `sutra-charpente-clermont-lherault/`, `passion-metal-aniane/`, `renov-facades34-montarnaud/`, `espace-respire/`, `laetitia-cardinale/`, `menuiserie-durand-le-pouget/`.
 

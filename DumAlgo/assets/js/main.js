@@ -10,7 +10,20 @@ const SITE = {
 };
 
 /* Injection de la config dans le DOM */
-document.querySelectorAll('[data-brand]').forEach((el) => { el.textContent = SITE.brand; });
+/* Wordmark bicolore comme dans le splash : « Dum » neutre, « Algo » doré */
+const brandParts = /^(Dum)(Algo)$/.exec(SITE.brand);
+document.querySelectorAll('[data-brand]').forEach((el) => {
+  el.textContent = '';
+  if (brandParts) {
+    el.append(brandParts[1]);
+    const accent = document.createElement('span');
+    accent.className = 'brand-accent';
+    accent.textContent = brandParts[2];
+    el.append(accent);
+  } else {
+    el.textContent = SITE.brand;
+  }
+});
 document.querySelectorAll('[data-phone]').forEach((el) => { el.textContent = SITE.phone; });
 document.querySelectorAll('[data-phone-link]').forEach((el) => { el.href = 'tel:' + SITE.phoneHref; });
 document.querySelectorAll('[data-email]').forEach((el) => { el.textContent = SITE.email; });
