@@ -4,7 +4,7 @@
 :root {
   /* Couleurs — contexte par défaut = fond sombre */
   --bg: #0b2f26;          /* vert-de-gris, fond dominant */
-  --bg-alt: #0e3f38;      /* panneaux, sections alternées */
+  --bg-alt: #14503f;      /* vert établi — panneaux, sections alternées */
   --panel: #14503f;       /* vert établi, survols sur fond sombre */
   --paper: #f7f3e8;       /* cartes, documents, devis */
   --chalk: #eaf6f0;       /* craie — texte/traits sur fond sombre */
@@ -89,6 +89,8 @@ h1, h2, h3, h4 {
   text-wrap: balance;
   color: var(--chalk);
 }
+/* Intertitres — graisse 500 (charte : titre 40/700, intertitre 26/500) */
+h3, h4 { font-weight: 500; }
 
 p { margin: 0 0 var(--space-2); }
 img { display: block; max-width: 100%; height: auto; }
@@ -270,7 +272,24 @@ a { color: var(--accent); }
    ========================================================================== */
 .hero {
   padding-block: var(--space-section);
+  position: relative;
+  overflow: hidden;
 }
+/* Hexagone filigrane (charte FIG. 05 — opacité ≤ 16 %) */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -8%;
+  transform: translateY(-50%);
+  width: min(52vw, 660px);
+  aspect-ratio: 1;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,6 88.1,28 88.1,72 50,94 11.9,72 11.9,28" fill="none" stroke="%23EAF6F0" stroke-width="1"/><line x1="50" y1="50" x2="50" y2="6" stroke="%23EAF6F0" stroke-width="0.5"/><line x1="50" y1="50" x2="88.1" y2="28" stroke="%23EAF6F0" stroke-width="0.5"/><line x1="50" y1="50" x2="88.1" y2="72" stroke="%23EAF6F0" stroke-width="0.5"/><line x1="50" y1="50" x2="50" y2="94" stroke="%23EAF6F0" stroke-width="0.5"/><line x1="50" y1="50" x2="11.9" y2="72" stroke="%23EAF6F0" stroke-width="0.5"/><line x1="50" y1="50" x2="11.9" y2="28" stroke="%23EAF6F0" stroke-width="0.5"/></svg>') center / contain no-repeat;
+}
+.hero > * { position: relative; z-index: 1; }
 .hero__inner { max-width: 50rem; }
 
 .hero__eyebrow,
@@ -343,7 +362,9 @@ a { color: var(--accent); }
    Sections
    ========================================================================== */
 .section { padding-block: var(--space-section); }
-.section--alt { background: var(--bg-alt); }
+/* Charte : fond unique #0B2F26 quadrillé, rythmé par des filets pointillés —
+   pas de bandes alternées. #14503F est réservé aux panneaux (teaser, badges). */
+.section--alt { background: transparent; }
 .section--slim { padding-block: calc(var(--space-section) * 0.6); }
 
 .section__head {
@@ -571,8 +592,8 @@ a { color: var(--accent); }
   aspect-ratio: 8 / 5;
   padding: 7% 6% 0;
   background:
-    radial-gradient(110% 85% at 15% 0%, rgba(20, 80, 63, 0.55), transparent 60%),
-    #0e3f38;
+    radial-gradient(110% 85% at 15% 0%, var(--panel), transparent 60%),
+    var(--bg);
 }
 .work__media--devices img {
   aspect-ratio: auto;
@@ -589,8 +610,8 @@ a { color: var(--accent); }
   width: 76%;
   margin-left: 4%;
   aspect-ratio: 16 / 10;
-  background: #071e18;
-  border: 4px solid #071e18;
+  background: var(--bg);
+  border: 4px solid var(--bg);
   border-radius: 0;
   box-shadow: 0 20px 32px -20px rgba(0, 0, 0, 0.7);
 }
@@ -602,7 +623,7 @@ a { color: var(--accent); }
   right: -7%;
   bottom: -10px;
   height: 10px;
-  background: linear-gradient(#16513f, #071e18);
+  background: linear-gradient(var(--panel), var(--bg));
   border-radius: 0;
 }
 
@@ -613,8 +634,8 @@ a { color: var(--accent); }
   bottom: 6%;
   width: 19%;
   aspect-ratio: 390 / 844;
-  background: #071e18;
-  border: 3px solid #071e18;
+  background: var(--bg);
+  border: 3px solid var(--bg);
   border-radius: 2px;
   overflow: hidden;
   box-shadow: 0 16px 28px -14px rgba(0, 0, 0, 0.75);
@@ -628,7 +649,7 @@ a { color: var(--accent); }
   transform: translateX(-50%);
   width: 36%;
   height: 5px;
-  background: #16513f;
+  background: var(--panel);
   border-radius: 999px;
   z-index: 1;
 }
@@ -682,7 +703,7 @@ a { color: var(--accent); }
   align-items: center;
   background:
     radial-gradient(36rem 22rem at 82% 10%, rgba(242, 201, 76, 0.16), transparent 60%),
-    #071e18;
+    var(--panel);
   color: var(--chalk);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -724,7 +745,7 @@ a { color: var(--accent); }
 .faq-item summary {
   font-family: var(--font-display);
   font-size: 1.15rem;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--chalk);
   cursor: pointer;
   list-style: none;
