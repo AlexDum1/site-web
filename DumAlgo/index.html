@@ -58,14 +58,14 @@
     </nav>
   </header>
 
-  <main>
+  <main data-cartes="panneau">
 
     <!-- ============ ACCUEIL ============ -->
     <section class="hero" id="accueil">
       <div class="container hero__inner">
         <div class="hero__copy">
-          <p class="hero__eyebrow reveal">Votre artisan du numérique · Hérault</p>
-          <h1 class="hero__title"><span class="hw" style="animation-delay: 0ms;">Sites</span> <span class="hw" style="animation-delay: 55ms;">web</span> <span class="hw" style="animation-delay: 110ms;">professionnels</span> <span class="hw" style="animation-delay: 165ms;">et</span> <span class="hw" style="animation-delay: 220ms;">outils</span> <span class="hw" style="animation-delay: 275ms;">numériques</span> <em class="hw" style="animation-delay: 330ms;">sur-mesure,</em> <span class="hw" style="animation-delay: 385ms;">pensés</span> <span class="hw" style="animation-delay: 440ms;">pour</span> <span class="hw" style="animation-delay: 495ms;">les</span> <span class="hw" style="animation-delay: 550ms;">indépendants</span> <span class="hw" style="animation-delay: 605ms;">et</span> <span class="hw" style="animation-delay: 660ms;">petites</span> <span class="hw" style="animation-delay: 715ms;">entreprises</span> <span class="hw" style="animation-delay: 770ms;">de</span> <span class="hw" style="animation-delay: 825ms;">l'Hérault.</span></h1>
+          <p class="hero__eyebrow reveal">Votre artisan du numérique · Basé dans l'Hérault</p>
+          <h1 class="hero__title"><span class="hw" style="animation-delay: 0ms;">Un</span> <span class="hw" style="animation-delay: 55ms;">site</span> <span class="hw" style="animation-delay: 110ms;">qui</span> <span class="hw" style="animation-delay: 165ms;">vous</span> <em class="hw" style="animation-delay: 220ms;">ressemble,</em> <span class="hw" style="animation-delay: 275ms;">des</span> <span class="hw" style="animation-delay: 330ms;">outils</span> <span class="hw" style="animation-delay: 385ms;">qui</span> <span class="hw" style="animation-delay: 440ms;">vous</span> <span class="hw" style="animation-delay: 495ms;">font</span> <span class="hw" style="animation-delay: 550ms;">gagner</span> <span class="hw" style="animation-delay: 605ms;">du</span> <em class="hw" style="animation-delay: 660ms;">temps.</em></h1>
           <p class="hero__text reveal">Fort de quinze ans d'expérience en gestion de projets techniques, j'apporte une approche méthodique à chaque réalisation&nbsp;: de la maquette de votre site à l'outil qui simplifie votre quotidien.</p>
           <div class="hero__doors reveal">
             <div class="card door">
@@ -106,7 +106,8 @@
             <h3 class="price-card__name">Essentiel</h3>
             <p class="price-card__price">489&nbsp;€</p>
             <p class="price-card__desc">Site vitrine simple, quelques pages, idéal pour une présence en ligne rapide et professionnelle.</p>
-            <a class="btn btn--ghost price-card__btn" href="#contact">Choisir Essentiel</a>
+            <button type="button" class="price-card__detail" data-detail="essentiel">Voir le détail</button>
+            <button type="button" class="btn btn--ghost price-card__btn" data-select="offre:essentiel">Choisir Essentiel</button>
           </article>
 
           <article class="card price-card price-card--featured reveal">
@@ -114,14 +115,16 @@
             <h3 class="price-card__name">Pro</h3>
             <p class="price-card__price">989&nbsp;€</p>
             <p class="price-card__desc">Site plus complet, davantage de pages, mise en avant renforcée (photos, présentation détaillée de l'activité, formulaire de contact avancé).</p>
-            <a class="btn btn--primary price-card__btn" href="#contact">Choisir Pro</a>
+            <button type="button" class="price-card__detail" data-detail="pro">Voir le détail</button>
+            <button type="button" class="btn btn--primary price-card__btn" data-select="offre:pro">Choisir Pro</button>
           </article>
 
           <article class="card price-card reveal">
             <h3 class="price-card__name">Sur-mesure</h3>
             <p class="price-card__price">Sur devis</p>
             <p class="price-card__desc">Pour les besoins spécifiques : fonctionnalités particulières, outil métier associé, accompagnement plus poussé.</p>
-            <a class="btn btn--ghost price-card__btn" href="#contact">Demander un devis</a>
+            <button type="button" class="price-card__detail" data-detail="surmesure">Voir le détail</button>
+            <button type="button" class="btn btn--ghost price-card__btn" data-select="offre:surmesure">Demander un devis</button>
           </article>
         </div>
 
@@ -146,7 +149,8 @@
                 <li>1 modification de contenu par mois</li>
                 <li>Support par email sous 5&nbsp;jours ouvrés</li>
               </ul>
-              <a class="btn btn--ghost price-card__btn" href="#contact">Choisir Essentiel</a>
+              <button type="button" class="price-card__detail" data-detail="mEssentiel">Voir le détail</button>
+              <button type="button" class="btn btn--ghost price-card__btn" data-select="plan:mEssentiel">Choisir Essentiel</button>
             </article>
 
             <article class="card price-card price-card--featured plan reveal">
@@ -161,7 +165,8 @@
                 <li>Support prioritaire sous 48&nbsp;h</li>
                 <li>Suivi analytics basique</li>
               </ul>
-              <a class="btn btn--primary price-card__btn" href="#contact">Choisir Confort</a>
+              <button type="button" class="price-card__detail" data-detail="mConfort">Voir le détail</button>
+              <button type="button" class="btn btn--primary price-card__btn" data-select="plan:mConfort">Choisir Confort</button>
             </article>
 
             <article class="card price-card plan reveal">
@@ -175,7 +180,8 @@
                 <li>Point d'appel mensuel</li>
                 <li>Petites évolutions incluses</li>
               </ul>
-              <a class="btn btn--ghost price-card__btn" href="#contact">Choisir Sérénité</a>
+              <button type="button" class="price-card__detail" data-detail="mSerenite">Voir le détail</button>
+              <button type="button" class="btn btn--ghost price-card__btn" data-select="plan:mSerenite">Choisir Sérénité</button>
             </article>
           </div>
 
@@ -237,7 +243,7 @@
           <h2 class="section__title">Exemples de sites vitrines</h2>
         </header>
 
-        <div class="works">
+        <div class="works" data-realisations="classique" data-taille="large">
           <article class="card work reveal">
             <div class="work__media work__media--devices">
               <button type="button" class="device device--laptop" data-slug="sutra-charpente-clermont-lherault" data-title="Sutra Charpente" data-device="laptop" aria-label="Agrandir la version ordinateur : Sutra Charpente">
@@ -346,26 +352,27 @@
             </div>
           </article>
 
-          <article class="card work reveal">
-            <div class="work__media work__media--soon">
-              <img src="assets/img/atpr.svg" alt="Aperçu du site de l'A.T.P.R. (en cours)" loading="lazy" width="640" height="400">
-            </div>
-            <div class="work__body">
-              <h3>A.T.P.R. <span class="tag">En cours</span></h3>
-              <p>Site en préparation pour une association : présentation à venir une fois le projet finalisé.</p>
-            </div>
-          </article>
         </div>
 
         <div class="teaser reveal">
           <div class="teaser__media">
-            <img src="assets/img/symbolea.svg" alt="Captures anonymisées de l'application Symbolea" loading="lazy" width="640" height="400">
+            <div class="work__media--devices teaser__devices">
+              <button type="button" class="device device--laptop" data-img="assets/img/symbolea/symbolea-desktop-patient.webp" data-title="Symbolea" data-url="symbolea.fr" data-device="laptop" aria-label="Agrandir : Symbolea sur ordinateur">
+                <img src="assets/img/symbolea/symbolea-desktop-patient.webp" alt="Fiche patient Symbolea : timeline des séances et radar dimensionnel" loading="lazy" width="1600" height="1000">
+                <span class="device__zoom" aria-hidden="true"><span>+</span></span>
+              </button>
+              <button type="button" class="device device--phone" data-img="assets/img/symbolea/symbolea-mobile-saisie.webp" data-title="Symbolea" data-url="symbolea.fr" data-device="phone" aria-label="Agrandir : Symbolea sur mobile">
+                <img src="assets/img/symbolea/symbolea-mobile-saisie.webp" alt="Dépôt de rêve en séance sur mobile" loading="lazy" width="390" height="844">
+                <span class="device__zoom" aria-hidden="true"><span>+</span></span>
+              </button>
+            </div>
           </div>
           <div class="teaser__body">
-            <p class="section__eyebrow">Outil métier</p>
-            <h3>Symbolea</h3>
-            <p><strong>La friction de départ&nbsp;:</strong> des notes de suivi éparpillées entre papier et fichiers, un historique difficile à reconstituer d'une séance à l'autre, et du temps perdu à chercher l'information au lieu de l'utiliser.</p>
-            <p><strong>Ce que l'outil a changé&nbsp;:</strong> une application web progressive (PWA) développée pour un usage clinique. Saisie structurée, suivi dans le temps, consultation hors-ligne. Tout le quotidien s'organise autour d'un seul outil, pensé pour ce métier et rien d'autre.</p>
+            <p class="section__eyebrow">Outil métier · en ligne</p>
+            <h3>Symbolea <span class="tag" style="color: var(--gold);">symbolea.fr</span></h3>
+            <p><strong>La friction de départ&nbsp;:</strong> des récits de rêves et des notes de séance éparpillés entre papier et fichiers, un suivi impossible à relire dans le temps, et du matériel clinique qui se perd d'une séance à l'autre.</p>
+            <p><strong>Ce que l'outil a changé&nbsp;:</strong> une application web (PWA) co-construite avec une psychothérapeute. Saisie structurée en séance, lecture longitudinale assistée par IA, données chiffrées et hébergées en France. Un outil pensé pour ce métier, et rien d'autre.</p>
+            <p style="margin-bottom: 0;"><a class="btn btn--primary" href="https://symbolea.fr" target="_blank" rel="noopener">Découvrir Symbolea</a></p>
           </div>
         </div>
       </div>
@@ -452,6 +459,14 @@
         </header>
 
         <div class="contact__grid">
+          <div>
+          <!-- Sélection d'offres (remplie par main.js quand une offre est choisie) -->
+          <aside class="card panier reveal" id="panier" aria-label="Votre sélection" hidden>
+            <p class="panier__title">Votre sélection</p>
+            <ul class="panier__lines" data-panier-lines></ul>
+            <p class="panier__total"><span>Estimation</span><span data-panier-total></span></p>
+            <p class="panier__note">Cette sélection sera jointe à votre message — rien n'est engageant, on affine ensemble.</p>
+          </aside>
           <!-- TODO : renseigner l'endpoint Formspree (SITE.formspree dans main.js) -->
           <form class="contact__form card reveal" id="contact-form" method="POST" action="#">
             <div class="field">
@@ -479,6 +494,7 @@
             <button class="btn btn--primary" type="submit">Envoyer</button>
             <p class="form-status" role="status" aria-live="polite"></p>
           </form>
+          </div>
 
           <aside class="contact__direct reveal">
             <p class="contact__label">Ou par téléphone, tout simplement&nbsp;:</p>
@@ -495,15 +511,6 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-works">
-      <p class="footer-works__label">Les maquettes&nbsp;:</p>
-      <button type="button" class="footer-works__thumb" data-slug="sutra-charpente-clermont-lherault" data-title="Sutra Charpente" data-device="laptop" title="Sutra Charpente" aria-label="Agrandir la maquette Sutra Charpente"><span class="footer-works__shot" style="background-image: url('assets/img/works/sutra-charpente-clermont-lherault-desktop.webp');"></span></button>
-      <button type="button" class="footer-works__thumb" data-slug="passion-metal-aniane" data-title="Passion Métal 34" data-device="laptop" title="Passion Métal 34" aria-label="Agrandir la maquette Passion Métal 34"><span class="footer-works__shot" style="background-image: url('assets/img/works/passion-metal-aniane-desktop.webp');"></span></button>
-      <button type="button" class="footer-works__thumb" data-slug="renov-facades34-montarnaud" data-title="Renov' Façades 34" data-device="laptop" title="Renov' Façades 34" aria-label="Agrandir la maquette Renov' Façades 34"><span class="footer-works__shot" style="background-image: url('assets/img/works/renov-facades34-montarnaud-desktop.webp');"></span></button>
-      <button type="button" class="footer-works__thumb" data-slug="espace-respire" data-title="Espace Respire" data-device="laptop" title="Espace Respire" aria-label="Agrandir la maquette Espace Respire"><span class="footer-works__shot" style="background-image: url('assets/img/works/espace-respire-desktop.webp');"></span></button>
-      <button type="button" class="footer-works__thumb" data-slug="laetitia-cardinale" data-title="Laëtitia Cardinale" data-device="laptop" title="Laëtitia Cardinale" aria-label="Agrandir la maquette Laëtitia Cardinale"><span class="footer-works__shot" style="background-image: url('assets/img/works/laetitia-cardinale-desktop.webp');"></span></button>
-      <button type="button" class="footer-works__thumb" data-slug="menuiserie-durand-le-pouget" data-title="Menuiserie Durand" data-device="laptop" title="Menuiserie Durand" aria-label="Agrandir la maquette Menuiserie Durand"><span class="footer-works__shot" style="background-image: url('assets/img/works/menuiserie-durand-le-pouget-desktop.webp');"></span></button>
-    </div>
     <div class="container site-footer__inner">
       <p>© <span data-year>2026</span> <span data-brand>DumAlgo</span> · Sites web &amp; outils numériques sur-mesure, Hérault.</p>
       <a href="#haut">Retour en haut</a>
@@ -522,6 +529,7 @@
         <div class="vlaptop__frame">
           <div class="viewer__loader" hidden></div>
           <iframe src="about:blank" title="Maquette : version ordinateur" data-viewer-frame="laptop"></iframe>
+          <img data-viewer-img="laptop" alt="Maquette : version ordinateur" hidden>
         </div>
       </div>
       <div class="vlaptop__base"></div>
@@ -530,9 +538,36 @@
       <div class="vphone__frame">
         <div class="viewer__loader" hidden></div>
         <iframe src="about:blank" title="Maquette : version mobile" data-viewer-frame="phone"></iframe>
+        <img data-viewer-img="phone" alt="Maquette : version mobile" hidden>
       </div>
     </div>
     <p class="viewer__title"><span data-viewer-title></span><small data-viewer-hint></small></p>
+  </div>
+
+  <!-- Fiche détail d'une offre (contenu injecté par main.js) -->
+  <div class="viewer" id="offer-viewer" role="dialog" aria-modal="true" aria-label="Détail de l'offre" hidden>
+    <div class="offer-modal">
+      <button type="button" class="viewer__close" aria-label="Fermer">×</button>
+      <p class="section__eyebrow offer-modal__eyebrow" data-offer-kicker></p>
+      <h3 data-offer-name></h3>
+      <p class="offer-modal__price" data-offer-price></p>
+      <p class="offer-modal__intro" data-offer-intro></p>
+      <div class="offer-modal__cols">
+        <div>
+          <p class="offer-modal__coltitle offer-modal__coltitle--in">Inclus</p>
+          <ul class="offer-modal__list offer-modal__list--in" data-offer-inclus></ul>
+        </div>
+        <div>
+          <p class="offer-modal__coltitle offer-modal__coltitle--out">Non inclus</p>
+          <ul class="offer-modal__list offer-modal__list--out" data-offer-exclus></ul>
+        </div>
+      </div>
+      <p class="offer-modal__note">Liste indicative — le périmètre exact est confirmé ensemble avant tout engagement.</p>
+      <div class="offer-modal__actions">
+        <a class="btn btn--primary" href="#contact" data-offer-choose></a>
+        <button type="button" class="btn btn--ghost offer-modal__close-ghost" data-offer-close>Fermer</button>
+      </div>
+    </div>
   </div>
 
   <script src="assets/js/splash.js"></script>
