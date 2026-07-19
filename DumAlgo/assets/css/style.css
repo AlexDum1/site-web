@@ -40,7 +40,11 @@
   --space-3: 1.75rem;
   --space-4: 2.75rem;
   --space-5: 4.5rem;
-  --space-section: clamp(4rem, 10vw, 7.5rem);
+  /* Rythme vertical unique : toutes les sections utilisent cette variable */
+  --section-gap: clamp(4rem, 10vw, 7.5rem);
+
+  /* Séparateur pointillé systématique entre sections (or à faible opacité) */
+  --separator: rgba(242, 201, 76, 0.25);
 
   /* Divers — angles vifs (plan d'atelier), pas d'arrondis */
   --radius: 0px;
@@ -271,7 +275,7 @@ a { color: var(--accent); }
    Héro
    ========================================================================== */
 .hero {
-  padding-block: var(--space-section);
+  padding-block: var(--section-gap);
 }
 .hero__inner { max-width: 50rem; }
 
@@ -358,11 +362,14 @@ a { color: var(--accent); }
 /* ==========================================================================
    Sections
    ========================================================================== */
-.section { padding-block: var(--space-section); }
-/* Charte : fond unique #0B2F26 quadrillé, rythmé par des filets pointillés —
+.section { padding-block: var(--section-gap); }
+/* Charte : fond unique #0B2F26 quadrillé, rythmé par des filets pointillés,
    pas de bandes alternées. #14503F est réservé aux panneaux (teaser, badges). */
 .section--alt { background: transparent; }
-.section--slim { padding-block: calc(var(--space-section) * 0.6); }
+.section--slim { padding-block: calc(var(--section-gap) * 0.6); }
+
+/* Séparateur pointillé systématique entre sections (retour graphiste) */
+main > .section { border-top: 1px dashed var(--separator); }
 
 .section__head {
   margin-bottom: var(--space-4);
@@ -471,6 +478,19 @@ a { color: var(--accent); }
 .points--defs { margin-bottom: 0; max-width: 52rem; }
 .points--defs li { font-size: var(--fs-small); }
 .points--defs strong { color: var(--ink); }
+
+/* Encadré Parrainage : bouche-à-oreille récompensé */
+.parrainage {
+  margin-top: var(--space-4);
+  padding: var(--space-3);
+  border-color: var(--gold-ink);
+  border-width: 1.5px;
+  max-width: 48rem;
+}
+.parrainage__title { font-size: var(--fs-h3); margin-bottom: var(--space-1); }
+.parrainage__text { color: var(--ink-soft); }
+.parrainage__points { flex: initial; margin-bottom: var(--space-2); }
+.parrainage__note { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 0; }
 
 /* Maintenance & suivi */
 .maintenance { margin-top: var(--space-5); }
@@ -927,6 +947,39 @@ a { color: var(--accent); }
 }
 .site-footer p { margin: 0; }
 .site-footer a { color: var(--gold); }
+
+/* ==========================================================================
+   Bouton flottant « retour en haut »
+   ========================================================================== */
+.back-to-top {
+  position: fixed;
+  right: 1.1rem;
+  bottom: 1.1rem;
+  z-index: 40;
+  width: 48px;             /* zone tactile >= 44 px */
+  height: 48px;
+  display: grid;
+  place-items: center;
+  background: var(--panel); /* vert profond */
+  color: var(--gold);       /* flèche or */
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity var(--transition), visibility var(--transition), transform var(--transition);
+}
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+/* Pendant le scroll actif : présent mais estompé, pleine opacité à l'arrêt */
+.back-to-top.is-visible.is-scrolling { opacity: 0.3; }
+.back-to-top:hover,
+.back-to-top:focus-visible { opacity: 1; color: var(--gold-hot); }
 
 /* ==========================================================================
    Animations de révélation au scroll

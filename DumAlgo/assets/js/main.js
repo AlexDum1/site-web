@@ -38,6 +38,27 @@ const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 8
 onScroll();
 window.addEventListener('scroll', onScroll, { passive: true });
 
+/* Bouton flottant « retour en haut » : apparaît après environ un écran de
+   scroll, s'estompe pendant le scroll actif, pleine opacité à l'arrêt. */
+const backToTop = document.querySelector('.back-to-top');
+if (backToTop) {
+  let idleTimer = 0;
+  const syncBackToTop = () => {
+    backToTop.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.9);
+  };
+  syncBackToTop();
+  window.addEventListener('scroll', () => {
+    syncBackToTop();
+    backToTop.classList.add('is-scrolling');
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(() => backToTop.classList.remove('is-scrolling'), 160);
+  }, { passive: true });
+  backToTop.addEventListener('click', () => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  });
+}
+
 const toggle = document.querySelector('.nav__toggle');
 const menu = document.getElementById('nav-menu');
 toggle.addEventListener('click', () => {
