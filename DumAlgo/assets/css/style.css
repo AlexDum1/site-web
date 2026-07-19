@@ -479,6 +479,16 @@ main > .section { border-top: 1px dashed var(--separator); }
 .points--defs li { font-size: var(--fs-small); }
 .points--defs strong { color: var(--ink); }
 
+/* Forfait Visibilité : complément référencement, visuellement distinct
+   des trois niveaux de maintenance (carte large, cadre pointillé or) */
+.visibilite { margin-top: var(--space-4); }
+.visibilite__card {
+  max-width: 48rem;
+  border: 1.5px dashed var(--gold-ink);
+}
+.visibilite__text { color: var(--ink-soft); }
+.visibilite__note { max-width: 48rem; }
+
 /* Encadré Parrainage : bouche-à-oreille récompensé */
 .parrainage {
   margin-top: var(--space-4);

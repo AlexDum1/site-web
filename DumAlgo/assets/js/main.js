@@ -324,7 +324,7 @@ const OFFERS = {
       'Mise en forme de vos textes (à partir des éléments que vous fournissez)',
       'Intégration et optimisation de vos photos (recadrage, compression, chargement rapide)',
       'Formulaire de contact + numéro cliquable depuis mobile',
-      'Référencement de base : titres, descriptions, structure des pages, vitesse, sitemap',
+      'Référencement de base inclus : votre site propre et lisible par Google dès la mise en ligne',
       'Mise en ligne complète, nom de domaine enregistré à votre nom',
       'Maquette gratuite avant engagement + 2 séries d’ajustements après validation',
     ],
@@ -344,7 +344,7 @@ const OFFERS = {
       'Formulaire avancé type demande de devis (champs adaptés à votre métier)',
       'Mise en avant des avis clients',
       'Création ou optimisation de votre fiche Google Business (la carte + les avis dans Google)',
-      'Référencement local renforcé (données structurées entreprise locale, cohérence nom/adresse/téléphone)',
+      'Référencement local renforcé : fiche Google Business optimisée, cohérence sur les annuaires, données structurées',
       'Statistiques de visite simples et respectueuses du RGPD (sans bandeau cookies intrusif)',
       '3 séries d’ajustements après validation de la maquette',
     ],
@@ -418,6 +418,21 @@ const OFFERS = {
       'Rédaction de contenus neufs',
       'Développement d’un nouvel outil métier',
     ] },
+  visibilite: { kicker: 'Référencement', name: 'Visibilité', price: '59 €/mois (annuel) ou 69 €/mois (mensuel)', cta: 'Choisir Visibilité', sel: 'seo:visibilite',
+    intro: 'Un travail de référencement régulier pour progresser sur Google. Réservé aux clients disposant d’un forfait maintenance actif : le site doit être entretenu pour progresser.',
+    inclus: [
+      'Chaque mois :',
+      'Suivi de vos positions sur Google pour les recherches qui comptent dans votre zone (jusqu’à 10 recherches définies ensemble, ex : « charpentier Clermont-l’Hérault »)',
+      'Entretien de votre fiche Google Business : 1 publication par mois, ajout de photos, aide à la réponse aux avis',
+      '1 contenu optimisé par mois sur votre site (page locale ou actualité métier, rédigée et mise en ligne)',
+      'Corrections techniques de référencement en continu (vitesse, structure, liens cassés)',
+      'Rapport écrit trimestriel, en langage clair : vos positions, vos visites, les appels et itinéraires depuis votre fiche Google',
+    ],
+    exclus: [
+      'La publicité payante (Google Ads) : possible sur devis séparé, jamais obligatoire',
+      'L’achat de liens ou les techniques risquées qui peuvent faire pénaliser un site',
+      'Une position garantie : personne ne peut promettre la première place sur Google, et quiconque le promet vous ment. Je m’engage sur le travail et la transparence des résultats, pas sur un rang.',
+    ] },
 };
 
 const offerViewer = document.getElementById('offer-viewer');
@@ -474,8 +489,9 @@ const PANIER_LABELS = {
   'plan:mEssentiel': { label: 'Maintenance Essentiel', prices: { annuel: 19, mensuel: 25 } },
   'plan:mConfort': { label: 'Maintenance Confort', prices: { annuel: 39, mensuel: 49 } },
   'plan:mSerenite': { label: 'Maintenance Sérénité', prices: { annuel: 79, mensuel: 99 } },
+  'seo:visibilite': { label: 'Référencement Visibilité', prices: { annuel: 59, mensuel: 69 } },
 };
-const selection = { offre: null, plan: null };
+const selection = { offre: null, plan: null, seo: null };
 const panierEl = document.getElementById('panier');
 
 const currentBilling = () => {
@@ -496,14 +512,14 @@ function panierEntry(key) {
 }
 
 function panierSummary() {
-  return ['offre', 'plan']
+  return ['offre', 'plan', 'seo']
     .filter((t) => selection[t])
     .map((t) => { const e = panierEntry(t + ':' + selection[t]); return e.label + ' : ' + e.price; })
     .join(' + ');
 }
 
 function renderPanier() {
-  const keys = ['offre', 'plan'].filter((t) => selection[t]).map((t) => t + ':' + selection[t]);
+  const keys = ['offre', 'plan', 'seo'].filter((t) => selection[t]).map((t) => t + ':' + selection[t]);
   panierEl.hidden = keys.length === 0;
   const lines = panierEl.querySelector('[data-panier-lines]');
   lines.textContent = '';
