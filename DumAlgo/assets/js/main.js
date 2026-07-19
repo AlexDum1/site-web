@@ -3,9 +3,9 @@
    ========================================================================== */
 const SITE = {
   brand: 'DumAlgo',            // Nom de marque validé
-  phone: '06 XX XX XX XX',        // TODO : numéro de téléphone réel
-  phoneHref: '+33600000000',      // TODO : numéro au format international
-  email: 'contact@exemple.fr',    // TODO : adresse email pro
+  phone: '04 XX XX XX XX',        // TODO : numéro VoIP 04 dès qu'il est actif
+  phoneHref: '+33400000000',      // TODO : numéro VoIP au format international
+  email: 'contact@dumalgo.fr',    // Alias vers alexis.dumas@dumalgo.fr (côté OVH)
   formspree: '',                  // TODO : endpoint Formspree, ex. 'https://formspree.io/f/xxxxxxx'
 };
 
@@ -294,30 +294,109 @@ if (viewer) {
    v2 — Fiche détail des offres (design « DumAlgo Accueil v2 »)
    ========================================================================== */
 const OFFERS = {
-  essentiel: { kicker: 'Site vitrine', name: 'Essentiel', price: '489 €', cta: 'Choisir Essentiel', sel: 'offre:essentiel',
+  essentiel: { kicker: 'Site vitrine', name: 'Essentiel', price: '489 €', cta: 'Choisir Essentiel', sel: 'offre:essentiel',
     intro: 'Une présence en ligne rapide, propre et professionnelle. L’essentiel, bien fait.',
-    inclus: ['Site one-page ou 2-3 pages', 'Maquette gratuite avant engagement', 'Design responsive (mobile, tablette, ordinateur)', 'Formulaire de contact simple', 'Référencement naturel de base (titres, descriptions, vitesse)', 'Nom de domaine enregistré à votre nom', 'Mise en ligne et vérifications finales'],
-    exclus: ['Pages supplémentaires ou galerie photo avancée', 'Rédaction complète des textes (aide à la relecture incluse)', 'Réservation ou paiement en ligne', 'Maintenance après livraison (forfaits séparés)', 'Campagnes publicitaires / SEO avancé'] },
-  pro: { kicker: 'Site vitrine', name: 'Pro', price: '989 €', cta: 'Choisir Pro', sel: 'offre:pro',
+    inclus: [
+      'Site one-page professionnel (ou jusqu’à 3 sections principales : activité, réalisations, contact)',
+      'Design personnalisé aux couleurs de votre activité, pas de template générique',
+      'Adapté mobile, tablette et ordinateur',
+      'Mise en forme de vos textes (à partir des éléments que vous fournissez)',
+      'Intégration et optimisation de vos photos (recadrage, compression, chargement rapide)',
+      'Formulaire de contact + numéro cliquable depuis mobile',
+      'Référencement de base : titres, descriptions, structure des pages, vitesse, sitemap',
+      'Mise en ligne complète, nom de domaine enregistré à votre nom',
+      'Maquette gratuite avant engagement + 2 séries d’ajustements après validation',
+    ],
+    exclus: [
+      'Rédaction complète des textes à partir de zéro (option)',
+      'Création de logo (option)',
+      'Photos professionnelles (option : mise en relation avec un photographe local)',
+      'Pages supplémentaires, blog, réservation en ligne, paiement en ligne',
+      'Maintenance après livraison (forfaits séparés)',
+    ] },
+  pro: { kicker: 'Site vitrine', name: 'Pro', price: '989 €', cta: 'Choisir Pro', sel: 'offre:pro',
     intro: 'Un site complet qui met vraiment votre activité en valeur, pensé pour convertir.',
-    inclus: ['Tout le contenu de la formule Essentiel', 'Jusqu’à 6-8 pages (activité détaillée, réalisations, équipe…)', 'Galerie photos / avant-après', 'Formulaire de contact avancé (choix du besoin, pièces jointes)', 'Accompagnement à la structuration des contenus', 'Optimisation locale (fiche Google, zones d’intervention)'],
-    exclus: ['Réservation ou paiement en ligne', 'Espace client / contenu à mise à jour autonome', 'Rédaction complète des textes', 'Maintenance après livraison (forfaits séparés)'] },
+    inclus: [
+      'Tout l’Essentiel, plus :',
+      'Site multi-pages (jusqu’à 5 à 6 pages : accueil, prestations détaillées, réalisations, à propos, contact...)',
+      'Galerie ou portfolio de réalisations (avant/après, chantiers, créations)',
+      'Formulaire avancé type demande de devis (champs adaptés à votre métier)',
+      'Mise en avant des avis clients',
+      'Création ou optimisation de votre fiche Google Business (la carte + les avis dans Google)',
+      'Référencement local renforcé (données structurées entreprise locale, cohérence nom/adresse/téléphone)',
+      'Statistiques de visite simples et respectueuses du RGPD (sans bandeau cookies intrusif)',
+      '3 séries d’ajustements après validation de la maquette',
+    ],
+    exclus: [
+      'Rédaction complète des textes à partir de zéro (option)',
+      'Logo, photos professionnelles (options)',
+      'E-commerce, espace client, réservation avec paiement',
+      'Maintenance après livraison (forfaits séparés)',
+    ] },
   surmesure: { kicker: 'Site vitrine', name: 'Sur-mesure', price: 'Sur devis', cta: 'Demander un devis', sel: 'offre:surmesure',
-    intro: 'Pour les besoins qui sortent du cadre : on définit ensemble le périmètre exact, puis je m’engage sur un devis précis.',
-    inclus: ['Analyse du besoin et cahier des charges ensemble', 'Fonctionnalités spécifiques (réservation, espace membre, catalogue…)', 'Outil métier associé si pertinent', 'Accompagnement renforcé tout au long du projet', 'Devis ferme avant démarrage : pas de surprise'],
-    exclus: ['Rien n’est exclu par principe : tout se définit au devis', 'Ce qui ne se justifie pas : je vous le dis honnêtement'] },
-  mEssentiel: { kicker: 'Maintenance & suivi', name: 'Maintenance Essentiel', price: 'dès 19 €/mois', cta: 'Choisir Essentiel', sel: 'plan:mEssentiel',
+    intro: 'Périmètre défini ensemble, à partir de votre besoin réel. Quelques exemples de ce qui devient possible :',
+    inclus: [
+      'Site + outil métier associé (suivi de chantiers, devis, planning, relances)',
+      'Réservation en ligne, prise de rendez-vous',
+      'Paiement en ligne',
+      'Espace client ou espace membre',
+      'Reprise/refonte d’un site existant avec migration du domaine',
+      'Toute fonctionnalité spécifique issue du diagnostic process',
+    ],
+    exclus: [
+      'Toujours inclus dans un projet sur-mesure :',
+      'Cadrage écrit du besoin avant devis (issu du diagnostic si réalisé)',
+      'Devis ferme avec délai engagé',
+      'Livraison testée et documentée, propriété complète du client',
+    ] },
+  mEssentiel: { kicker: 'Maintenance & suivi', name: 'Maintenance Essentiel', price: '19 €/mois (annuel) ou 25 €/mois (mensuel)', cta: 'Choisir Essentiel', sel: 'plan:mEssentiel',
     intro: 'Le minimum vital pour un site en bonne santé, sans vous en occuper.',
-    inclus: ['Hébergement du site', 'Sauvegardes mensuelles', '1 modification de contenu par mois (texte, photo, horaire)', 'Support par email sous 5 jours ouvrés', 'Surveillance de la disponibilité du site'],
-    exclus: ['Mises à jour techniques régulières', 'Modifications supplémentaires (facturées à l’acte)', 'Suivi analytics', 'Évolutions fonctionnelles'] },
-  mConfort: { kicker: 'Maintenance & suivi', name: 'Maintenance Confort', price: 'dès 39 €/mois', cta: 'Choisir Confort', sel: 'plan:mConfort',
+    inclus: [
+      'Hébergement du site inclus',
+      'Renouvellement et surveillance du certificat de sécurité (https)',
+      'Surveillance de disponibilité : alerte si le site tombe',
+      'Sauvegardes mensuelles',
+      '1 modification de contenu par mois (non cumulable)',
+      'Correction des dysfonctionnements techniques du site livré (hors modifications faites par vos soins)',
+      'Support par email sous 5 jours ouvrés',
+    ],
+    exclus: [
+      'Mises à jour techniques régulières',
+      'Modifications de contenu supplémentaires',
+      'Petites évolutions (section, formulaire, galerie)',
+      'Nouvelle page complète, refonte graphique, nouvelle fonctionnalité (devis séparé)',
+    ] },
+  mConfort: { kicker: 'Maintenance & suivi', name: 'Maintenance Confort', price: '39 €/mois (annuel) ou 49 €/mois (mensuel)', cta: 'Choisir Confort', sel: 'plan:mConfort',
     intro: 'Le bon équilibre : votre site reste à jour, vous gardez la main sans y penser.',
-    inclus: ['Hébergement et sauvegardes hebdomadaires', 'Mises à jour techniques régulières', '3 modifications de contenu par mois', 'Support prioritaire sous 48 h', 'Suivi analytics basique (visites, pages vues)'],
-    exclus: ['Modifications illimitées', 'Point d’appel mensuel', 'Petites évolutions fonctionnelles', 'Restauration prioritaire en cas d’incident majeur'] },
-  mSerenite: { kicker: 'Maintenance & suivi', name: 'Maintenance Sérénité', price: 'dès 79 €/mois', cta: 'Choisir Sérénité', sel: 'plan:mSerenite',
+    inclus: [
+      'Tout l’Essentiel, plus :',
+      'Sauvegardes hebdomadaires',
+      'Mises à jour techniques régulières',
+      '3 modifications de contenu par mois (non cumulables)',
+      'Support prioritaire sous 48 h',
+      'Suivi de fréquentation basique + point écrit trimestriel (visites, pages vues, provenance)',
+    ],
+    exclus: [
+      'Modifications de contenu illimitées',
+      'Petites évolutions (section, formulaire, galerie)',
+      'Nouvelle page complète, refonte graphique, nouvelle fonctionnalité (devis séparé)',
+    ] },
+  mSerenite: { kicker: 'Maintenance & suivi', name: 'Maintenance Sérénité', price: '79 €/mois (annuel) ou 99 €/mois (mensuel)', cta: 'Choisir Sérénité', sel: 'plan:mSerenite',
     intro: 'Vous ne touchez à rien : je gère votre site comme si c’était le mien.',
-    inclus: ['Hébergement et sauvegardes quotidiennes', 'Mises à jour techniques régulières', 'Modifications illimitées (usage raisonnable)', 'Restauration prioritaire en cas d’incident', 'Point d’appel mensuel', 'Petites évolutions incluses'],
-    exclus: ['Refonte complète du site', 'Développement d’un nouvel outil métier', 'Campagnes publicitaires / SEO avancé'] },
+    inclus: [
+      'Tout le Confort, plus :',
+      'Modifications de contenu illimitées (usage raisonnable)',
+      'Sauvegardes quotidiennes',
+      'Restauration prioritaire en cas de problème (site remis en ligne en priorité absolue)',
+      '1 petite évolution incluse par trimestre (jusqu’à 2 h de travail)',
+      'Point d’appel mensuel : on fait le tour du site, des stats et des besoins',
+      'Recommandations d’amélioration continue (contenus, référencement, conversion)',
+    ],
+    exclus: [
+      'Nouvelle page complète, refonte graphique, nouvelle fonctionnalité (devis séparé)',
+      'Rédaction de contenus neufs',
+      'Développement d’un nouvel outil métier',
+    ] },
 };
 
 const offerViewer = document.getElementById('offer-viewer');
@@ -398,7 +477,7 @@ function panierEntry(key) {
 function panierSummary() {
   return ['offre', 'plan']
     .filter((t) => selection[t])
-    .map((t) => { const e = panierEntry(t + ':' + selection[t]); return e.label + ' — ' + e.price; })
+    .map((t) => { const e = panierEntry(t + ':' + selection[t]); return e.label + ' : ' + e.price; })
     .join(' + ');
 }
 

@@ -460,6 +460,17 @@ a { color: var(--accent); }
   font-family: var(--font-mono);
   letter-spacing: 0.02em;
 }
+.pricing__note + .pricing__note { margin-top: var(--space-2); }
+
+/* Définitions des forfaits maintenance */
+.maintenance__defs { margin-top: var(--space-4); }
+.maintenance__defs-title {
+  font-size: 1.05rem;
+  margin-bottom: var(--space-2);
+}
+.points--defs { margin-bottom: 0; max-width: 52rem; }
+.points--defs li { font-size: var(--fs-small); }
+.points--defs strong { color: var(--ink); }
 
 /* Maintenance & suivi */
 .maintenance { margin-top: var(--space-5); }

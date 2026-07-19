@@ -11,7 +11,7 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:url" content="https://dumalgo.fr/">
-  <meta property="og:image" content="https://dumalgo.fr/assets/img/og-dumalgo.jpg">
+  <meta property="og:image" content="https://dumalgo.fr/assets/img/og-dumalgo-v2.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="DumAlgo : sites web et outils numériques">
@@ -97,7 +97,7 @@
         <ul class="points reveal">
           <li>Un site vitrine professionnel, responsive, pensé pour convertir vos visiteurs en clients</li>
           <li>Maquette gratuite avant engagement&nbsp;: vous voyez le résultat avant de décider</li>
-          <li>Délai type, mise en ligne rapide</li>
+          <li>Délai type : 2 à 3 semaines, mise en ligne rapide</li>
         </ul>
 
         <div class="pricing">
@@ -185,7 +185,17 @@
             </article>
           </div>
 
-          <p class="pricing__note reveal">Forfaits indépendants des formules Essentiel, Pro et Sur-mesure : souscription séparée, une fois votre site livré. L'abonnement annuel est facturé mensuellement et engage sur 12&nbsp;mois&nbsp;; l'abonnement mensuel est résiliable à tout moment.</p>
+          <div class="maintenance__defs reveal">
+            <h4 class="maintenance__defs-title">Pour parler le même langage</h4>
+            <ul class="points points--defs">
+              <li><strong>Modification de contenu&nbsp;:</strong> changement de texte, photo, horaire ou tarif sur une page existante. Une modification = une demande d'environ 30 minutes maximum.</li>
+              <li><strong>Petite évolution&nbsp;:</strong> ajout d'une section, d'un formulaire ou d'une galerie sur une page existante (jusqu'à 2&nbsp;h de travail).</li>
+              <li><strong>Hors forfait (devis séparé)&nbsp;:</strong> nouvelle page complète, refonte graphique, nouvelle fonctionnalité (réservation, paiement...), rédaction de contenus neufs.</li>
+            </ul>
+          </div>
+
+          <p class="pricing__note reveal">Forfaits indépendants des formules Essentiel, Pro et Sur-mesure : souscription séparée, une fois votre site livré. L'abonnement annuel est facturé mensuellement et engage sur 12&nbsp;mois (mensualités restantes dues en cas d'arrêt anticipé)&nbsp;; l'abonnement mensuel est résiliable à tout moment. Les modifications non utilisées un mois donné ne se reportent pas au mois suivant.</p>
+          <p class="pricing__note reveal">Sans forfait de maintenance, le site reste votre propriété : l'hébergement et le nom de domaine sont alors à votre charge directe (je fournis les accès et une documentation simple à la livraison). Le nom de domaine reste enregistré à votre nom dans tous les cas, forfait ou pas.</p>
         </div>
 
       </div>
@@ -465,7 +475,7 @@
             <p class="panier__title">Votre sélection</p>
             <ul class="panier__lines" data-panier-lines></ul>
             <p class="panier__total"><span>Estimation</span><span data-panier-total></span></p>
-            <p class="panier__note">Cette sélection sera jointe à votre message — rien n'est engageant, on affine ensemble.</p>
+            <p class="panier__note">Cette sélection sera jointe à votre message. Rien n'est engageant, on affine ensemble.</p>
           </aside>
           <!-- TODO : renseigner l'endpoint Formspree (SITE.formspree dans main.js) -->
           <form class="contact__form card reveal" id="contact-form" method="POST" action="#">
@@ -498,10 +508,9 @@
 
           <aside class="contact__direct reveal">
             <p class="contact__label">Ou par téléphone, tout simplement&nbsp;:</p>
-            <!-- TODO : renseigner le vrai numéro (SITE.phone dans main.js) -->
-            <a class="contact__phone" href="tel:+33600000000" data-phone-link><span data-phone>06&nbsp;XX&nbsp;XX&nbsp;XX&nbsp;XX</span></a>
-            <!-- TODO : renseigner l'adresse email pro (SITE.email dans main.js) -->
-            <a class="contact__email" href="mailto:contact@exemple.fr" data-email-link><span data-email>contact@exemple.fr</span></a>
+            <!-- TODO : remplacer par le numéro VoIP 04 dès qu'il est actif (SITE.phone dans main.js) -->
+            <a class="contact__phone" href="tel:+33400000000" data-phone-link><span data-phone>04&nbsp;XX&nbsp;XX&nbsp;XX&nbsp;XX</span></a>
+            <a class="contact__email" href="mailto:contact@dumalgo.fr" data-email-link><span data-email>contact@dumalgo.fr</span></a>
             <p class="contact__zone">Basé dans l'Hérault (34) : déplacements possibles autour de Montpellier et de la vallée de l'Hérault.</p>
           </aside>
         </div>
@@ -528,7 +537,7 @@
         </div>
         <div class="vlaptop__frame">
           <div class="viewer__loader" hidden></div>
-          <iframe src="about:blank" title="Maquette : version ordinateur" data-viewer-frame="laptop"></iframe>
+          <iframe title="Maquette : version ordinateur" data-viewer-frame="laptop"></iframe>
           <img data-viewer-img="laptop" alt="Maquette : version ordinateur" hidden>
         </div>
       </div>
@@ -537,7 +546,7 @@
     <div class="viewer__stage vphone" hidden>
       <div class="vphone__frame">
         <div class="viewer__loader" hidden></div>
-        <iframe src="about:blank" title="Maquette : version mobile" data-viewer-frame="phone"></iframe>
+        <iframe title="Maquette : version mobile" data-viewer-frame="phone"></iframe>
         <img data-viewer-img="phone" alt="Maquette : version mobile" hidden>
       </div>
     </div>
@@ -563,7 +572,7 @@
           <ul class="offer-modal__list offer-modal__list--out" data-offer-exclus></ul>
         </div>
       </div>
-      <p class="offer-modal__note">Liste indicative — le périmètre exact est confirmé ensemble avant tout engagement.</p>
+      <p class="offer-modal__note">Liste indicative : le périmètre exact est confirmé ensemble avant tout engagement.</p>
       <div class="offer-modal__actions">
         <a class="btn btn--primary" href="#contact" data-offer-choose></a>
         <button type="button" class="btn btn--ghost offer-modal__close-ghost" data-offer-close>Fermer</button>
