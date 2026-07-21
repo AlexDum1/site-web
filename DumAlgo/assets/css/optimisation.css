@@ -301,6 +301,12 @@
 .card.wizard,
 .card.restitution__bloc,
 .restitution__chiffre {
+  /* .restitution__chiffre n'est pas une .card : il faut lui redonner les
+     encres document du scope .card (style.css), sinon texte craie sur papier. */
+  --ink: #0b2f26;
+  --ink-soft: #4a5a50;
+  --accent-soft: rgba(20, 80, 63, 0.12);
+  color: var(--ink);
   background-color: var(--paper);
   background-image: linear-gradient(rgba(20, 80, 63, 0.08) 1px, transparent 1px),
                     linear-gradient(90deg, rgba(20, 80, 63, 0.08) 1px, transparent 1px);

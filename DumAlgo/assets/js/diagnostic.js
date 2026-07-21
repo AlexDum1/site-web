@@ -180,17 +180,17 @@
   const GISEMENT_BLOCKS = {
     ressaisie: {
       num: '①', title: 'Ressaisie — La même information, saisie trois fois',
-      text: 'Chez vous, une information fait le tour des bureaux en se refaisant taper à chaque étape : le devis dans un fichier, le suivi dans un autre, la facturation dans un troisième. Chaque ressaisie coûte du temps — et introduit une occasion d’erreur qui se paie plus tard (mauvais tarif, mauvaise adresse, relance oubliée). C’est le gisement le plus fréquent en PME, et souvent le plus rentable à traiter : une donnée saisie une fois, qui circule toute seule.',
+      text: 'Chez vous, une information fait le tour des bureaux en se refaisant taper à chaque étape : le devis dans un fichier, le suivi dans un autre, la facturation dans un troisième. Chaque ressaisie coûte du temps, et glisse une occasion d’erreur qui se paie plus tard : mauvais tarif, mauvaise adresse, relance oubliée. C’est le gisement le plus fréquent en PME, et souvent le plus rentable à traiter : une donnée saisie une fois, qui circule toute seule.',
       link: 'Voir l’exemple « La ressaisie inter-services » plus haut.',
     },
     terrain: {
       num: '②', title: 'Terrain↔bureau — Le bureau court après l’info du terrain',
-      text: 'Vos équipes terrain savent ce qui a été fait ; votre bureau l’apprend trop tard, par papier, SMS ou mémoire. Résultat : facturation qui attend, litiges sans preuve, et des allers-retours téléphoniques qui usent tout le monde. J’ai passé quinze ans dans des services techniques : ce fossé-là, je l’ai vécu des deux côtés — et c’est un des mieux outillables : une saisie sur place, dans le téléphone, rattachée à l’intervention.',
+      text: 'Vos équipes terrain savent ce qui a été fait ; votre bureau l’apprend trop tard, par papier, SMS ou mémoire. Résultat : facturation qui attend, litiges sans preuve, et des allers-retours téléphoniques qui usent tout le monde. J’ai passé quinze ans dans des services techniques : ce fossé-là, je l’ai vécu des deux côtés. C’est aussi l’un des plus simples à outiller : une saisie sur place, dans le téléphone, rattachée à l’intervention.',
       link: 'Voir l’exemple « Bons d’intervention & planning » plus haut.',
     },
     planning: {
       num: '③', title: 'Planning — Un planning que personne ne voit vraiment',
-      text: 'Votre planning existe, mais il vit à un seul endroit — un mur, un Excel, une tête. Chaque changement déclenche sa cascade d’appels, et chaque absence de l’info son lot de doublons et d’oublis. Un planning partagé, visible du terrain comme du bureau, et relié à ce qui est réellement fait : c’est précisément l’outil que j’ai voulu construire en tant que chargé d’affaires — et que je construis aujourd’hui.',
+      text: 'Votre planning existe, mais il vit à un seul endroit : un mur, un Excel, une tête. Chaque changement déclenche sa cascade d’appels, et chaque absence de l’info son lot de doublons et d’oublis. Un planning partagé, visible du terrain comme du bureau, et relié à ce qui est réellement fait : c’est l’outil que je voulais déjà construire quand j’étais chargé d’affaires. Aujourd’hui, je le construis.',
       link: 'Voir l’exemple « Bons d’intervention & planning » plus haut.',
     },
     pilotage: {
@@ -200,7 +200,7 @@
     },
     dependance: {
       num: '⑤', title: 'Dépendance-clé — Tout repose sur une personne',
-      text: 'Une partie de votre fonctionnement tient parce qu’une personne précise sait le faire — et elle seule. Congés, arrêt, départ : le risque est connu, et repoussé. Outiller un process, c’est aussi le documenter en le construisant : l’outil embarque la méthode, et la connaissance cesse d’être un point de fragilité. C’est souvent le gisement le moins visible au quotidien, et le plus dangereux à long terme.',
+      text: 'Une partie de votre fonctionnement tient parce qu’une personne précise sait le faire. Elle seule. Congés, arrêt, départ : le risque est connu, et repoussé. Outiller un process, c’est aussi le documenter en le construisant : l’outil embarque la méthode, et la connaissance cesse d’être un point de fragilité. C’est souvent le gisement le moins visible au quotidien, et le plus dangereux à long terme.',
       link: null,
     },
   };
@@ -484,8 +484,8 @@
     const chapeau = document.createElement('p');
     chapeau.className = 'restitution__chapeau';
     chapeau.textContent = result.retained.length === 0
-      ? 'Un diagnostic honnête ne se fait pas derrière un écran — mais d’après vos réponses, voici déjà une lecture franche de votre situation.'
-      : 'D’après vos réponses, voici où votre structure perd vraisemblablement le plus. « Probables », parce qu’un diagnostic honnête ne se fait pas derrière un écran : il se confirme en observant le travail réel — c’est justement l’objet de l’échange offert.';
+      ? 'Un diagnostic honnête ne se fait pas derrière un écran, mais d’après vos réponses, voici déjà une lecture franche de votre situation.'
+      : 'D’après vos réponses, voici où votre structure perd vraisemblablement le plus. « Probables », parce qu’un diagnostic honnête ne se fait pas derrière un écran : il se confirme en observant le travail réel. C’est l’objet de l’échange offert.';
     wrap.appendChild(chapeau);
 
     if (result.retained.length === 0) {
@@ -493,7 +493,7 @@
       bloc.className = 'card restitution__bloc';
       const p = document.createElement('p');
       p.className = 'restitution__bloc-text';
-      p.innerHTML = '<strong>Bonne nouvelle : rien d’alarmant.</strong> D’après vos réponses, votre structure est plutôt bien organisée — peu de frictions majeures détectées, et ce diagnostic n’a pas vocation à en inventer. Si un point vous chiffonne malgré tout, ou si vous voulez un regard extérieur sur un sujet précis, l’échange offert reste ouvert. Et si un outil ne se justifie pas, je vous le dirai aussi.';
+      p.innerHTML = '<strong>Bonne nouvelle : rien d’alarmant.</strong> D’après vos réponses, votre structure est plutôt bien organisée : peu de frictions majeures détectées, et ce diagnostic n’a pas vocation à en inventer. Si un point vous chiffonne malgré tout, ou si vous voulez un regard extérieur sur un sujet précis, l’échange offert reste ouvert. Et si un outil ne se justifie pas, je vous le dirai aussi.';
       bloc.appendChild(p);
       wrap.appendChild(bloc);
     } else {
@@ -539,7 +539,7 @@
       chiffre.className = 'restitution__chiffre';
       if (result.cost.unknown) {
         const p = document.createElement('p');
-        p.textContent = 'Vous ne savez pas combien d’heures partent en frictions chaque semaine — c’est le premier chiffre qu’un audit met sur la table.';
+        p.textContent = 'Vous ne savez pas combien d’heures partent en frictions chaque semaine. C’est le premier chiffre qu’un audit met sur la table.';
         chiffre.appendChild(p);
       } else {
         const p1 = document.createElement('p');
@@ -549,7 +549,7 @@
         value.textContent = result.cost.perYear.toLocaleString('fr-FR') + ' € par an';
         const p2 = document.createElement('p');
         p2.className = 'restitution__chiffre-note';
-        p2.textContent = '(base 45 semaines, 30 € /h chargé). Un ordre de grandeur, pas une promesse — mais c’est votre estimation, pas la nôtre.';
+        p2.textContent = '(base 45 semaines, 30 € /h chargé). Un ordre de grandeur, rien de plus. Mais il vient de vos chiffres, pas des miens.';
         chiffre.append(p1, value, p2);
       }
       wrap.appendChild(chiffre);
@@ -580,7 +580,7 @@
 
     const label = document.createElement('label');
     label.setAttribute('for', 'diagnostic-email');
-    label.textContent = 'Recevez cette synthèse par email — et gardez-la sous la main pour notre échange.';
+    label.textContent = 'Recevez cette synthèse par email, et gardez-la sous la main pour notre échange.';
     box.appendChild(label);
 
     const row = document.createElement('div');

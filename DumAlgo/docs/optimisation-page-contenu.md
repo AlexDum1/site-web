@@ -1,5 +1,10 @@
 # Page `/optimisation` — Contenu rédigé complet
 
+> **Note (21/07/2026)** : le contenu a été humanisé après rédaction (réduction des tirets
+> cadratins de 23 à ~8, allègement des figures « pas X, mais Y » répétées, suppression des
+> adverbes en doublon). `optimisation.html` et `assets/js/diagnostic.js` font désormais
+> référence pour la formulation finale ; ce document conserve la version d'origine.
+
 > Framework : PAS (Problème → Agitation → Solution), tempéré par la signature DumAlgo : franchise, zéro pression artificielle, transparence des prix.
 > Le questionnaire (section finale) est spécifié dans `diagnostic-optimisation-spec.md`.
 > En fin de document : les modifications à apporter à la home (bandeau + nav).
