@@ -1,0 +1,393 @@
+/* ==========================================================================
+   Optimisation & process — styles spécifiques à cette page
+   Ne réutilise pas ce qui existe déjà dans style.css : uniquement le wizard
+   de diagnostic, sa barre de progression, l'encart vécu, l'escalier de
+   l'offre et l'encart chiffre de restitution.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Bandeau de réorientation (home) — non utilisé sur cette page, mais la
+   classe est prévue ici pour rester cohérente si réutilisée ailleurs.
+   -------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+   Encart vécu — élément différenciant du flow vedette
+   -------------------------------------------------------------------------- */
+.encart-vecu {
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--accent-soft, rgba(242, 201, 76, 0.14));
+  border-left: 3px solid var(--gold);
+  color: var(--chalk);
+}
+.encart-vecu p {
+  margin: 0;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-soft, #b9d2c7);
+  max-width: 46rem;
+}
+.encart-vecu__label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.4rem;
+  font-style: normal;
+}
+
+/* --------------------------------------------------------------------------
+   Escalier de l'offre — 3 marches
+   -------------------------------------------------------------------------- */
+.escalier {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.escalier__step {
+  position: relative;
+  padding: var(--space-3) var(--space-3) var(--space-3) 4.5rem;
+}
+.escalier__num {
+  position: absolute;
+  left: var(--space-3);
+  top: var(--space-3);
+  width: 2.3rem;
+  height: 2.3rem;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  background: var(--panel);
+  color: var(--gold);
+  border: 1px dashed var(--gold-ink);
+}
+.escalier__step .badge { margin-bottom: var(--space-1); }
+.escalier__title { font-size: var(--fs-h3); margin-bottom: 0.5rem; }
+.escalier__text { color: var(--ink-soft); margin-bottom: var(--space-1); }
+.escalier__text:last-of-type { margin-bottom: var(--space-2); }
+.escalier__text strong { color: var(--ink); }
+.escalier__step .btn { margin-top: 0.25rem; }
+
+/* --------------------------------------------------------------------------
+   Wizard de diagnostic
+   -------------------------------------------------------------------------- */
+.wizard {
+  padding: var(--space-3);
+  max-width: 42rem;
+}
+
+.wizard__progress {
+  height: 6px;
+  background: rgba(11, 47, 38, 0.12);
+  margin-bottom: var(--space-2);
+  overflow: hidden;
+}
+.wizard__progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--gold-ink, var(--gold));
+  transition: width 320ms ease;
+}
+
+.wizard__meta {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: var(--space-2);
+}
+
+.wizard__question-title {
+  font-size: 1.2rem;
+  margin-bottom: var(--space-2);
+  color: var(--ink);
+}
+.wizard__question-note {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-top: -0.5rem;
+  margin-bottom: var(--space-2);
+}
+
+.wizard__options {
+  list-style: none;
+  margin: 0 0 var(--space-2);
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+.wizard__option {
+  display: block;
+}
+.wizard__option-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border: 1.5px solid var(--line, #d9d0bc);
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition), transform var(--transition);
+}
+.wizard__option-label:hover {
+  border-color: var(--gold-ink, var(--gold));
+  transform: translateY(-1px);
+}
+.wizard__option input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.wizard__option-mark {
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 1.5px solid var(--ink-soft);
+  border-radius: 50%;
+  position: relative;
+}
+.wizard__option input:checked + .wizard__option-mark::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--gold-ink, var(--gold));
+}
+.wizard__option input:checked ~ .wizard__option-text {
+  font-weight: 600;
+}
+.wizard__option input:focus-visible + .wizard__option-mark {
+  outline: 3px solid var(--gold-ink, var(--gold));
+  outline-offset: 2px;
+}
+.wizard__option-label.is-selected {
+  border-color: var(--gold-ink, var(--gold));
+  background: var(--accent-soft, rgba(20, 80, 63, 0.1));
+}
+.wizard__option-text { color: var(--ink); font-size: 0.98rem; }
+
+.wizard__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+.wizard__back:disabled {
+  opacity: 0.35;
+  cursor: default;
+  pointer-events: none;
+}
+.wizard__submit { align-self: flex-start; }
+
+/* --------------------------------------------------------------------------
+   Restitution
+   -------------------------------------------------------------------------- */
+.restitution {
+  max-width: 46rem;
+}
+.restitution__chapeau {
+  color: var(--ink-soft);
+  max-width: 44rem;
+}
+.restitution__blocs {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+.restitution__bloc {
+  padding: var(--space-3);
+}
+.restitution__bloc-num {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-ink, var(--gold));
+  margin-bottom: 0.3rem;
+}
+.restitution__bloc-title { font-size: var(--fs-h3); margin-bottom: 0.5rem; }
+.restitution__bloc-text { color: var(--ink-soft); margin-bottom: 0; }
+
+/* Encart chiffre */
+.restitution__chiffre {
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  border: 1.5px dashed var(--gold-ink, var(--gold));
+  background: var(--accent-soft, rgba(20, 80, 63, 0.08));
+}
+.restitution__chiffre-value {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold-ink, var(--gold));
+}
+.restitution__chiffre p { margin: 0 0 var(--space-1); color: var(--ink); }
+.restitution__chiffre p:last-child { margin-bottom: 0; }
+
+.restitution__cta {
+  margin-top: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+}
+.restitution__cta-note {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.restitution__email {
+  margin-top: var(--space-3);
+  padding-top: var(--space-2);
+  border-top: 1px dashed var(--line, #d9d0bc);
+}
+.restitution__email label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+.restitution__email-row {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.restitution__email input[type="email"] {
+  flex: 1;
+  min-width: 12rem;
+  font: inherit;
+  color: var(--ink);
+  background: rgba(11, 47, 38, 0.04);
+  border: 1px solid rgba(11, 47, 38, 0.28);
+  padding: 0.7rem 0.85rem;
+}
+.restitution__email-status {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin: 0.5rem 0 0;
+}
+
+@media (max-width: 600px) {
+  .escalier__step { padding-left: var(--space-3); }
+  .escalier__num { position: static; margin-bottom: var(--space-1); }
+}
+
+/* ==========================================================================
+   Charte « fiche devis » — reprise du popup de détail des offres
+   (offer-modal de showcase.css) pour tous les cadres papier de cette page :
+   en-têtes en petites capitales mono soulignées en pointillés, encres
+   document (#0b2f26 / #4a5a50 / #8a8672), séparateurs en tirets #d9d0bc.
+   ========================================================================== */
+
+/* Traitement 06.3 — « En-tête de devis · version papier » de la charte :
+   papier millimétré vert 24 px, bordure #D9D0BC, ombre douce de document. */
+.card.step,
+.card.escalier__step,
+.card.wizard,
+.card.restitution__bloc,
+.restitution__chiffre {
+  background-color: var(--paper);
+  background-image: linear-gradient(rgba(20, 80, 63, 0.08) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(20, 80, 63, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+  border: 1px solid #d9d0bc;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* Cartes méthode (J'observe / J'analyse / Je construis) */
+.card.step .step__num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #b98a2f;
+  margin-bottom: 0.55rem;
+}
+.card.step .step__num::before { content: "N° 0"; }
+.card.step .step__name {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #14503f;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px dashed rgba(20, 80, 63, 0.5);
+  margin-bottom: 0.75rem;
+}
+.card.step .step__text { color: #4a473e; }
+
+/* Marches de l'escalier */
+.escalier__num {
+  background: none;
+  border: 1px dashed #b98a2f;
+  color: #b98a2f;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+.escalier__title {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed rgba(20, 80, 63, 0.5);
+}
+.escalier__text { color: #4a473e; }
+.escalier__step .badge {
+  background: none;
+  color: #b98a2f;
+  border: 1px dashed #b98a2f;
+}
+
+/* Wizard : en-tête de document + liste façon fiche */
+.wizard__meta {
+  color: #6b6455;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px dashed rgba(20, 80, 63, 0.5);
+}
+.wizard__option-label { border-style: dashed; }
+.wizard__option-label:hover { background: rgba(20, 80, 63, 0.05); }
+
+/* Restitution : blocs et encart chiffre en langage document */
+.restitution__bloc-num {
+  color: #b98a2f;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+.restitution__bloc-title {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed rgba(20, 80, 63, 0.5);
+}
+.restitution__bloc-text { color: #4a473e; }
+.restitution__bloc-text a {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #b98a2f;
+  text-decoration: none;
+  border-bottom: 1.5px dashed currentColor;
+  padding-bottom: 2px;
+}
+.restitution__bloc-text a:hover { color: #14503f; }
+.restitution__chiffre-note {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.02em;
+  color: #6b6455;
+}

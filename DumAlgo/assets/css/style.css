@@ -411,11 +411,16 @@ main > .section { border-top: 1px dashed var(--separator); }
   --accent-deep: #0b2f26;
   --accent-soft: rgba(20, 80, 63, 0.12);
   --line: #d9d0bc;
-  background: var(--paper);
+  /* Traitement « 06.3 — En-tête de devis · version papier » de la charte :
+     papier millimétré vert 24 px, bordure #d9d0bc, ombre douce de document. */
+  background-color: var(--paper);
+  background-image: linear-gradient(rgba(20, 80, 63, 0.08) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(20, 80, 63, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
   color: var(--ink);
-  border: 1px solid rgba(11, 47, 38, 0.1);
+  border: 1px solid #d9d0bc;
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
   transition: transform var(--transition), box-shadow var(--transition);
 }
 .card h3, .card h4 { color: var(--ink); }
@@ -1151,3 +1156,27 @@ main > .section { border-top: 1px dashed var(--separator); }
   .reveal { opacity: 1; transform: none; transition: none; }
   * { transition-duration: 0.01ms !important; }
 }
+
+/* ==========================================================================
+   Bandeau de réorientation PME (home → optimisation.html)
+   ========================================================================== */
+.pme-band {
+  background: var(--bg-alt);
+  border-top: 1px dashed var(--separator);
+  border-bottom: 1px dashed var(--separator);
+  padding: var(--space-3) 0;
+}
+.pme-band__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+.pme-band__text {
+  margin: 0;
+  color: var(--ink-soft);
+  max-width: 46rem;
+}
+.pme-band__text strong { color: var(--ink); }
+.pme-band__btn { flex-shrink: 0; }
