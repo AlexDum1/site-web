@@ -22,8 +22,9 @@ jobs:
           set -euo pipefail
           mkdir -p _deploy
 
-          # Site principal DumAlgo à la racine du domaine (sans les documents internes de branding)
-          rsync -a --exclude 'branding/' --exclude '.DS_Store' DumAlgo/ _deploy/
+          # Site principal DumAlgo à la racine du domaine (sans les documents
+          # internes : branding et docs de travail ne doivent pas être publiés)
+          rsync -a --exclude 'branding/' --exclude 'docs/' --exclude '.DS_Store' DumAlgo/ _deploy/
 
           # Maquettes de démonstration en sous-dossiers
           for demo in espace-respire laetitia-cardinale menuiserie-durand-le-pouget \
