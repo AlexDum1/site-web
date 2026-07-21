@@ -6,7 +6,7 @@ const SITE = {
   phone: '04 11 93 97 53',        // Numéro fixe
   phoneHref: '+33411939753',      // Numéro fixe au format international
   email: 'contact@dumalgo.fr',    // Alias vers alexis.dumas@dumalgo.fr (côté OVH)
-  formspree: '',                  // TODO : endpoint Formspree, ex. 'https://formspree.io/f/xxxxxxx'
+  formEndpoint: 'api/contact.php', // endpoint maison (PHP, sur l'hébergement OVH du site)
 };
 
 /* Injection de la config dans le DOM */
@@ -130,7 +130,7 @@ const revealObserver = new IntersectionObserver(
 document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
 
 /* ==========================================================================
-   Formulaire de contact — Formspree si configuré, repli mailto sinon
+   Formulaire de contact — endpoint maison si configuré, repli mailto sinon
    ========================================================================== */
 const form = document.getElementById('contact-form');
 
@@ -161,7 +161,7 @@ form.addEventListener('submit', async (e) => {
   const data = new FormData(form);
   if (panierSummary()) data.set('selection', panierSummary());
 
-  if (!SITE.formspree) {
+  if (!SITE.formEndpoint) {
     // Endpoint non configuré : repli sur le client mail du visiteur.
     const body = [
       'Nom : ' + data.get('nom'),
@@ -183,7 +183,7 @@ form.addEventListener('submit', async (e) => {
 
   status.textContent = 'Envoi en cours…';
   try {
-    const res = await fetch(SITE.formspree, {
+    const res = await fetch(SITE.formEndpoint, {
       method: 'POST',
       body: data,
       headers: { Accept: 'application/json' },

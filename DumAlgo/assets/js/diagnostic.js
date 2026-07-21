@@ -1,6 +1,7 @@
 /* ==========================================================================
    Auto-diagnostic « Optimisation & process »
-   Wizard pas-à-pas, scoring des gisements, restitution, envoi Formspree.
+   Wizard pas-à-pas, scoring des gisements, restitution, envoi de la synthèse
+   par email via l'endpoint maison (SITE.formEndpoint, api/contact.php).
    JS vanilla — s'appuie sur SITE (défini dans main.js, chargé avant ce script)
    et sur les mêmes conventions visuelles que le reste du site.
    ========================================================================== */
@@ -424,7 +425,11 @@
   }
 
   /* ------------------------------------------------------------------------
-     Fin du questionnaire : scoring, restitution, envoi Formspree
+     Fin du questionnaire : scoring et restitution.
+     Les réponses restent dans le navigateur — rien n'est transmis sans
+     action explicite du visiteur (promesse de la page et des mentions
+     légales) : seul l'envoi volontaire de la synthèse (buildEmailCapture)
+     et le formulaire de contact quittent le poste.
      ------------------------------------------------------------------------ */
   function finish() {
     const { normalized, terrainNeutralized } = computeScores(state.answers);
@@ -435,36 +440,9 @@
     state.finished = true;
     saveState();
     render();
-    sendToFormspree(retained, cost);
 
     const restitutionEl = root.querySelector('.restitution');
     if (restitutionEl) restitutionEl.focus({ preventScroll: false });
-  }
-
-  function sendToFormspree(retained, cost) {
-    const site = getSite();
-    if (!site || !site.formspree) {
-      // Endpoint non configuré : on n'échoue pas la restitution pour autant.
-      console.warn('[diagnostic] SITE.formspree non configuré : envoi ignoré.');
-      return;
-    }
-    const data = new FormData();
-    data.set('form_name', 'diagnostic-optimisation');
-    QUESTIONS.forEach((q) => {
-      const ansIndex = state.answers[q.id];
-      const ansLabel = ansIndex != null ? q.options[ansIndex].label : '';
-      data.set(q.id, ansLabel);
-    });
-    data.set('gisements_retenus', retained.map((k) => GISEMENT_BLOCKS[k].title).join(' + ') || 'Peu de frictions détectées');
-    data.set('cout_estime', cost ? (cost.unknown ? 'Aucune idée' : cost.perYear + ' €/an') : '');
-
-    fetch(site.formspree, {
-      method: 'POST',
-      body: data,
-      headers: { Accept: 'application/json' },
-    }).catch(() => {
-      console.warn('[diagnostic] Échec de l’envoi Formspree (réseau).');
-    });
   }
 
   /* ------------------------------------------------------------------------
@@ -609,8 +587,8 @@
         return;
       }
       const site = getSite();
-      if (!site || !site.formspree) {
-        console.warn('[diagnostic] SITE.formspree non configuré : envoi de la synthèse ignoré.');
+      if (!site || !site.formEndpoint) {
+        console.warn('[diagnostic] SITE.formEndpoint non configuré : envoi de la synthèse ignoré.');
         status.textContent = 'Synthèse notée — je reviendrai vers vous directement.';
         return;
       }
@@ -618,7 +596,7 @@
       data.set('form_name', 'diagnostic-optimisation-synthese');
       data.set('email', email);
       data.set('gisements_retenus', (state.result.retained || []).map((k) => GISEMENT_BLOCKS[k].title).join(' + ') || 'Peu de frictions détectées');
-      fetch(site.formspree, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+      fetch(site.formEndpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
         .then((res) => {
           status.textContent = res.ok
             ? 'Merci, la synthèse vous sera envoyée.'

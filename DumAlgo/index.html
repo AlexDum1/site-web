@@ -624,8 +624,9 @@
             <p class="panier__total"><span>Estimation</span><span data-panier-total></span></p>
             <p class="panier__note">Cette sélection sera jointe à votre message. Rien n'est engageant, on affine ensemble.</p>
           </aside>
-          <!-- TODO : renseigner l'endpoint Formspree (SITE.formspree dans main.js) -->
-          <form class="contact__form card reveal" id="contact-form" method="POST" action="#">
+          <form class="contact__form card reveal" id="contact-form" method="POST" action="api/contact.php">
+            <!-- Pot de miel anti-spam : invisible pour les visiteurs, rempli par les bots. -->
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;overflow:hidden;border:0;padding:0">
             <div class="field">
               <label for="f-nom">Nom</label>
               <input type="text" id="f-nom" name="nom" autocomplete="name" required>
@@ -674,6 +675,7 @@
   <footer class="site-footer">
     <div class="container site-footer__inner">
       <p>© <span data-year>2026</span> <span data-brand>DumAlgo</span> · Sites web &amp; outils numériques sur-mesure, Hérault.</p>
+      <a href="mentions-legales.html">Mentions légales</a>
       <a href="#haut">Retour en haut</a>
     </div>
   </footer>
