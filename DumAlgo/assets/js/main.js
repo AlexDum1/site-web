@@ -3,8 +3,8 @@
    ========================================================================== */
 const SITE = {
   brand: 'DumAlgo',            // Nom de marque validé
-  phone: '04 XX XX XX XX',        // TODO : numéro VoIP 04 dès qu'il est actif
-  phoneHref: '+33400000000',      // TODO : numéro VoIP au format international
+  phone: '04 11 93 97 53',        // Numéro fixe
+  phoneHref: '+33411939753',      // Numéro fixe au format international
   email: 'contact@dumalgo.fr',    // Alias vers alexis.dumas@dumalgo.fr (côté OVH)
   formspree: '',                  // TODO : endpoint Formspree, ex. 'https://formspree.io/f/xxxxxxx'
 };
