@@ -183,18 +183,20 @@ a { color: var(--accent); }
 .nav__menu {
   display: flex;
   align-items: center;
-  gap: clamp(1rem, 2.5vw, 2rem);
+  gap: clamp(0.75rem, 1.6vw, 1.25rem);
   list-style: none;
   margin: 0;
   padding: 0;
 }
+/* Chaque entrée reste sur une seule ligne (plus d'items cassés en deux). */
+.nav__menu a { white-space: nowrap; }
 
 .nav__menu a:not(.nav__cta) {
   color: var(--muted);
   text-decoration: none;
   font-family: var(--font-mono);
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   font-weight: 500;
   position: relative;
@@ -249,7 +251,7 @@ a { color: var(--accent); }
   transition: transform var(--transition), opacity var(--transition);
 }
 
-@media (max-width: 760px) {
+@media (max-width: 1200px) {
   .nav__toggle { display: flex; }
   .nav__menu {
     position: absolute;
@@ -617,6 +619,8 @@ main > .section { border-top: 1px dashed var(--separator); }
 /* Audit & outils métiers */
 .outils-intro { max-width: 48rem; }
 .outils-intro p { color: var(--ink-soft); }
+/* Intertitres de section (ex. mentions légales) : rendu charte 26/500, pas la taille UA par défaut. */
+.outils-intro h2 { font-size: var(--fs-h3); font-weight: 500; margin-bottom: var(--space-1); }
 .steps__title { font-size: var(--fs-h3); margin-top: var(--space-4); margin-bottom: var(--space-2); }
 .steps {
   list-style: none;

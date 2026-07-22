@@ -356,6 +356,7 @@ const OFFERS = {
     ] },
   surmesure: { kicker: 'Site vitrine', name: 'Sur-mesure', price: 'Sur devis', cta: 'Demander un devis', sel: 'offre:surmesure',
     intro: 'Périmètre défini ensemble, à partir de votre besoin réel. Quelques exemples de ce qui devient possible :',
+    inclusTitle: 'Exemples de périmètre', exclusTitle: 'Toujours inclus', exclusPositive: true,
     inclus: [
       'Site + outil métier associé (suivi de chantiers, devis, planning, relances)',
       'Réservation en ligne, prise de rendez-vous',
@@ -365,7 +366,6 @@ const OFFERS = {
       'Toute fonctionnalité spécifique issue du diagnostic process',
     ],
     exclus: [
-      'Toujours inclus dans un projet sur-mesure :',
       'Cadrage écrit du besoin avant devis (issu du diagnostic si réalisé)',
       'Devis ferme avec délai engagé',
       'Livraison testée et documentée, propriété complète du client',
@@ -459,6 +459,16 @@ const openDetail = (key) => {
   };
   fill('[data-offer-inclus]', d.inclus);
   fill('[data-offer-exclus]', d.exclus);
+  /* Titres de colonnes pilotés par l'offre (défauts : Inclus / Non inclus).
+     Certaines offres (ex. Sur-mesure) présentent deux listes positives :
+     exclusPositive bascule la colonne de droite en style « inclus » (coche verte). */
+  const titleIn = offerViewer.querySelector('.offer-modal__coltitle--in');
+  const titleOut = offerViewer.querySelector('.offer-modal__coltitle--out');
+  const listOut = offerViewer.querySelector('[data-offer-exclus]');
+  titleIn.textContent = d.inclusTitle || 'Inclus';
+  titleOut.textContent = d.exclusTitle || 'Non inclus';
+  titleOut.classList.toggle('is-positive', !!d.exclusPositive);
+  listOut.classList.toggle('is-positive', !!d.exclusPositive);
   offerViewer.querySelector('[data-offer-choose]').textContent = d.cta;
   offerViewer.hidden = false;
   document.body.style.overflow = 'hidden';
