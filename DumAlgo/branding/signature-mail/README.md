@@ -9,15 +9,42 @@ Signatures HTML pour les deux adresses du domaine, alignées sur la charte
 | `signature-alexis.html` | identité **alexis.dumas@dumalgo.fr** |
 | `signature.txt` | version texte brut (mobile, clients sans HTML) |
 
-Le logo est appelé à distance depuis le site :
-`https://dumalgo.fr/assets/img/signature/dumalgo-hexagone-128.png`
-(fichier source dans `assets/img/signature/`, exporté depuis
-`assets/img/logo/dumalgo-hexagone-plein.svg`). Ne pas déplacer ni renommer cette
-image : toutes les signatures déjà envoyées pointent dessus.
+Le logo est un **SVG écrit directement dans le HTML** — aucune image distante, aucune
+pièce jointe. Voir la section ci-dessous : c'est ce qui rend la signature stable dans
+Apple Mail. Géométrie reprise de `assets/img/logo/dumalgo-hexagone-plein.svg`.
+
+## Le logo est un SVG *inline* — ne pas le remplacer par une image
+
+C'est le point décisif, trouvé après une longue série d'échecs le 22/07/2026.
+
+Apple Mail traite toute balise `<img>` comme une pièce jointe : il télécharge le
+fichier, l'encode en base64 dans la signature, **supprime les attributs de dimension**
+et recompose le tout à chaque fois qu'on rouvre la signature. Résultat : logo affiché
+à sa taille native, mise en page qui s'empile, signature qui se dégrade à chaque
+aller-retour. Aucun réglage ne l'en empêche.
+
+Un `<svg>` écrit directement dans le HTML n'est pas une image : Mail n'a rien à
+télécharger et le laisse intact. La signature devient stable, et le logo est net à
+toutes les résolutions. C'est ce que fait la signature Symbolea, qui n'a jamais bougé.
+
+**Conséquence à connaître** : Gmail et Outlook n'affichent pas le SVG inline. Un
+destinataire sur Apple Mail verra l'hexagone ; sur Gmail il verra la carte et le texte,
+sans logo. C'est le prix de la stabilité, assumé.
+
+Les PNG de `assets/img/signature/` restent publiés pour les usages où une vraie image
+est nécessaire (Roundcube, iPhone).
 
 ## Installer dans Apple Mail (Mac) — client principal
 
-Fait le 22/07/2026 par écriture directe dans `~/Library/Mail/V10/MailData/Signatures/` :
+**L'écriture directe des fichiers `.mailsignature` ne fonctionne pas** sur macOS 27 :
+Mail garde les signatures dans un stockage interne et réécrit ces fichiers depuis son
+propre état, écrasant toute modification. La seule voie est le collage dans l'interface.
+
+Procédure : ouvrir le fichier `.html` dans Safari, tout copier, puis dans
+Mail → Réglages → Signatures : vider la signature (⌘A, Suppr), décocher « Toujours
+utiliser la police par défaut », coller.
+
+Historique de l'ancienne méthode, conservée pour mémoire :
 
 - `A1D0C1A0-…-DUMALGOCONT01.mailsignature` → compte `contact@dumalgo.fr`
 - `A2D0C1A0-…-DUMALGOALEX01.mailsignature` → compte `alexis.dumas@dumalgo.fr`
