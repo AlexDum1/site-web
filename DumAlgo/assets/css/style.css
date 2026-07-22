@@ -617,6 +617,8 @@ main > .section { border-top: 1px dashed var(--separator); }
 /* Audit & outils métiers */
 .outils-intro { max-width: 48rem; }
 .outils-intro p { color: var(--ink-soft); }
+/* Intertitres de section (ex. mentions légales) : rendu charte 26/500, pas la taille UA par défaut. */
+.outils-intro h2 { font-size: var(--fs-h3); font-weight: 500; margin-bottom: var(--space-1); }
 .steps__title { font-size: var(--fs-h3); margin-top: var(--space-4); margin-bottom: var(--space-2); }
 .steps {
   list-style: none;
