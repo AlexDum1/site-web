@@ -15,7 +15,38 @@ Le logo est appelé à distance depuis le site :
 `assets/img/logo/dumalgo-hexagone-plein.svg`). Ne pas déplacer ni renommer cette
 image : toutes les signatures déjà envoyées pointent dessus.
 
+## Installer dans Apple Mail (Mac) — client principal
+
+Fait le 22/07/2026 par écriture directe dans `~/Library/Mail/V10/MailData/Signatures/` :
+
+- `A1D0C1A0-…-DUMALGOCONT01.mailsignature` → compte `contact@dumalgo.fr`
+- `A2D0C1A0-…-DUMALGOALEX01.mailsignature` → compte `alexis.dumas@dumalgo.fr`
+- déclarées dans `AllSignatures.plist`, rattachées aux comptes dans `AccountsMap.plist`
+
+Sauvegarde des deux plists d'origine : `_archive/applemail-signatures-backup-2026-07-22/`
+(hors dépôt — ces fichiers contiennent les adresses des autres comptes).
+
+**Pour refaire l'opération** : Mail doit être **fermé**, sinon il réécrit les fichiers en
+quittant. Le format est un mail MIME : en-têtes `Content-Type: text/html` +
+`Content-Transfer-Encoding: quoted-printable`, ligne vide, puis le HTML encodé en
+quoted-printable. Si Apple Mail finit par écraser la mise en forme, la parade est de
+verrouiller les fichiers après vérification : `chflags uchg <fichier>.mailsignature`.
+
+## Installer sur iPhone
+
+iOS n'a pas de champ signature HTML. Méthode de contournement :
+
+1. Depuis le Mac, s'envoyer un mail signé.
+2. Sur l'iPhone, ouvrir ce mail, sélectionner la signature entière, **Copier**.
+3. Réglages → Apps → Mail → **Signature** → coller.
+
+Le texte mis en forme survit généralement, le logo souvent pas. Si le rendu est
+mauvais, coller à la place le bloc correspondant de `signature.txt`.
+
 ## Installer dans le webmail OVH (Roundcube)
+
+Utile en dépannage (accès depuis un autre poste) :
+
 
 1. Webmail OVH → **Paramètres → Identités** → sélectionner l'adresse.
 2. Cocher **Signature HTML**.
